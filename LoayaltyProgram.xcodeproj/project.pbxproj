@@ -13,6 +13,16 @@
 		4395AF341E9914BE005577F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF321E9914BE005577F5 /* Main.storyboard */; };
 		4395AF361E9914BE005577F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF351E9914BE005577F5 /* Assets.xcassets */; };
 		4395AF391E9914BE005577F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF371E9914BE005577F5 /* LaunchScreen.storyboard */; };
+		4395AF411E99158E005577F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF401E99158E005577F5 /* GoogleService-Info.plist */; };
+		4395AF581E99192B005577F5 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF431E991701005577F5 /* FirebaseAnalytics.framework */; };
+		4395AF591E99192B005577F5 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF441E991701005577F5 /* FirebaseCore.framework */; };
+		4395AF5A1E99192B005577F5 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF451E991701005577F5 /* FirebaseInstanceID.framework */; };
+		4395AF5B1E99192B005577F5 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF461E991701005577F5 /* GoogleToolboxForMac.framework */; };
+		4395AF5C1E99193C005577F5 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF541E99171D005577F5 /* FirebaseStorage.framework */; };
+		4395AF5D1E99193C005577F5 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF551E99171D005577F5 /* GTMSessionFetcher.framework */; };
+		4395AF5E1E991948005577F5 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF511E991716005577F5 /* FirebaseDatabase.framework */; };
+		4395AF5F1E991954005577F5 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF4C1E99170B005577F5 /* FirebaseAuth.framework */; };
+		4395AF601E991954005577F5 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF4D1E99170B005577F5 /* GTMSessionFetcher.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +36,17 @@
 		4395AF351E9914BE005577F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4395AF381E9914BE005577F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4395AF3A1E9914BE005577F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4395AF401E99158E005577F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4395AF431E991701005577F5 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		4395AF441E991701005577F5 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
+		4395AF451E991701005577F5 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		4395AF461E991701005577F5 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
+		4395AF4C1E99170B005577F5 /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = "<group>"; };
+		4395AF4D1E99170B005577F5 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = "<group>"; };
+		4395AF511E991716005577F5 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
+		4395AF541E99171D005577F5 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = "<group>"; };
+		4395AF551E99171D005577F5 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = "<group>"; };
+		4395AF611E99198D005577F5 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +54,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4395AF5F1E991954005577F5 /* FirebaseAuth.framework in Frameworks */,
+				4395AF601E991954005577F5 /* GTMSessionFetcher.framework in Frameworks */,
+				4395AF5E1E991948005577F5 /* FirebaseDatabase.framework in Frameworks */,
+				4395AF5C1E99193C005577F5 /* FirebaseStorage.framework in Frameworks */,
+				4395AF5D1E99193C005577F5 /* GTMSessionFetcher.framework in Frameworks */,
+				4395AF581E99192B005577F5 /* FirebaseAnalytics.framework in Frameworks */,
+				4395AF591E99192B005577F5 /* FirebaseCore.framework in Frameworks */,
+				4395AF5A1E99192B005577F5 /* FirebaseInstanceID.framework in Frameworks */,
+				4395AF5B1E99192B005577F5 /* GoogleToolboxForMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,8 +94,10 @@
 				4395AF301E9914BE005577F5 /* ViewController.m */,
 				4395AF321E9914BE005577F5 /* Main.storyboard */,
 				4395AF351E9914BE005577F5 /* Assets.xcassets */,
+				4395AF401E99158E005577F5 /* GoogleService-Info.plist */,
 				4395AF371E9914BE005577F5 /* LaunchScreen.storyboard */,
 				4395AF3A1E9914BE005577F5 /* Info.plist */,
+				4395AF621E9919BB005577F5 /* Firebase */,
 				4395AF291E9914BE005577F5 /* Supporting Files */,
 			);
 			path = LoayaltyProgram;
@@ -77,6 +109,55 @@
 				4395AF2A1E9914BE005577F5 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4395AF421E991701005577F5 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				4395AF431E991701005577F5 /* FirebaseAnalytics.framework */,
+				4395AF441E991701005577F5 /* FirebaseCore.framework */,
+				4395AF451E991701005577F5 /* FirebaseInstanceID.framework */,
+				4395AF461E991701005577F5 /* GoogleToolboxForMac.framework */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		4395AF4B1E99170B005577F5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4395AF4C1E99170B005577F5 /* FirebaseAuth.framework */,
+				4395AF4D1E99170B005577F5 /* GTMSessionFetcher.framework */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		4395AF501E991716005577F5 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				4395AF511E991716005577F5 /* FirebaseDatabase.framework */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		4395AF531E99171D005577F5 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				4395AF541E99171D005577F5 /* FirebaseStorage.framework */,
+				4395AF551E99171D005577F5 /* GTMSessionFetcher.framework */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		4395AF621E9919BB005577F5 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				4395AF611E99198D005577F5 /* Firebase.h */,
+				4395AF421E991701005577F5 /* Analytics */,
+				4395AF4B1E99170B005577F5 /* Auth */,
+				4395AF501E991716005577F5 /* Database */,
+				4395AF531E99171D005577F5 /* Storage */,
+			);
+			name = Firebase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4395AF391E9914BE005577F5 /* LaunchScreen.storyboard in Resources */,
+				4395AF411E99158E005577F5 /* GoogleService-Info.plist in Resources */,
 				4395AF361E9914BE005577F5 /* Assets.xcassets in Resources */,
 				4395AF341E9914BE005577F5 /* Main.storyboard in Resources */,
 			);
@@ -219,9 +301,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -261,8 +347,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -274,7 +364,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LB8V6BYW89;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LoayaltyProgram/Analytics",
+					"$(PROJECT_DIR)/LoayaltyProgram/Auth",
+					"$(PROJECT_DIR)/LoayaltyProgram/Database",
+					"$(PROJECT_DIR)/LoayaltyProgram/Storage",
+				);
 				INFOPLIST_FILE = LoayaltyProgram/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chaikovsky.LoayaltyProgram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,7 +384,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LB8V6BYW89;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LoayaltyProgram/Analytics",
+					"$(PROJECT_DIR)/LoayaltyProgram/Auth",
+					"$(PROJECT_DIR)/LoayaltyProgram/Database",
+					"$(PROJECT_DIR)/LoayaltyProgram/Storage",
+				);
 				INFOPLIST_FILE = LoayaltyProgram/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chaikovsky.LoayaltyProgram;
 				PRODUCT_NAME = "$(TARGET_NAME)";

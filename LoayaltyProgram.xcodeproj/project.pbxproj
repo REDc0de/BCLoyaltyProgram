@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		431F793B1E9ABF4300EA37BE /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F793A1E9ABF4300EA37BE /* Login.m */; };
-		431F793E1E9AC34000EA37BE /* Signup.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F793D1E9AC34000EA37BE /* Signup.m */; };
-		431F79411E9B731A00EA37BE /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79401E9B731A00EA37BE /* Profile.m */; };
+		431F793B1E9ABF4300EA37BE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F793A1E9ABF4300EA37BE /* LoginController.m */; };
+		431F79411E9B731A00EA37BE /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79401E9B731A00EA37BE /* ProfileController.m */; };
+		431F79461E9BC8A400EA37BE /* EditProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79451E9BC8A400EA37BE /* EditProfileController.m */; };
+		431F79491E9BCABC00EA37BE /* NewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79481E9BCABC00EA37BE /* NewsController.m */; };
+		431F794C1E9BCAC800EA37BE /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F794B1E9BCAC800EA37BE /* MenuController.m */; };
+		431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F794E1E9BCAD700EA37BE /* RestaurantsController.m */; };
+		431F79531E9BCB9200EA37BE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79521E9BCB9200EA37BE /* User.m */; };
 		4395AF2B1E9914BE005577F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2A1E9914BE005577F5 /* main.m */; };
 		4395AF2E1E9914BE005577F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2D1E9914BE005577F5 /* AppDelegate.m */; };
 		4395AF341E9914BE005577F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF321E9914BE005577F5 /* Main.storyboard */; };
@@ -28,12 +32,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		431F79391E9ABF4300EA37BE /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
-		431F793A1E9ABF4300EA37BE /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
-		431F793C1E9AC34000EA37BE /* Signup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signup.h; sourceTree = "<group>"; };
-		431F793D1E9AC34000EA37BE /* Signup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Signup.m; sourceTree = "<group>"; };
-		431F793F1E9B731A00EA37BE /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
-		431F79401E9B731A00EA37BE /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		431F79391E9ABF4300EA37BE /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		431F793A1E9ABF4300EA37BE /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		431F793F1E9B731A00EA37BE /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
+		431F79401E9B731A00EA37BE /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
+		431F79441E9BC8A400EA37BE /* EditProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileController.h; sourceTree = "<group>"; };
+		431F79451E9BC8A400EA37BE /* EditProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileController.m; sourceTree = "<group>"; };
+		431F79471E9BCABC00EA37BE /* NewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsController.h; sourceTree = "<group>"; };
+		431F79481E9BCABC00EA37BE /* NewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsController.m; sourceTree = "<group>"; };
+		431F794A1E9BCAC800EA37BE /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		431F794B1E9BCAC800EA37BE /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		431F794D1E9BCAD700EA37BE /* RestaurantsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantsController.h; sourceTree = "<group>"; };
+		431F794E1E9BCAD700EA37BE /* RestaurantsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantsController.m; sourceTree = "<group>"; };
+		431F79511E9BCB9200EA37BE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		431F79521E9BCB9200EA37BE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4395AF261E9914BE005577F5 /* LoayaltyProgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoayaltyProgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4395AF2A1E9914BE005577F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4395AF2C1E9914BE005577F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,14 +90,69 @@
 		431F79381E9ABF2200EA37BE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				431F79391E9ABF4300EA37BE /* Login.h */,
-				431F793A1E9ABF4300EA37BE /* Login.m */,
-				431F793C1E9AC34000EA37BE /* Signup.h */,
-				431F793D1E9AC34000EA37BE /* Signup.m */,
-				431F793F1E9B731A00EA37BE /* Profile.h */,
-				431F79401E9B731A00EA37BE /* Profile.m */,
+				431F795B1E9BCCA700EA37BE /* Login/Registartion */,
+				431F79571E9BCC6F00EA37BE /* Profile */,
+				431F79581E9BCC7900EA37BE /* News */,
+				431F79591E9BCC8000EA37BE /* Menu */,
+				431F795A1E9BCC8700EA37BE /* Restaurants */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		431F79501E9BCB7600EA37BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				431F79511E9BCB9200EA37BE /* User.h */,
+				431F79521E9BCB9200EA37BE /* User.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		431F79571E9BCC6F00EA37BE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				431F793F1E9B731A00EA37BE /* ProfileController.h */,
+				431F79401E9B731A00EA37BE /* ProfileController.m */,
+				431F79441E9BC8A400EA37BE /* EditProfileController.h */,
+				431F79451E9BC8A400EA37BE /* EditProfileController.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		431F79581E9BCC7900EA37BE /* News */ = {
+			isa = PBXGroup;
+			children = (
+				431F79471E9BCABC00EA37BE /* NewsController.h */,
+				431F79481E9BCABC00EA37BE /* NewsController.m */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		431F79591E9BCC8000EA37BE /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				431F794A1E9BCAC800EA37BE /* MenuController.h */,
+				431F794B1E9BCAC800EA37BE /* MenuController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		431F795A1E9BCC8700EA37BE /* Restaurants */ = {
+			isa = PBXGroup;
+			children = (
+				431F794D1E9BCAD700EA37BE /* RestaurantsController.h */,
+				431F794E1E9BCAD700EA37BE /* RestaurantsController.m */,
+			);
+			name = Restaurants;
+			sourceTree = "<group>";
+		};
+		431F795B1E9BCCA700EA37BE /* Login/Registartion */ = {
+			isa = PBXGroup;
+			children = (
+				431F79391E9ABF4300EA37BE /* LoginController.h */,
+				431F793A1E9ABF4300EA37BE /* LoginController.m */,
+			);
+			name = Login/Registartion;
 			sourceTree = "<group>";
 		};
 		4395AF1D1E9914BE005577F5 = {
@@ -109,6 +176,7 @@
 			children = (
 				4395AF2C1E9914BE005577F5 /* AppDelegate.h */,
 				4395AF2D1E9914BE005577F5 /* AppDelegate.m */,
+				431F79501E9BCB7600EA37BE /* Models */,
 				431F79381E9ABF2200EA37BE /* Controller */,
 				4395AF321E9914BE005577F5 /* Main.storyboard */,
 				4395AF351E9914BE005577F5 /* Assets.xcassets */,
@@ -252,10 +320,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4395AF2E1E9914BE005577F5 /* AppDelegate.m in Sources */,
-				431F79411E9B731A00EA37BE /* Profile.m in Sources */,
-				431F793E1E9AC34000EA37BE /* Signup.m in Sources */,
+				431F794C1E9BCAC800EA37BE /* MenuController.m in Sources */,
+				431F79531E9BCB9200EA37BE /* User.m in Sources */,
+				431F79411E9B731A00EA37BE /* ProfileController.m in Sources */,
+				431F79491E9BCABC00EA37BE /* NewsController.m in Sources */,
+				431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */,
 				4395AF2B1E9914BE005577F5 /* main.m in Sources */,
-				431F793B1E9ABF4300EA37BE /* Login.m in Sources */,
+				431F79461E9BC8A400EA37BE /* EditProfileController.m in Sources */,
+				431F793B1E9ABF4300EA37BE /* LoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

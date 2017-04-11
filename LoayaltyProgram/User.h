@@ -13,7 +13,11 @@
 @property (weak, nonatomic) NSString *name;
 @property (weak, nonatomic) NSString *email;
 @property (weak, nonatomic) NSString *profileImageURL;
+@property (nonatomic) int points;
 
-- (id) initWithUserName:(NSString*)name email:(NSString*)email profileImageURL:(NSString*)profileImageURL;
+- (id) initWithUserName:(NSString*)name
+                  email:(NSString*)email
+        profileImageURL:(NSString*)profileImageURL
+                 points:(int)points;
 
 @end

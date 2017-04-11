@@ -1,23 +1,33 @@
 //
-//  MenuController.m
+//  CategoryController.m
 //  LoayaltyProgram
 //
 //  Created by Bogdan Chaikovsky on 11.04.17.
 //  Copyright © 2017 Bogdan Chaikovsky. All rights reserved.
 //
 
-#import "MenuController.h"
-#import "MenuCell.h"
+#import "CategoryController.h"
+#import "CategoryCell.h"
 
-@interface MenuController ()
+@interface CategoryController ()
 
 @end
 
-@implementation MenuController
+@implementation CategoryController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.clearsSelectionOnViewWillAppear = YES;
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -27,13 +37,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 3;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.categoryNameLabel.text = @"test";
+    CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    cell.productNameLabel.text = @"test product";
     
     return cell;
 }

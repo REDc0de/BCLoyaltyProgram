@@ -1,5 +1,5 @@
 //
-//  NewsController.h
+//  CategoryController.h
 //  LoayaltyProgram
 //
 //  Created by Bogdan Chaikovsky on 11.04.17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsController : UITableViewController
+@interface CategoryController : UITableViewController
 
 @end

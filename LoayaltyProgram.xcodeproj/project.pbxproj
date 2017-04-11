@@ -10,10 +10,18 @@
 		431F793B1E9ABF4300EA37BE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F793A1E9ABF4300EA37BE /* LoginController.m */; };
 		431F79411E9B731A00EA37BE /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79401E9B731A00EA37BE /* ProfileController.m */; };
 		431F79461E9BC8A400EA37BE /* EditProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79451E9BC8A400EA37BE /* EditProfileController.m */; };
-		431F79491E9BCABC00EA37BE /* NewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79481E9BCABC00EA37BE /* NewsController.m */; };
-		431F794C1E9BCAC800EA37BE /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F794B1E9BCAC800EA37BE /* MenuController.m */; };
 		431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F794E1E9BCAD700EA37BE /* RestaurantsController.m */; };
 		431F79531E9BCB9200EA37BE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79521E9BCB9200EA37BE /* User.m */; };
+		431F79651E9D58DF00EA37BE /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79641E9D58DF00EA37BE /* MenuController.m */; };
+		431F796E1E9D5AB900EA37BE /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F796D1E9D5AB900EA37BE /* MenuCell.m */; };
+		431F79751E9D689C00EA37BE /* CategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79741E9D689C00EA37BE /* CategoryController.m */; };
+		431F79781E9D68AE00EA37BE /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79771E9D68AE00EA37BE /* CategoryCell.m */; };
+		431F797B1E9D6AFE00EA37BE /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F797A1E9D6AFE00EA37BE /* NewsCell.m */; };
+		431F797E1E9D6B0B00EA37BE /* NewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F797D1E9D6B0B00EA37BE /* NewsController.m */; };
+		431F79811E9D6B2000EA37BE /* NewsInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79801E9D6B2000EA37BE /* NewsInfoController.m */; };
+		431F79871E9D6D8000EA37BE /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79861E9D6D8000EA37BE /* Restaurant.m */; };
+		431F798A1E9D701300EA37BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F79891E9D701300EA37BE /* CoreLocation.framework */; };
+		431F798C1E9D701900EA37BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F798B1E9D701900EA37BE /* MapKit.framework */; };
 		4395AF2B1E9914BE005577F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2A1E9914BE005577F5 /* main.m */; };
 		4395AF2E1E9914BE005577F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2D1E9914BE005577F5 /* AppDelegate.m */; };
 		4395AF341E9914BE005577F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF321E9914BE005577F5 /* Main.storyboard */; };
@@ -29,6 +37,9 @@
 		4395AF5E1E991948005577F5 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF511E991716005577F5 /* FirebaseDatabase.framework */; };
 		4395AF5F1E991954005577F5 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF4C1E99170B005577F5 /* FirebaseAuth.framework */; };
 		4395AF601E991954005577F5 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF4D1E99170B005577F5 /* GTMSessionFetcher.framework */; };
+		43B3C6541E9D7B2F00588A5E /* GuestCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C6531E9D7B2F00588A5E /* GuestCardController.m */; };
+		43B3C6571E9D7E7200588A5E /* Compass-Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */; };
+		43B3C6581E9D7E7200588A5E /* Compass-Line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6561E9D7E7200588A5E /* Compass-Line@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,14 +49,28 @@
 		431F79401E9B731A00EA37BE /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		431F79441E9BC8A400EA37BE /* EditProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileController.h; sourceTree = "<group>"; };
 		431F79451E9BC8A400EA37BE /* EditProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileController.m; sourceTree = "<group>"; };
-		431F79471E9BCABC00EA37BE /* NewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsController.h; sourceTree = "<group>"; };
-		431F79481E9BCABC00EA37BE /* NewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsController.m; sourceTree = "<group>"; };
-		431F794A1E9BCAC800EA37BE /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
-		431F794B1E9BCAC800EA37BE /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 		431F794D1E9BCAD700EA37BE /* RestaurantsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantsController.h; sourceTree = "<group>"; };
 		431F794E1E9BCAD700EA37BE /* RestaurantsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantsController.m; sourceTree = "<group>"; };
 		431F79511E9BCB9200EA37BE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		431F79521E9BCB9200EA37BE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		431F79631E9D58DF00EA37BE /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		431F79641E9D58DF00EA37BE /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		431F796C1E9D5AB900EA37BE /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
+		431F796D1E9D5AB900EA37BE /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
+		431F79731E9D689C00EA37BE /* CategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryController.h; sourceTree = "<group>"; };
+		431F79741E9D689C00EA37BE /* CategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryController.m; sourceTree = "<group>"; };
+		431F79761E9D68AE00EA37BE /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
+		431F79771E9D68AE00EA37BE /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		431F79791E9D6AFE00EA37BE /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		431F797A1E9D6AFE00EA37BE /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		431F797C1E9D6B0B00EA37BE /* NewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsController.h; sourceTree = "<group>"; };
+		431F797D1E9D6B0B00EA37BE /* NewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsController.m; sourceTree = "<group>"; };
+		431F797F1E9D6B2000EA37BE /* NewsInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsInfoController.h; sourceTree = "<group>"; };
+		431F79801E9D6B2000EA37BE /* NewsInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsInfoController.m; sourceTree = "<group>"; };
+		431F79851E9D6D8000EA37BE /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
+		431F79861E9D6D8000EA37BE /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
+		431F79891E9D701300EA37BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		431F798B1E9D701900EA37BE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4395AF261E9914BE005577F5 /* LoayaltyProgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoayaltyProgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4395AF2A1E9914BE005577F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4395AF2C1E9914BE005577F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,6 +90,10 @@
 		4395AF541E99171D005577F5 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = "<group>"; };
 		4395AF551E99171D005577F5 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = "<group>"; };
 		4395AF611E99198D005577F5 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		43B3C6521E9D7B2F00588A5E /* GuestCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestCardController.h; sourceTree = "<group>"; };
+		43B3C6531E9D7B2F00588A5E /* GuestCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestCardController.m; sourceTree = "<group>"; };
+		43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Compass-Filled@2x.png"; sourceTree = "<group>"; };
+		43B3C6561E9D7E7200588A5E /* Compass-Line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Compass-Line@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				431F798C1E9D701900EA37BE /* MapKit.framework in Frameworks */,
+				431F798A1E9D701300EA37BE /* CoreLocation.framework in Frameworks */,
 				4395AF5F1E991954005577F5 /* FirebaseAuth.framework in Frameworks */,
 				4395AF601E991954005577F5 /* GTMSessionFetcher.framework in Frameworks */,
 				4395AF5E1E991948005577F5 /* FirebaseDatabase.framework in Frameworks */,
@@ -87,7 +118,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		431F79381E9ABF2200EA37BE /* Controller */ = {
+		431F79381E9ABF2200EA37BE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				431F795B1E9BCCA700EA37BE /* Login/Registartion */,
@@ -96,7 +127,7 @@
 				431F79591E9BCC8000EA37BE /* Menu */,
 				431F795A1E9BCC8700EA37BE /* Restaurants */,
 			);
-			name = Controller;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		431F79501E9BCB7600EA37BE /* Models */ = {
@@ -104,6 +135,8 @@
 			children = (
 				431F79511E9BCB9200EA37BE /* User.h */,
 				431F79521E9BCB9200EA37BE /* User.m */,
+				431F79851E9D6D8000EA37BE /* Restaurant.h */,
+				431F79861E9D6D8000EA37BE /* Restaurant.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -113,6 +146,8 @@
 			children = (
 				431F793F1E9B731A00EA37BE /* ProfileController.h */,
 				431F79401E9B731A00EA37BE /* ProfileController.m */,
+				43B3C6521E9D7B2F00588A5E /* GuestCardController.h */,
+				43B3C6531E9D7B2F00588A5E /* GuestCardController.m */,
 				431F79441E9BC8A400EA37BE /* EditProfileController.h */,
 				431F79451E9BC8A400EA37BE /* EditProfileController.m */,
 			);
@@ -122,8 +157,11 @@
 		431F79581E9BCC7900EA37BE /* News */ = {
 			isa = PBXGroup;
 			children = (
-				431F79471E9BCABC00EA37BE /* NewsController.h */,
-				431F79481E9BCABC00EA37BE /* NewsController.m */,
+				431F79821E9D6B2900EA37BE /* Custom Cells */,
+				431F797C1E9D6B0B00EA37BE /* NewsController.h */,
+				431F797D1E9D6B0B00EA37BE /* NewsController.m */,
+				431F797F1E9D6B2000EA37BE /* NewsInfoController.h */,
+				431F79801E9D6B2000EA37BE /* NewsInfoController.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -131,8 +169,11 @@
 		431F79591E9BCC8000EA37BE /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				431F794A1E9BCAC800EA37BE /* MenuController.h */,
-				431F794B1E9BCAC800EA37BE /* MenuController.m */,
+				431F796F1E9D5ABF00EA37BE /* Custom Cells */,
+				431F79631E9D58DF00EA37BE /* MenuController.h */,
+				431F79641E9D58DF00EA37BE /* MenuController.m */,
+				431F79731E9D689C00EA37BE /* CategoryController.h */,
+				431F79741E9D689C00EA37BE /* CategoryController.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -155,11 +196,41 @@
 			name = Login/Registartion;
 			sourceTree = "<group>";
 		};
+		431F796F1E9D5ABF00EA37BE /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				431F796C1E9D5AB900EA37BE /* MenuCell.h */,
+				431F796D1E9D5AB900EA37BE /* MenuCell.m */,
+				431F79761E9D68AE00EA37BE /* CategoryCell.h */,
+				431F79771E9D68AE00EA37BE /* CategoryCell.m */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		431F79821E9D6B2900EA37BE /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				431F79791E9D6AFE00EA37BE /* NewsCell.h */,
+				431F797A1E9D6AFE00EA37BE /* NewsCell.m */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		431F79881E9D701300EA37BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				431F798B1E9D701900EA37BE /* MapKit.framework */,
+				431F79891E9D701300EA37BE /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4395AF1D1E9914BE005577F5 = {
 			isa = PBXGroup;
 			children = (
 				4395AF281E9914BE005577F5 /* LoayaltyProgram */,
 				4395AF271E9914BE005577F5 /* Products */,
+				431F79881E9D701300EA37BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,8 +248,10 @@
 				4395AF2C1E9914BE005577F5 /* AppDelegate.h */,
 				4395AF2D1E9914BE005577F5 /* AppDelegate.m */,
 				431F79501E9BCB7600EA37BE /* Models */,
-				431F79381E9ABF2200EA37BE /* Controller */,
+				431F79381E9ABF2200EA37BE /* Controllers */,
 				4395AF321E9914BE005577F5 /* Main.storyboard */,
+				43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */,
+				43B3C6561E9D7E7200588A5E /* Compass-Line@2x.png */,
 				4395AF351E9914BE005577F5 /* Assets.xcassets */,
 				4395AF371E9914BE005577F5 /* LaunchScreen.storyboard */,
 				4395AF401E99158E005577F5 /* GoogleService-Info.plist */,
@@ -306,6 +379,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4395AF391E9914BE005577F5 /* LaunchScreen.storyboard in Resources */,
+				43B3C6581E9D7E7200588A5E /* Compass-Line@2x.png in Resources */,
+				43B3C6571E9D7E7200588A5E /* Compass-Filled@2x.png in Resources */,
 				4395AF411E99158E005577F5 /* GoogleService-Info.plist in Resources */,
 				4395AF361E9914BE005577F5 /* Assets.xcassets in Resources */,
 				4395AF341E9914BE005577F5 /* Main.storyboard in Resources */,
@@ -319,14 +394,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				431F797E1E9D6B0B00EA37BE /* NewsController.m in Sources */,
+				431F79871E9D6D8000EA37BE /* Restaurant.m in Sources */,
 				4395AF2E1E9914BE005577F5 /* AppDelegate.m in Sources */,
-				431F794C1E9BCAC800EA37BE /* MenuController.m in Sources */,
 				431F79531E9BCB9200EA37BE /* User.m in Sources */,
+				431F797B1E9D6AFE00EA37BE /* NewsCell.m in Sources */,
+				431F796E1E9D5AB900EA37BE /* MenuCell.m in Sources */,
+				431F79651E9D58DF00EA37BE /* MenuController.m in Sources */,
 				431F79411E9B731A00EA37BE /* ProfileController.m in Sources */,
-				431F79491E9BCABC00EA37BE /* NewsController.m in Sources */,
 				431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */,
+				431F79781E9D68AE00EA37BE /* CategoryCell.m in Sources */,
 				4395AF2B1E9914BE005577F5 /* main.m in Sources */,
+				43B3C6541E9D7B2F00588A5E /* GuestCardController.m in Sources */,
 				431F79461E9BC8A400EA37BE /* EditProfileController.m in Sources */,
+				431F79751E9D689C00EA37BE /* CategoryController.m in Sources */,
+				431F79811E9D6B2000EA37BE /* NewsInfoController.m in Sources */,
 				431F793B1E9ABF4300EA37BE /* LoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

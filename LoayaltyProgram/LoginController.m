@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginRegisterButton;
-@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (strong, nonatomic) FIRDatabaseReference *reference;
 
 @end
@@ -45,11 +45,10 @@
 }
 
 - (void)imageViewSetup {
-    self.userImageView.layer.cornerRadius = self.userImageView.layer.frame.size.width/2;
-    self.userImageView.layer.masksToBounds = YES;
-    self.userImageView.userInteractionEnabled = YES;
+    self.profileImageView.layer.cornerRadius = self.profileImageView.layer.frame.size.width/2;
+    self.profileImageView.layer.masksToBounds = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectProfileImageView)];
-    [self.userImageView addGestureRecognizer:tap];
+    [self.profileImageView addGestureRecognizer:tap];
 }
 
 - (void)dismissKeyboard {
@@ -80,7 +79,7 @@
     }
     
     if(selectedImageFromPicker) {
-        self.userImageView.image = selectedImageFromPicker;
+        self.profileImageView.image = selectedImageFromPicker;
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -110,10 +109,12 @@
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
             self.nameTextField.hidden = YES;
+            self.profileImageView.userInteractionEnabled = NO;
             [self.loginRegisterButton setTitle:@"Login" forState:UIControlStateNormal];
             break;
         case 1:
             self.nameTextField.hidden = NO;
+            self.profileImageView.userInteractionEnabled = YES;
             [self.loginRegisterButton setTitle:@"Registration" forState:UIControlStateNormal];
             break;
     }
@@ -137,7 +138,7 @@
     NSString *name = self.nameTextField.text;
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
-    UIImage *profileImage = self.userImageView.image;
+    UIImage *profileImage = self.profileImageView.image;
     
     [[FIRAuth auth] createUserWithEmail:email
                                password:password
@@ -168,6 +169,7 @@
                                     
                                                   NSDictionary *values = @{@"username": name,
                                                                               @"email": email,
+                                                                             @"points": @0,
                                                                     @"profileImageURL": profileImageURL};
                                                   [self registerUserIntoDatabaseWithUID:uid values:values];
                                               }

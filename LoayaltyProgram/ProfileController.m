@@ -11,9 +11,9 @@
 #import "User.h"
 
 @interface ProfileController ()
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (strong, nonatomic) FIRDatabaseReference *reference;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userPointsLabel;
 
 @end
 
@@ -49,9 +49,11 @@
         
         User *user = [[User alloc] initWithUserName:snapshot.value[@"username"]
                                               email:snapshot.value[@"email"]
-                                    profileImageURL:snapshot.value[@"profileImageURL"]];
+                                    profileImageURL:snapshot.value[@"profileImageURL"]
+                                             points:[snapshot.value[@"points"] intValue]];
         
-        self.userNameLabel.text = user.name;
+        self.navigationItem.title = user.name;
+        self.userPointsLabel.text = [NSString stringWithFormat:@"%d",user.points];
         
         
         NSURL *url = [NSURL URLWithString:user.profileImageURL];

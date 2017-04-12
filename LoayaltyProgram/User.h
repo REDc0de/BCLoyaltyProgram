@@ -10,6 +10,7 @@
 
 @interface User : NSObject
 
+@property (weak, nonatomic) NSString *uid;
 @property (weak, nonatomic) NSString *name;
 @property (weak, nonatomic) NSString *email;
 @property (weak, nonatomic) NSString *profileImageURL;
@@ -18,6 +19,7 @@
 - (id) initWithUserName:(NSString*)name
                   email:(NSString*)email
         profileImageURL:(NSString*)profileImageURL
-                 points:(int)points;
+                 points:(int)points
+                    uid:(NSString*)uid;
 
 @end

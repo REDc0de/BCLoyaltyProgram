@@ -10,13 +10,14 @@
 
 @implementation User
 
-- (id) initWithUserName:(NSString*)name email:(NSString*)email profileImageURL:(NSString*)profileImageURL points:(int)points{
+- (id) initWithUserName:(NSString*)name email:(NSString*)email profileImageURL:(NSString*)profileImageURL points:(int)points uid:(NSString*)uid{
     self = [super init];
     if (self){
         self.name = name;
         self.email = email;
         self.profileImageURL = profileImageURL;
         self.points = points;
+        self.uid = uid;
     }
     return self;
 }

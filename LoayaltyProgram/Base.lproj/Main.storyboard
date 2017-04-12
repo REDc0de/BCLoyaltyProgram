@@ -26,19 +26,19 @@
                                 <rect key="frame" x="24" y="50" width="327" height="593"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Hu3-KN-YQ9">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="120"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="327" height="160"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l1T-6E-Yfd">
-                                                <rect key="frame" x="103.5" y="0.0" width="120" height="120"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1T-6E-Yfd">
+                                                <rect key="frame" x="83.5" y="0.0" width="160" height="160"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="N80-Zg-Mpj"/>
-                                                    <constraint firstAttribute="width" constant="120" id="tYK-uC-xlS"/>
+                                                    <constraint firstAttribute="height" constant="160" id="N80-Zg-Mpj"/>
+                                                    <constraint firstAttribute="width" constant="160" id="tYK-uC-xlS"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="dvj-4m-U1T">
-                                        <rect key="frame" x="0.0" y="150" width="327" height="443"/>
+                                        <rect key="frame" x="0.0" y="190" width="327" height="403"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NdN-wm-eF6">
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="200"/>
@@ -142,7 +142,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Guest Card"/>
                                 <connections>
-                                    <segue destination="u8R-ug-QA3" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="AWw-ZZ-WzQ"/>
+                                    <segue destination="u8R-ug-QA3" kind="presentation" identifier="profileToGuestcard" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="AWw-ZZ-WzQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -771,7 +771,9 @@
                         <outlet property="guestCardContainerView" destination="aYF-Ey-48G" id="uNo-Xy-99r"/>
                         <outlet property="guestCardInfoView" destination="Jwt-tO-Rma" id="Tc1-wk-5XH"/>
                         <outlet property="guestCardQRView" destination="40y-hE-ohg" id="aqS-dh-y0B"/>
+                        <outlet property="pointsNumberLabel" destination="a5L-t9-m93" id="Pqa-Jk-dAS"/>
                         <outlet property="qrCodeImageView" destination="SUv-HN-1nW" id="nYL-RT-Wk5"/>
+                        <outlet property="userUIDLabel" destination="o0X-VV-fy0" id="0Mw-fR-FQP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LeG-69-urm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -870,6 +872,7 @@
     </scenes>
     <resources>
         <image name="Compass-Line.png" width="23" height="23"/>
+        <image name="Logo.png" width="400" height="400"/>
         <image name="menu" width="25" height="25"/>
         <image name="menu(selected)" width="25" height="25"/>
         <image name="news" width="25" height="25"/>

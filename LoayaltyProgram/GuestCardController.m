@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *guestCardInfoView;
 @property (weak, nonatomic) IBOutlet UIView *guestCardQRView;
 @property (weak, nonatomic) IBOutlet UIImageView *qrCodeImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userUIDLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pointsNumberLabel;
 
 @end
 
@@ -29,8 +31,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    UIImage *image = [UIImage imageWithCIImage:[self createQRForString:@"QR code generator test"]];
+    UIImage *image = [UIImage imageWithCIImage:[self createQRForString:self.user.uid]];
     self.qrCodeImageView.image = image;
+    self.userUIDLabel.text = self.user.uid;
+    self.pointsNumberLabel.text = [NSString stringWithFormat:@"%d",self.user.points];
     
     [UIView animateWithDuration:0.4f animations:^{
         self.guestCardContainerView.frame = CGRectOffset(self.guestCardContainerView.frame, 0, -self.view.frame.size.height);

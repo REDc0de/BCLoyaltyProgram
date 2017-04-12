@@ -9,11 +9,14 @@
 #import "ProfileController.h"
 #import "Firebase.h"
 #import "User.h"
+#import "GuestCardController.h"
 
 @interface ProfileController ()
 @property (strong, nonatomic) FIRDatabaseReference *reference;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userPointsLabel;
+
+@property (strong, nonatomic) User *user;
 
 @end
 
@@ -45,15 +48,17 @@
 
 - (void)getUser {
     NSString *userID = [FIRAuth auth].currentUser.uid;
-    [[[self.reference child:@"users"] child:userID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [[[self.reference child:@"users"] child:userID] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         User *user = [[User alloc] initWithUserName:snapshot.value[@"username"]
                                               email:snapshot.value[@"email"]
                                     profileImageURL:snapshot.value[@"profileImageURL"]
-                                             points:[snapshot.value[@"points"] intValue]];
+                                             points:[snapshot.value[@"points"] intValue]
+                                                uid:userID];
         
         self.navigationItem.title = user.name;
         self.userPointsLabel.text = [NSString stringWithFormat:@"%d",user.points];
+        self.user = user;
         
         
         NSURL *url = [NSURL URLWithString:user.profileImageURL];
@@ -103,6 +108,18 @@
     
     [alert addAction:okButton];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"profileToGuestcard"]) {
+        //if you need to pass data to the next controller do it here
+        GuestCardController *upcoming = segue.destinationViewController;
+       
+        upcoming.user = self.user;
+    }
 }
 
 @end

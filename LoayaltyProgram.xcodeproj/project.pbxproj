@@ -42,6 +42,8 @@
 		43B3C6581E9D7E7200588A5E /* Compass-Line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6561E9D7E7200588A5E /* Compass-Line@2x.png */; };
 		43B3C65E1E9D958400588A5E /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C65D1E9D958400588A5E /* News.m */; };
 		43B3C6621E9DAC5200588A5E /* TabBarIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */; };
+		43B3C6641E9EE2F800588A5E /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6631E9EE2F800588A5E /* Logo.png */; };
+		43B3C66A1E9EE54A00588A5E /* AddProfileImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6691E9EE54A00588A5E /* AddProfileImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +101,8 @@
 		43B3C65C1E9D958400588A5E /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		43B3C65D1E9D958400588A5E /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBarIcons.xcassets; sourceTree = "<group>"; };
+		43B3C6631E9EE2F800588A5E /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		43B3C6691E9EE54A00588A5E /* AddProfileImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddProfileImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +262,8 @@
 				431F79381E9ABF2200EA37BE /* Controllers */,
 				4395AF321E9914BE005577F5 /* Main.storyboard */,
 				43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */,
+				43B3C6691E9EE54A00588A5E /* AddProfileImage.png */,
+				43B3C6631E9EE2F800588A5E /* Logo.png */,
 				43B3C6561E9D7E7200588A5E /* Compass-Line@2x.png */,
 				43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */,
 				4395AF351E9914BE005577F5 /* Assets.xcassets */,
@@ -390,8 +396,10 @@
 				43B3C6581E9D7E7200588A5E /* Compass-Line@2x.png in Resources */,
 				43B3C6571E9D7E7200588A5E /* Compass-Filled@2x.png in Resources */,
 				4395AF411E99158E005577F5 /* GoogleService-Info.plist in Resources */,
+				43B3C6641E9EE2F800588A5E /* Logo.png in Resources */,
 				4395AF361E9914BE005577F5 /* Assets.xcassets in Resources */,
 				4395AF341E9914BE005577F5 /* Main.storyboard in Resources */,
+				43B3C66A1E9EE54A00588A5E /* AddProfileImage.png in Resources */,
 				43B3C6621E9DAC5200588A5E /* TabBarIcons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

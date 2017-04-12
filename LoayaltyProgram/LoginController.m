@@ -108,16 +108,26 @@
 - (void)handleLoginRegisterChange {
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
-            self.nameTextField.hidden = YES;
-            self.profileImageView.userInteractionEnabled = NO;
-            [self.loginRegisterButton setTitle:@"Login" forState:UIControlStateNormal];
+            [self updateUIForLoggin];
             break;
         case 1:
-            self.nameTextField.hidden = NO;
-            self.profileImageView.userInteractionEnabled = YES;
-            [self.loginRegisterButton setTitle:@"Registration" forState:UIControlStateNormal];
+            [self updateUIForRegistration];
             break;
     }
+}
+
+- (void)updateUIForLoggin {
+    self.nameTextField.hidden = YES;
+    self.profileImageView.userInteractionEnabled = NO;
+    self.profileImageView.image = [UIImage imageNamed:@"Logo.png"];
+    [self.loginRegisterButton setTitle:@"Login" forState:UIControlStateNormal];
+}
+
+- (void)updateUIForRegistration {
+    self.nameTextField.hidden = NO;
+    self.profileImageView.userInteractionEnabled = YES;
+    self.profileImageView.image = [UIImage imageNamed:@"AddProfileImage.png"];
+    [self.loginRegisterButton setTitle:@"Registration" forState:UIControlStateNormal];
 }
 
 - (void)handleLogin{

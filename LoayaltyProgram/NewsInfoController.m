@@ -23,8 +23,14 @@
     [self handleNewsSetup];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)handleNewsSetup {
     self.newsTextView.text = self.news.info;
+    NSLog(@"FOR TEEEESTTTTTT %@", self.news.info);
     self.newsTitleLabel.text = self.news.title;
     self.newsImageView.image = self.newsImage;
     

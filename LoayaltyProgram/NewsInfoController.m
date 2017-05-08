@@ -11,8 +11,8 @@
 @interface NewsInfoController ()
 @property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *newsTitleLabel;
-@property (weak, nonatomic) IBOutlet UITextView *newsTextView;
 @property (weak, nonatomic) IBOutlet UILabel *newsDateLabel;
+@property (weak, nonatomic) IBOutlet UITextView *newsTextView;
 
 @end
 
@@ -23,37 +23,34 @@
     [self handleNewsSetup];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)handleNewsSetup {
+    self.newsTitleLabel.text = self.news.title;
+    self.newsDateLabel.text = self.news.date;
+    self.newsTextView.text = self.news.info;
     
+    if (self.news.imageData){
+        self.newsImageView.image = [UIImage imageWithData:self.news.imageData];
+    } else{
+        NSURL *url = [NSURL URLWithString:self.news.imageURL];
+        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            if (error){
+                [self showAlertWithError:error];
+                return;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.newsImageView.image = [UIImage imageWithData:data];
+            });
+        }] resume];
+    }
 }
 
-- (void)handleNewsSetup {
-    self.newsTextView.text = self.news.info;
-    NSLog(@"FOR TEEEESTTTTTT %@", self.news.info);
-    self.newsTitleLabel.text = self.news.title;
-    self.newsImageView.image = self.newsImage;
-    
-//    NSURL *url = [NSURL URLWithString:self.news.imageURL];
-//    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        
-//        if (error){
-//            [self showAlertWithError:error];
-//            return;
-//        }
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            self.newsImageView.image = [UIImage imageWithData:data];
-//            
-//        });
-//    }] resume];
-}
 - (IBAction)handleActionButton:(id)sender {
-    //  NSString *theMessage = @"Some promotional text we're sharing with an activity controller to BurgerMaster custoners";
     NSString *theMessage = self.newsTextView.text;
     
     UIImage *image = [[UIImage alloc] init];
-    //  image = [UIImage imageNamed:@"burger_share"];
     image = self.newsImageView.image;
+    
     NSArray *items = @[theMessage, image];
     
     // build an activity view controller

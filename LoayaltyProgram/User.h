@@ -12,13 +12,21 @@
 
 @property (weak, nonatomic) NSString *uid;
 @property (weak, nonatomic) NSString *name;
+@property (weak, nonatomic) NSString *gender;
+@property (weak, nonatomic) NSString *birthday;
+@property (weak, nonatomic) NSString *phoneNumber;
 @property (weak, nonatomic) NSString *email;
 @property (weak, nonatomic) NSString *profileImageURL;
+@property (weak, nonatomic) NSData *profileImageData;
 @property (nonatomic) int points;
 
 - (id) initWithUserName:(NSString*)name
+                 gender:(NSString*)gender
+               birthday:(NSString*)birtday
+            phoneNumber:(NSString*)phoneNumber
                   email:(NSString*)email
         profileImageURL:(NSString*)profileImageURL
+       profileImageData:(NSData*)profileImageData
                  points:(int)points
                     uid:(NSString*)uid;
 

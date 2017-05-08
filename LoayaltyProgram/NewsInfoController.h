@@ -12,6 +12,5 @@
 @interface NewsInfoController : UIViewController
 
 @property (strong, nonatomic) News *news;
-@property (weak, nonatomic) UIImage *newsImage;
 
 @end

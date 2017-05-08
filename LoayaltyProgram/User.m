@@ -10,12 +10,16 @@
 
 @implementation User
 
-- (id) initWithUserName:(NSString*)name email:(NSString*)email profileImageURL:(NSString*)profileImageURL points:(int)points uid:(NSString*)uid{
+- (id)initWithUserName:(NSString *)name gender:(NSString *)gender birthday:(NSString *)birtday phoneNumber:(NSString *)phoneNumber email:(NSString *)email profileImageURL:(NSString *)profileImageURL profileImageData:(NSData*)profileImageData points:(int)points uid:(NSString *)uid {
     self = [super init];
     if (self){
         self.name = name;
+        self.gender = gender;
+        self.birthday = birtday;
+        self.phoneNumber = phoneNumber;
         self.email = email;
         self.profileImageURL = profileImageURL;
+        self.profileImageData = profileImageData;
         self.points = points;
         self.uid = uid;
     }

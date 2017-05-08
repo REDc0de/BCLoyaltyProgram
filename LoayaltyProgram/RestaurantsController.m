@@ -79,7 +79,7 @@ UIImageView *navBarHairlineImageView;
                                 onMapView:self.mapView];
     }
     [self noneFollowUserLocationMode];
-    [self zoomToFitMapAnnotations:self.mapView];
+//    [self zoomToFitMapAnnotations:self.mapView];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didDragMap:)];
     panGesture.delegate = self;
@@ -120,6 +120,11 @@ UIImageView *navBarHairlineImageView;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    [self zoomToFitMapAnnotations:self.mapView];
 }
 
 - (void)didReceiveMemoryWarning {

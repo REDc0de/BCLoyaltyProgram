@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		431F793B1E9ABF4300EA37BE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F793A1E9ABF4300EA37BE /* LoginController.m */; };
 		431F79411E9B731A00EA37BE /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79401E9B731A00EA37BE /* ProfileController.m */; };
-		431F79461E9BC8A400EA37BE /* EditProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79451E9BC8A400EA37BE /* EditProfileController.m */; };
 		431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F794E1E9BCAD700EA37BE /* RestaurantsController.m */; };
 		431F79531E9BCB9200EA37BE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79521E9BCB9200EA37BE /* User.m */; };
 		431F79651E9D58DF00EA37BE /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79641E9D58DF00EA37BE /* MenuController.m */; };
@@ -44,6 +43,7 @@
 		43B3C6621E9DAC5200588A5E /* TabBarIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */; };
 		43B3C6641E9EE2F800588A5E /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6631E9EE2F800588A5E /* Logo.png */; };
 		43B3C66A1E9EE54A00588A5E /* AddProfileImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6691E9EE54A00588A5E /* AddProfileImage.png */; };
+		43B3C66D1EA391DC00588A5E /* EditProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C66C1EA391DC00588A5E /* EditProfileController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +51,6 @@
 		431F793A1E9ABF4300EA37BE /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		431F793F1E9B731A00EA37BE /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
 		431F79401E9B731A00EA37BE /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
-		431F79441E9BC8A400EA37BE /* EditProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileController.h; sourceTree = "<group>"; };
-		431F79451E9BC8A400EA37BE /* EditProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileController.m; sourceTree = "<group>"; };
 		431F794D1E9BCAD700EA37BE /* RestaurantsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantsController.h; sourceTree = "<group>"; };
 		431F794E1E9BCAD700EA37BE /* RestaurantsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantsController.m; sourceTree = "<group>"; };
 		431F79511E9BCB9200EA37BE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -103,6 +101,8 @@
 		43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBarIcons.xcassets; sourceTree = "<group>"; };
 		43B3C6631E9EE2F800588A5E /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		43B3C6691E9EE54A00588A5E /* AddProfileImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddProfileImage.png; sourceTree = "<group>"; };
+		43B3C66B1EA391DC00588A5E /* EditProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileController.h; sourceTree = "<group>"; };
+		43B3C66C1EA391DC00588A5E /* EditProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +159,8 @@
 				431F79401E9B731A00EA37BE /* ProfileController.m */,
 				43B3C6521E9D7B2F00588A5E /* GuestCardController.h */,
 				43B3C6531E9D7B2F00588A5E /* GuestCardController.m */,
-				431F79441E9BC8A400EA37BE /* EditProfileController.h */,
-				431F79451E9BC8A400EA37BE /* EditProfileController.m */,
+				43B3C66B1EA391DC00588A5E /* EditProfileController.h */,
+				43B3C66C1EA391DC00588A5E /* EditProfileController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -423,8 +423,8 @@
 				431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */,
 				431F79781E9D68AE00EA37BE /* CategoryCell.m in Sources */,
 				4395AF2B1E9914BE005577F5 /* main.m in Sources */,
+				43B3C66D1EA391DC00588A5E /* EditProfileController.m in Sources */,
 				43B3C6541E9D7B2F00588A5E /* GuestCardController.m in Sources */,
-				431F79461E9BC8A400EA37BE /* EditProfileController.m in Sources */,
 				431F79751E9D689C00EA37BE /* CategoryController.m in Sources */,
 				431F79811E9D6B2000EA37BE /* NewsInfoController.m in Sources */,
 				431F793B1E9ABF4300EA37BE /* LoginController.m in Sources */,

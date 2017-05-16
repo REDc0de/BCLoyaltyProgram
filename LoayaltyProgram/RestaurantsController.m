@@ -204,7 +204,6 @@ UIImageView *navBarHairlineImageView;
     [locationManager stopUpdatingHeading];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     [self focusUserLocationOnMapView:self.mapView];
-    self.userLocationButton.tintColor = [UIColor colorWithRed:225.0/255 green:22.0/255 blue:47.0/255 alpha:1.0];
     self.userLocationButton.image = [UIImage imageNamed:@"Compass-Filled"];
 }
 
@@ -212,7 +211,6 @@ UIImageView *navBarHairlineImageView;
     locationButtonState = 'c';
     [locationManager stopUpdatingHeading];
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
-    self.userLocationButton.tintColor = [UIColor colorWithRed:225.0/255 green:22.0/255 blue:47.0/255 alpha:1.0];
     self.userLocationButton.image = [UIImage imageNamed:@"Compass-Line"];
     // self.mapView.camera.heading = lastHeading.trueHeading;
 }
@@ -222,7 +220,7 @@ UIImageView *navBarHairlineImageView;
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
     [self focusUserLocationOnMapView:self.mapView];
     //  [locationManager startUpdatingHeading];
-    self.userLocationButton.tintColor = [UIColor greenColor];
+    self.userLocationButton.image = [UIImage imageNamed:@"Compass"];
 }
 
 - (void)focusUserLocationOnMapView:(MKMapView*)mapView{

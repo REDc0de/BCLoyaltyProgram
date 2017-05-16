@@ -33,7 +33,6 @@
     } else{
         NSURL *url = [NSURL URLWithString:self.news.imageURL];
         [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            
             if (error){
                 [self showAlertWithError:error];
                 return;
@@ -45,6 +44,8 @@
     }
 }
 
+#pragma mark - Activity
+
 - (IBAction)handleActionButton:(id)sender {
     NSString *theMessage = self.newsTextView.text;
     
@@ -53,10 +54,7 @@
     
     NSArray *items = @[theMessage, image];
     
-    // build an activity view controller
     UIActivityViewController *controller = [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
-    
-    // and present it
     [self presentActivityController:controller];
 }
 
@@ -77,16 +75,19 @@
         // react to the completion
         if (completed) {
             // user shared an item
-            NSLog(@"We used activity type%@", activityType);
+            NSLog(@"User used activity type%@", activityType);
         } else {
             // user cancelled
-            NSLog(@"We didn't want to share anything after all.");
+            NSLog(@"User didn't want to share anything after all.");
         }
         if (error) {
             NSLog(@"An Error occured: %@, %@", error.localizedDescription, error.localizedFailureReason);
         }
     };
 }
+
+
+#pragma mark - Alert
 
 - (void)showAlertWithError:(NSError*)error {
     UIAlertController * alert = [UIAlertController
@@ -101,5 +102,6 @@
     [alert addAction:okButton];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 
 @end

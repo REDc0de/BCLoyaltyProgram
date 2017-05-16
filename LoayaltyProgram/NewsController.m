@@ -24,21 +24,16 @@
     [super viewDidLoad];
     self.ref = [[FIRDatabase database] reference];
     self.news = [[NSMutableArray alloc] init];
-    
-    self.clearsSelectionOnViewWillAppear = YES;
-    
     [[self.ref child:@"news"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
         NSDictionary *dictionary = snapshot.value;
         News *news = [[News alloc] init];
         [news setValuesForKeysWithDictionary:dictionary];
         [self.news addObject:news];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-
     }];
+    self.clearsSelectionOnViewWillAppear = YES;
  }
 
 
@@ -75,6 +70,21 @@
 }
 
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"newsToNewsInfo"]) {
+        NewsInfoController *upcoming = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        News *news = [self.news objectAtIndex:indexPath.row];
+        upcoming.news  = news;
+    }
+}
+
+
+#pragma mark - Alert
+
 - (void)showAlertWithError:(NSError*)error {
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:[error.userInfo objectForKey:@"error_name"]
@@ -87,18 +97,6 @@
     
     [alert addAction:okButton];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"newsToNewsInfo"]) {
-        NewsInfoController *upcoming = segue.destinationViewController;
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        News *news = [self.news objectAtIndex:indexPath.row];
-        upcoming.news  = news;
-    }
 }
 
 

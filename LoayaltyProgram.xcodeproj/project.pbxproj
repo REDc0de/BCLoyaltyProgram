@@ -22,6 +22,8 @@
 		431F798A1E9D701300EA37BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F79891E9D701300EA37BE /* CoreLocation.framework */; };
 		431F798C1E9D701900EA37BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F798B1E9D701900EA37BE /* MapKit.framework */; };
 		4334AC621ECA4610009C1E59 /* Compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4334AC611ECA4610009C1E59 /* Compass@2x.png */; };
+		435ECC871ED17BB400031784 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC861ED17BB400031784 /* LogViewController.m */; };
+		435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC891ED1EB7F00031784 /* GridViewController.m */; };
 		4395AF2B1E9914BE005577F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2A1E9914BE005577F5 /* main.m */; };
 		4395AF2E1E9914BE005577F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2D1E9914BE005577F5 /* AppDelegate.m */; };
 		4395AF341E9914BE005577F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF321E9914BE005577F5 /* Main.storyboard */; };
@@ -75,6 +77,10 @@
 		431F79891E9D701300EA37BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		431F798B1E9D701900EA37BE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4334AC611ECA4610009C1E59 /* Compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Compass@2x.png"; sourceTree = "<group>"; };
+		435ECC851ED17BB400031784 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
+		435ECC861ED17BB400031784 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
+		435ECC881ED1EB7F00031784 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
+		435ECC891ED1EB7F00031784 /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
 		4395AF261E9914BE005577F5 /* LoayaltyProgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoayaltyProgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4395AF2A1E9914BE005577F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4395AF2C1E9914BE005577F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -263,6 +269,10 @@
 				431F79501E9BCB7600EA37BE /* Models */,
 				431F79381E9ABF2200EA37BE /* Controllers */,
 				4395AF321E9914BE005577F5 /* Main.storyboard */,
+				435ECC851ED17BB400031784 /* LogViewController.h */,
+				435ECC861ED17BB400031784 /* LogViewController.m */,
+				435ECC881ED1EB7F00031784 /* GridViewController.h */,
+				435ECC891ED1EB7F00031784 /* GridViewController.m */,
 				43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */,
 				43B3C6691E9EE54A00588A5E /* AddProfileImage.png */,
 				43B3C6631E9EE2F800588A5E /* Logo.png */,
@@ -424,8 +434,10 @@
 				431F796E1E9D5AB900EA37BE /* MenuCell.m in Sources */,
 				431F79651E9D58DF00EA37BE /* MenuController.m in Sources */,
 				431F79411E9B731A00EA37BE /* ProfileController.m in Sources */,
+				435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */,
 				431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */,
 				431F79781E9D68AE00EA37BE /* CategoryCell.m in Sources */,
+				435ECC871ED17BB400031784 /* LogViewController.m in Sources */,
 				4395AF2B1E9914BE005577F5 /* main.m in Sources */,
 				43B3C66D1EA391DC00588A5E /* EditProfileController.m in Sources */,
 				43B3C6541E9D7B2F00588A5E /* GuestCardController.m in Sources */,

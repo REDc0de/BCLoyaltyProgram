@@ -24,17 +24,24 @@
     [super viewDidLoad];
     self.ref = [[FIRDatabase database] reference];
     self.news = [[NSMutableArray alloc] init];
+    [self observeFIRData];
+    self.clearsSelectionOnViewWillAppear = YES;
+ }
+
+- (void)observeFIRData {
     [[self.ref child:@"news"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
         NSDictionary *dictionary = snapshot.value;
         News *news = [[News alloc] init];
         [news setValuesForKeysWithDictionary:dictionary];
         [self.news addObject:news];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
+        
     }];
-    self.clearsSelectionOnViewWillAppear = YES;
- }
+}
 
 
 #pragma mark - Table view data source
@@ -73,7 +80,6 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     if ([[segue identifier] isEqualToString:@"newsToNewsInfo"]) {
         NewsInfoController *upcoming = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginRegisterButton;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (strong, nonatomic) FIRDatabaseReference *reference;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) NSArray *genderPickerData;
 
@@ -38,6 +39,57 @@
     [self genderPickerViewSetup];
     [self datePickerSetup];
    }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self registerForKeyboardNotifications];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self deregisterFromKeyboardNotifications];
+    [super viewWillDisappear:animated];
+}
+
+
+#pragma mark - TextField Move Up
+
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)deregisterFromKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidHideNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification *)notification {
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGPoint buttonOrigin = self.loginRegisterButton.frame.origin;
+    CGFloat buttonHeight = self.loginRegisterButton.frame.size.height;
+    CGRect visibleRect = self.view.frame;
+    visibleRect.size.height -= keyboardSize.height;
+    if (!CGRectContainsPoint(visibleRect, buttonOrigin)){
+        CGPoint scrollPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight + 5);
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification {
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
+}
+
 
 #pragma mark - Date Picker
 
@@ -73,14 +125,14 @@
     self.birthdayTextField.text = [self formatDate:picker.date];
 }
 
-- (NSString *)formatDate:(NSDate *)date
-{
+- (NSString *)formatDate:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setDateFormat:@"dd MMM, YYYY"];
     NSString *formattedDate = [dateFormatter stringFromDate:date];
     return formattedDate;
 }
+
 
 #pragma mark - Gender Picker
 
@@ -158,6 +210,7 @@
     [self.profileImageView addGestureRecognizer:tap];
 }
 
+
 #pragma mark - ImagePickerController
 
 - (void)handleSelectProfileImageView {
@@ -212,6 +265,7 @@
             [self updateUIForRegistration];
             break;
     }
+    [self.view setNeedsUpdateConstraints];
 }
 
 - (void)updateUIForLoggin {

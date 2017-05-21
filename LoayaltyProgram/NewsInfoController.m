@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *newsTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *newsDateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *newsTextView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeight;
 
 @end
 
@@ -21,6 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self handleNewsSetup];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setHeightConstraint:self.textViewHeight forTextView:self.newsTextView];
 }
 
 - (void)handleNewsSetup {
@@ -32,17 +38,28 @@
         self.newsImageView.image = [UIImage imageWithData:self.news.imageData];
     } else{
         NSURL *url = [NSURL URLWithString:self.news.imageURL];
-        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if (error){
-                [self showAlertWithError:error];
-                return;
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.newsImageView.image = [UIImage imageWithData:data];
-            });
-        }] resume];
+        [self setImageView:self.newsImageView usingImageWithContentsOfURL:url];
     }
 }
+
+- (void)setHeightConstraint:(NSLayoutConstraint*)constraint forTextView:(UITextView*)textView {
+    [textView sizeToFit];
+    constraint.constant = textView.contentSize.height;
+}
+
+- (void)setImageView:(UIImageView*)imageView usingImageWithContentsOfURL:(NSURL*)url {
+    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error){
+            [self showAlertWithError:error];
+            return;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            imageView.image = [UIImage imageWithData:data];
+        });
+    }] resume];
+}
+
 
 #pragma mark - Activity
 
@@ -54,7 +71,10 @@
     
     NSArray *items = @[theMessage, image];
     
+    // build an activity view controller
     UIActivityViewController *controller = [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
+    
+    // and present it
     [self presentActivityController:controller];
 }
 
@@ -75,10 +95,10 @@
         // react to the completion
         if (completed) {
             // user shared an item
-            NSLog(@"User used activity type%@", activityType);
+            NSLog(@"We used activity type%@", activityType);
         } else {
             // user cancelled
-            NSLog(@"User didn't want to share anything after all.");
+            NSLog(@"We didn't want to share anything after all.");
         }
         if (error) {
             NSLog(@"An Error occured: %@, %@", error.localizedDescription, error.localizedFailureReason);
@@ -102,6 +122,5 @@
     [alert addAction:okButton];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
 
 @end

@@ -79,6 +79,9 @@
 - (IBAction)handleDeleteProfile:(id)sender {
     FIRUser *user = [FIRAuth auth].currentUser;
     
+    [[[self.ref child:@"users"] child:user.uid] removeValue];
+    // Account from realtime database deleted.
+    
     [user deleteWithCompletion:^(NSError *_Nullable error) {
         if (error) {
             // An error happened.

@@ -19,10 +19,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginRegisterButton;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-@property (strong, nonatomic) FIRDatabaseReference *reference;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
 @property (strong, nonatomic) NSArray *genderPickerData;
+
+@property (strong, nonatomic) FIRDatabaseReference *reference;
 
 @end
 
@@ -344,7 +344,8 @@
                                                                         @"phoneNumber": phoneNumber,
                                                                               @"email": email,
                                                                              @"points": @0,
-                                                                    @"profileImageURL": profileImageURL};
+                                                                    @"profileImageURL": profileImageURL,
+                                                                   @"registrationDate": [NSString stringWithFormat:@"%@",[NSDate date]]};
                                                   [self registerUserIntoDatabaseWithUID:uid values:values];
                                               }
                                    }];

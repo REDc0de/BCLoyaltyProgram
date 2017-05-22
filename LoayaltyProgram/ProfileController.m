@@ -34,14 +34,22 @@
     self.user = [[User alloc] init];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-//    [self checkIfUserIsLoggedIn];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-        [self checkIfUserIsLoggedIn];
+    [self checkIfUserIsLoggedIn];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self removeObserves];
+}
+
+- (void)removeObserves {
+    NSString *userID = [FIRAuth auth].currentUser.uid;
+    if (userID != nil) {
+        [[[self.reference child:@"users"] child:userID] removeAllObservers];
+    }
 }
 
 - (void)checkIfUserIsLoggedIn {
@@ -60,7 +68,7 @@
 - (void)getUser {
     NSString *userID = [FIRAuth auth].currentUser.uid;
     [[[self.reference child:@"users"] child:userID] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-   
+
         self.user.name = snapshot.value[@"username"];
         self.user.gender = snapshot.value[@"gender"];
         self.user.birthday = snapshot.value[@"birtday"];
@@ -130,9 +138,9 @@
         GuestCardController *upcoming = segue.destinationViewController;
         upcoming.user = self.user;
     }else if ([[segue identifier] isEqualToString:@"profileToEdit"]) {
-            UINavigationController *nav = [segue destinationViewController];
-            EditProfileController *editProfileController = (EditProfileController *)nav.topViewController;
-            editProfileController.user = self.user;
+        UINavigationController *nav = [segue destinationViewController];
+        EditProfileController *editProfileController = (EditProfileController *)nav.topViewController;
+        editProfileController.user = self.user;
     }
 }
 

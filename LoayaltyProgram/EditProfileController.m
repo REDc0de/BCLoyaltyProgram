@@ -63,18 +63,63 @@
 }
 
 - (IBAction)handleDone:(id)sender {
-//    NSString *key = [[self.ref child:@"users"] child:self.user.uid].key;
-//    NSDictionary *post = @{@"username": self.user.name,
-//                             @"gender": self.user.gender,
-//                            @"birtday": self.user.birthday,
-//                        @"phoneNumber": self.user.phoneNumber,
-//                              @"email": self.user.email,
-//                             @"points": [NSString stringWithFormat:@"%d", self.user.points],
-//                    @"profileImageURL": self.user.profileImageURL};
-//    NSDictionary *childUpdates = @{[@"/users/" stringByAppendingString:key]: post,
-//                                   [NSString stringWithFormat:@"/user-posts/%@/%@/", self.user.uid, key]: post};
-//    [_ref updateChildValues:childUpdates];
+    FIRUser *user = [FIRAuth auth].currentUser;
+
+    NSDictionary *values = @{@"username": self.nameTextField.text,
+                             @"gender": self.genderTextField.text,
+                             @"birtday": self.birthdayTextField.text,
+                             @"phoneNumber": self.phoneTextField.text,
+                             @"email": self.emailTextField.text};
+    
+    [[[self.ref child:@"users"] child:user.uid] updateChildValues:(values)];
+    
+    //[self reAuthenticate];
+    [self setEmail];
+    [self setPassword];
+    
+    
+
 }
+
+
+- (void)reAuthenticate {
+    
+    FIRUser *user = [FIRAuth auth].currentUser;
+    FIRAuthCredential *credential;
+    
+    // Prompt the user to re-provide their sign-in credentials
+    
+    [user reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
+        if (error) {
+            // An error happened.
+            [self showAlertWithError:error];
+        } else {
+            // User re-authenticated.
+        }
+    }];
+
+}
+
+- (void)setEmail {
+    [[FIRAuth auth].currentUser updateEmail:self.emailTextField.text completion:^(NSError *_Nullable error) {
+        if (error) {
+            // An error happened.
+            [self showAlertWithError:error];
+        }
+    }];
+}
+
+- (void)setPassword {
+    [[FIRAuth auth].currentUser updatePassword:self.passwordTextField.text completion:^(NSError *_Nullable error) {
+        // ...
+        
+        if (error) {
+            // An error happened.
+            [self showAlertWithError:error];
+        }
+    }];
+}
+
 
 - (IBAction)handleDeleteProfile:(id)sender {
     FIRUser *user = [FIRAuth auth].currentUser;

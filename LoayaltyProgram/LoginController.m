@@ -290,17 +290,22 @@
 }
 
 - (void)handleLogin{
+    [self showSpinner:^{
     [[FIRAuth auth] signInWithEmail:self.emailTextField.text
                            password:self.passwordTextField.text
                          completion:^(FIRUser *user, NSError *error) {
                            
-                             if (error){
-                                 [self showMessagePrompt: error.localizedDescription];
-                                 return;
-                             }
+                             [self hideSpinner:^{
+                                 if (error) {
+                                     [self showMessagePrompt: error.localizedDescription];
+                                     return;
+                                 }
+
                              [self dismissViewControllerAnimated:YES completion:nil];
                              NSLog(@"We successfully login user.");
                          }];
+                         }];
+    }];
 }
 
 - (void)handleRegister {
@@ -312,6 +317,7 @@
     NSString *password = self.passwordTextField.text;
     UIImage *profileImage = self.profileImageView.image;
     
+    [self showSpinner:^{
     [[FIRAuth auth] createUserWithEmail:email
                                password:password
                              completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
@@ -351,33 +357,21 @@
                                               }
                                    }];
                              }];
+            
+               }];
 }
 
 - (void)registerUserIntoDatabaseWithUID:(NSString*)uid values:(NSDictionary*)values {
-    
-    [self showSpinner:^{
-    
-    
     [[[self.reference child:@"users"] child:uid] setValue:values withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//        if (error){
-//            [self showAlertWithError:error];
-//            return;
-//        }
         [self hideSpinner:^{
             if (error) {
                 [self showMessagePrompt: error.localizedDescription];
                 return;
             }
-            
             [self dismissViewControllerAnimated:YES completion:nil];
             NSLog(@"We successfully register new user.");
-
         }];
     }];
-    
-    }];
-    
-    
 }
 
 

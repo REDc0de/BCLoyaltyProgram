@@ -9,6 +9,8 @@
 #import "RestaurantsController.h"
 #import "Restaurant.h"
 #import <MapKit/MapKit.h>
+#import "UIViewController+Alerts.h"
+
 
 @interface RestaurantsController () <CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UIToolbarDelegate>
 

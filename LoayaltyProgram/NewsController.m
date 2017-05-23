@@ -11,6 +11,8 @@
 #import "Firebase.h"
 #import "News.h"
 #import "NewsInfoController.h"
+#import "UIViewController+Alerts.h"
+
 
 @interface NewsController ()
 @property (strong, nonatomic) FIRDatabaseReference *ref;
@@ -64,7 +66,7 @@
     NSURL *url = [NSURL URLWithString:news.imageURL];
     [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error){
-            [self showAlertWithError:error];
+            [self showMessagePrompt: error.localizedDescription];
             return;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -86,23 +88,6 @@
         News *news = [self.news objectAtIndex:indexPath.row];
         upcoming.news  = news;
     }
-}
-
-
-#pragma mark - Alert
-
-- (void)showAlertWithError:(NSError*)error {
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:[error.userInfo objectForKey:@"error_name"]
-                                 message:[error.userInfo objectForKey:@"NSLocalizedDescription"]
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:nil];
-    
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

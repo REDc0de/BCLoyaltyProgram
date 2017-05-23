@@ -8,6 +8,8 @@
 
 #import "MenuController.h"
 #import "MenuCell.h"
+#import "UIViewController+Alerts.h"
+
 
 @interface MenuController ()
 

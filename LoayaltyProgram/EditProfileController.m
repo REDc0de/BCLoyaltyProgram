@@ -8,6 +8,8 @@
 
 #import "EditProfileController.h"
 #import "Firebase.h"
+#import "UIViewController+Alerts.h"
+
 
 @interface EditProfileController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -45,7 +47,7 @@
         [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
             if (error){
-                [self showAlertWithError:error];
+                [self showMessagePrompt: error.localizedDescription];
                 return;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -92,7 +94,7 @@
     [user reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
         if (error) {
             // An error happened.
-            [self showAlertWithError:error];
+            [self showMessagePrompt: error.localizedDescription];
         } else {
             // User re-authenticated.
         }
@@ -104,7 +106,7 @@
     [[FIRAuth auth].currentUser updateEmail:self.emailTextField.text completion:^(NSError *_Nullable error) {
         if (error) {
             // An error happened.
-            [self showAlertWithError:error];
+            [self showMessagePrompt: error.localizedDescription];
         }
     }];
 }
@@ -115,7 +117,7 @@
         
         if (error) {
             // An error happened.
-            [self showAlertWithError:error];
+            [self showMessagePrompt: error.localizedDescription];
         }
     }];
 }
@@ -130,7 +132,7 @@
     [user deleteWithCompletion:^(NSError *_Nullable error) {
         if (error) {
             // An error happened.
-            [self showAlertWithError:error];
+            [self showMessagePrompt: error.localizedDescription];
         } else {
             // Account deleted.
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -138,18 +140,5 @@
     }];
 }
 
-- (void)showAlertWithError:(NSError*)error {
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:[error.userInfo objectForKey:@"error_name"]
-                                 message:[error.userInfo objectForKey:@"NSLocalizedDescription"]
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:nil];
-    
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
 @end

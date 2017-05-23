@@ -11,6 +11,8 @@
 #import "User.h"
 #import "GuestCardController.h"
 #import "EditProfileController.h"
+#import "UIViewController+Alerts.h"
+
 
 @interface ProfileController ()
 
@@ -84,7 +86,7 @@
         NSURL *url = [NSURL URLWithString:self.user.profileImageURL];
         [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (error){
-                [self showAlertWithError:error];
+                [self showMessagePrompt: error.localizedDescription];
                 return;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -97,7 +99,7 @@
         
     } withCancelBlock:^(NSError * _Nonnull error) {
         if (error){
-            [self showAlertWithError:error];
+            [self showMessagePrompt: error.localizedDescription];
             return;
         }
     }];
@@ -108,26 +110,12 @@
     BOOL status = [[FIRAuth auth] signOut:&signOutError];
     if (!status) {
         if (signOutError){
-            [self showAlertWithError:signOutError];
+            [self showMessagePrompt: signOutError.localizedDescription];
             return;
         }
         return;
     }
     [self performSegueWithIdentifier:@"profileToLogin" sender:self];
-}
-
-- (void)showAlertWithError:(NSError*)error {
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:[error.userInfo objectForKey:@"error_name"]
-                                 message:[error.userInfo objectForKey:@"NSLocalizedDescription"]
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:nil];
-    
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

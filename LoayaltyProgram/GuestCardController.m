@@ -8,6 +8,8 @@
 
 #import "GuestCardController.h"
 #import "Firebase.h"
+#import "UIViewController+Alerts.h"
+
 
 @interface GuestCardController ()
 
@@ -52,7 +54,7 @@
         
     } withCancelBlock:^(NSError * _Nonnull error) {
         if (error){
-            [self showAlertWithError:error];
+            [self showMessagePrompt: error.localizedDescription];
             return;
         }
     }];
@@ -95,20 +97,6 @@
                         
                     }
      ];
-}
-
-- (void)showAlertWithError:(NSError*)error {
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:[error.userInfo objectForKey:@"error_name"]
-                                 message:[error.userInfo objectForKey:@"NSLocalizedDescription"]
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:nil];
-    
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

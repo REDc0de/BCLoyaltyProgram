@@ -8,6 +8,7 @@
 
 #import "LoginController.h"
 #import "Firebase.h"
+#import "UIViewController+Alerts.h"
 
 @interface LoginController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -294,7 +295,7 @@
                          completion:^(FIRUser *user, NSError *error) {
                            
                              if (error){
-                                 [self showAlertWithError:error];
+                                 [self showMessagePrompt: error.localizedDescription];
                                  return;
                              }
                              [self dismissViewControllerAnimated:YES completion:nil];
@@ -316,7 +317,7 @@
                              completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
                                  
                                  if (error){
-                                     [self showAlertWithError:error];
+                                     [self showMessagePrompt: error.localizedDescription];
                                      return;
                                  }
                                 
@@ -333,7 +334,7 @@
                                             metadata:nil
                                           completion:^(FIRStorageMetadata *metadata, NSError *error) {
                                               if (error != nil) {
-                                                  [self showAlertWithError:error];
+                                                  [self showMessagePrompt: error.localizedDescription];
                                                   return;
                                               } else {
                                                   NSString *profileImageURL = [NSString stringWithFormat:@"%@", metadata.downloadURL];
@@ -353,28 +354,31 @@
 }
 
 - (void)registerUserIntoDatabaseWithUID:(NSString*)uid values:(NSDictionary*)values {
+    
+    [self showSpinner:^{
+    
+    
     [[[self.reference child:@"users"] child:uid] setValue:values withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-        if (error){
-            [self showAlertWithError:error];
-            return;
-        }
+//        if (error){
+//            [self showAlertWithError:error];
+//            return;
+//        }
+        [self hideSpinner:^{
+            if (error) {
+                [self showMessagePrompt: error.localizedDescription];
+                return;
+            }
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+            NSLog(@"We successfully register new user.");
+
+        }];
     }];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"We successfully register new user.");
+    
+    }];
+    
+    
 }
 
-- (void)showAlertWithError:(NSError*)error {
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:[error.userInfo objectForKey:@"error_name"]
-                                 message:[error.userInfo objectForKey:@"NSLocalizedDescription"]
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:nil];
-    
-    [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
 @end

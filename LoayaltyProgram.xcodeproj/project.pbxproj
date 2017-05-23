@@ -47,6 +47,7 @@
 		43B3C6641E9EE2F800588A5E /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6631E9EE2F800588A5E /* Logo.png */; };
 		43B3C66A1E9EE54A00588A5E /* AddProfileImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6691E9EE54A00588A5E /* AddProfileImage.png */; };
 		43B3C66D1EA391DC00588A5E /* EditProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C66C1EA391DC00588A5E /* EditProfileController.m */; };
+		B03421DA1ED4182A0054E3ED /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,8 @@
 		43B3C6691E9EE54A00588A5E /* AddProfileImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddProfileImage.png; sourceTree = "<group>"; };
 		43B3C66B1EA391DC00588A5E /* EditProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileController.h; sourceTree = "<group>"; };
 		43B3C66C1EA391DC00588A5E /* EditProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileController.m; sourceTree = "<group>"; };
+		B03421D81ED4182A0054E3ED /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
+		B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,8 @@
 		431F79381E9ABF2200EA37BE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B03421D81ED4182A0054E3ED /* UIViewController+Alerts.h */,
+				B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */,
 				431F795B1E9BCCA700EA37BE /* Login/Registartion */,
 				431F79571E9BCC6F00EA37BE /* Profile */,
 				431F79581E9BCC7900EA37BE /* News */,
@@ -436,6 +441,7 @@
 				431F79411E9B731A00EA37BE /* ProfileController.m in Sources */,
 				435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */,
 				431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */,
+				B03421DA1ED4182A0054E3ED /* UIViewController+Alerts.m in Sources */,
 				431F79781E9D68AE00EA37BE /* CategoryCell.m in Sources */,
 				435ECC871ED17BB400031784 /* LogViewController.m in Sources */,
 				4395AF2B1E9914BE005577F5 /* main.m in Sources */,

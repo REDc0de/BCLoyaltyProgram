@@ -110,15 +110,22 @@
     
     [datePicker setDate:[NSDate date]];
     [datePicker addTarget:self action:@selector(updateBirthdayTextField:) forControlEvents:UIControlEventValueChanged];
+    
     [self.birthdayTextField setInputView:datePicker];
     
     UIToolbar *myToolbar = [[UIToolbar alloc] initWithFrame:
                             CGRectMake(0,0, self.view.frame.size.width, 44)];
     UIBarButtonItem *doneButton =
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                  target:self action:@selector(dismissKeyboard)];
+                                                  target:self action:@selector(handleDatePickerDoneAction)];
+    
     [myToolbar setItems:[NSArray arrayWithObject: doneButton] animated:NO];
     self.birthdayTextField.inputAccessoryView = myToolbar;
+}
+
+- (void)handleDatePickerDoneAction{
+    [self updateBirthdayTextField:nil];
+    [self dismissKeyboard];
 }
 
 - (void)updateBirthdayTextField:(id)sender {
@@ -138,7 +145,7 @@
 #pragma mark - Gender Picker
 
 - (void)genderPickerViewSetup {
-    self.genderPickerData = @[@"male",@"female"];
+    self.genderPickerData = @[@"",@"male",@"female"];
     
     UIPickerView *yourpicker = [[UIPickerView alloc] init];
     [yourpicker setDataSource: self];

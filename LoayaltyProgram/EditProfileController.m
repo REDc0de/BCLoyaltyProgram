@@ -11,7 +11,7 @@
 #import "UIViewController+Alerts.h"
 
 
-@interface EditProfileController ()
+@interface EditProfileController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *genderTextField;
@@ -20,24 +20,191 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordTextField;
-
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) NSArray *genderPickerData;
+@property (strong, nonatomic) FIRUser *currentFIRUser;
+@property (strong, nonatomic) NSMutableDictionary *mutableValuesDictionary;
 
 @end
 
 @implementation EditProfileController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mutableValuesDictionary = [[NSMutableDictionary alloc] init];
+    
+    self.passwordTextField.text = @"23456789";
+    self.repeatPasswordTextField.text = @"98765432";
+    
+    self.currentFIRUser = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
     self.clearsSelectionOnViewWillAppear = YES;
-    [self imageViewSetup];
     self.nameTextField.text = self.user.name;
     self.genderTextField.text = self.user.gender;
     self.birthdayTextField.text = self.user.birthday;
     self.phoneTextField.text = self.user.phoneNumber;
     self.emailTextField.text = self.user.email;
+    
+    [self textFieldSetup];
+    [self imageViewSetup];
+    [self genderPickerViewSetup];
+    [self datePickerSetup];
 }
+
+#pragma mark - Date Picker
+
+- (void)datePickerSetup {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setYear:0];
+    NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    [comps setYear:-256];
+    NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    
+    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [datePicker setMinimumDate:minDate];
+    [datePicker setMaximumDate:maxDate];
+    
+
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"dd MMM',' YYYY"];
+//    NSDate *date = [dateFormatter dateFromString:self.birthdayTextField.text];
+//    
+    [datePicker setDate:[NSDate date]];
+    
+   // NSLog(@"%@, %@", self.birthdayTextField.text, date);
+    [datePicker addTarget:self action:@selector(updateBirthdayTextField:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.birthdayTextField setInputView:datePicker];
+    
+    UIToolbar *myToolbar = [[UIToolbar alloc] initWithFrame:
+                            CGRectMake(0,0, self.view.frame.size.width, 44)];
+    UIBarButtonItem *doneButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                  target:self action:@selector(handleDatePickerDoneAction)];
+    
+    [myToolbar setItems:[NSArray arrayWithObject: doneButton] animated:NO];
+    self.birthdayTextField.inputAccessoryView = myToolbar;
+}
+
+- (void)handleDatePickerDoneAction{
+    [self updateBirthdayTextField:nil];
+    [self dismissKeyboard];
+}
+
+- (void)updateBirthdayTextField:(id)sender {
+    UIDatePicker *picker = (UIDatePicker*)self.birthdayTextField.inputView;
+    self.birthdayTextField.text = [self formatDate:picker.date];
+}
+
+- (NSString *)formatDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"dd MMM, YYYY"];
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    return formattedDate;
+}
+
+
+#pragma mark - Gender Picker
+
+- (void)genderPickerViewSetup {
+    self.genderPickerData = @[@"",@"male",@"female"];
+    
+    UIPickerView *yourpicker = [[UIPickerView alloc] init];
+    [yourpicker setDataSource: self];
+    [yourpicker setDelegate: self];
+    yourpicker.showsSelectionIndicator = YES;
+    self.genderTextField.inputView = yourpicker;
+    
+    UIToolbar *genderPickerToolbar = [[UIToolbar alloc] initWithFrame:
+                                      CGRectMake(0,0, self.view.frame.size.width, 44)]; //should code with variables to support view resizing
+    UIBarButtonItem *doneButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                  target:self action:@selector(dismissKeyboard)];
+    [genderPickerToolbar setItems:[NSArray arrayWithObject: doneButton] animated:NO];
+    self.genderTextField.inputAccessoryView = genderPickerToolbar;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.genderPickerData.count;
+}
+
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.genderPickerData[row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.genderTextField.text = self.genderPickerData[row];
+}
+
+
+#pragma mark - TextField
+
+- (void)textFieldSetup {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    
+    self.nameTextField.delegate = self;
+    self.birthdayTextField.delegate = self;
+    self.genderTextField.delegate = self;
+    self.phoneTextField.delegate = self;
+    self.emailTextField.delegate = self;
+    self.passwordTextField.delegate = self;
+    self.repeatPasswordTextField.delegate = self;
+}
+
+- (void)dismissKeyboard {
+    [self.nameTextField resignFirstResponder];
+    [self.birthdayTextField resignFirstResponder];
+    [self.genderTextField resignFirstResponder];
+    [self.phoneTextField resignFirstResponder];
+    [self.emailTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.repeatPasswordTextField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
+
+#pragma mark - ImagePickerController
+
+- (void)handleSelectProfileImageView {
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *selectedImageFromPicker;
+    if ([info valueForKey:UIImagePickerControllerEditedImage]){
+        selectedImageFromPicker = [info valueForKey:UIImagePickerControllerEditedImage];
+    } else{
+        selectedImageFromPicker = [info valueForKey:UIImagePickerControllerOriginalImage];
+    }
+    
+    if(selectedImageFromPicker) {
+        self.profileImageView.image = selectedImageFromPicker;
+    }
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)imageViewSetup {
     if (self.user.profileImageData){
@@ -57,64 +224,106 @@
     }
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
     self.profileImageView.layer.masksToBounds = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectProfileImageView)];
+    [self.profileImageView addGestureRecognizer:tap];
 }
-
 
 - (IBAction)handleCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)handleDone:(id)sender {
-    FIRUser *user = [FIRAuth auth].currentUser;
-
-    NSDictionary *values = @{@"username": self.nameTextField.text,
-                             @"gender": self.genderTextField.text,
-                             @"birtday": self.birthdayTextField.text,
-                             @"phoneNumber": self.phoneTextField.text,
-                             @"email": self.emailTextField.text};
-    
-    [[[self.ref child:@"users"] child:user.uid] updateChildValues:(values)];
-    
-    //[self reAuthenticate];
-    [self setEmail];
-    [self setPassword];
-    
-    
-
+    [self dismissKeyboard];
+    [self reAuthenticate];
 }
-
 
 - (void)reAuthenticate {
-    
-    FIRUser *user = [FIRAuth auth].currentUser;
-    FIRAuthCredential *credential;
-    
-    // Prompt the user to re-provide their sign-in credentials
-    
-    [user reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
-        if (error) {
-            // An error happened.
-            [self showMessagePrompt: error.localizedDescription];
-        } else {
-            // User re-authenticated.
-        }
-    }];
-
-}
-
-- (void)setEmail {
-    [[FIRAuth auth].currentUser updateEmail:self.emailTextField.text completion:^(NSError *_Nullable error) {
-        if (error) {
-            // An error happened.
-            [self showMessagePrompt: error.localizedDescription];
-        }
-    }];
-}
-
-- (void)setPassword {
-    [[FIRAuth auth].currentUser updatePassword:self.passwordTextField.text completion:^(NSError *_Nullable error) {
-        // ...
+    [self showTextInputPromptWithMessage:@"Type your password" completionBlock:^(BOOL userPressedOK, NSString * _Nullable userInput) {
+        NSString *password = userInput;
+        FIRAuthCredential *credential = [FIREmailPasswordAuthProvider credentialWithEmail:self.currentFIRUser.email password:password];
         
+        [self.currentFIRUser reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
+            if (error) {
+                // An error happened.
+                [self showMessagePrompt: error.localizedDescription];
+            } else {
+                // User re-authenticated.
+                [self showSpinner:^{
+                    [self updateProfile];
+                }];
+            }
+        }];
+    }];
+}
+
+- (void)updateProfile {
+    UIImage *profileImage = self.profileImageView.image;
+    NSData *uploadImage = UIImageJPEGRepresentation(profileImage, 0.1);
+    
+    if (self.user.profileImageData != uploadImage) {
+        
+        NSString *imageName = [[NSUUID UUID] UUIDString];
+        
+        FIRStorage *storage = [FIRStorage storage];
+        FIRStorageReference *storageRef = [storage reference];
+        FIRStorageReference *profileRef = [storageRef child:[NSString stringWithFormat:@"users/profile_images/%@.jpg",imageName]];
+        
+        NSData *uploadImage = UIImageJPEGRepresentation(profileImage, 0.1);
+        
+        [profileRef putData:uploadImage
+                   metadata:nil
+                 completion:^(FIRStorageMetadata *metadata, NSError *error) {
+                     if (error != nil) {
+                         [self showMessagePrompt: error.localizedDescription];
+                         return;
+                     } else {
+                         NSString *profileImageURL = [NSString stringWithFormat:@"%@", metadata.downloadURL];
+                         [self.mutableValuesDictionary setObject:profileImageURL forKey:@"profileImageURL" ];
+                         [self updateFields];
+                    }
+        }];
+    } else {
+        [self updateFields];
+    }
+}
+
+- (void)updateFields {
+    if (self.user.name !=self.nameTextField.text) {
+        [self.mutableValuesDictionary setObject:self.nameTextField.text forKey:@"username" ];
+    }
+    if (self.user.gender !=self.genderTextField.text) {
+        [self.mutableValuesDictionary setObject:self.genderTextField.text forKey:@"gender"];
+    }
+    if (self.user.birthday !=self.birthdayTextField.text) {
+        [self.mutableValuesDictionary setObject:self.birthdayTextField.text forKey:@"birtday"];
+    }
+    if (self.user.phoneNumber !=self.phoneTextField.text) {
+        [self.mutableValuesDictionary setObject:self.phoneTextField.text forKey:@"phoneNumber"];
+    }
+    if (self.user.email != self.emailTextField.text) {
+        [self setEmail:self.emailTextField.text];
+        [self.mutableValuesDictionary setObject:self.emailTextField.text forKey:@"email"];
+    }
+    if (self.passwordTextField.text == self.repeatPasswordTextField.text){
+        [self setPassword:self.passwordTextField.text];
+    }
+    
+    [[[self.ref child:@"users"] child:self.currentFIRUser.uid] updateChildValues:(self.mutableValuesDictionary) withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        // Values have been updated;
+        [self hideSpinner:^{
+            if (error) {
+                [self showMessagePrompt: error.localizedDescription];
+                return;
+            }
+        }];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+
+}
+
+- (void)setEmail:(NSString*)email {
+    [[FIRAuth auth].currentUser updateEmail:email completion:^(NSError *_Nullable error) {
+        // Email have been changed.
         if (error) {
             // An error happened.
             [self showMessagePrompt: error.localizedDescription];
@@ -122,14 +331,20 @@
     }];
 }
 
+- (void)setPassword:(NSString*)password {
+    [[FIRAuth auth].currentUser updatePassword:password completion:^(NSError *_Nullable error) {
+        // Password has been changed.
+        if (error) {
+            // An error happened.
+            [self showMessagePrompt: error.localizedDescription];
+        }
+    }];
+}
 
 - (IBAction)handleDeleteProfile:(id)sender {
-    FIRUser *user = [FIRAuth auth].currentUser;
-    
-    [[[self.ref child:@"users"] child:user.uid] removeValue];
+    [[[self.ref child:@"users"] child:self.currentFIRUser.uid] removeValue];
     // Account from realtime database deleted.
-    
-    [user deleteWithCompletion:^(NSError *_Nullable error) {
+    [self.currentFIRUser deleteWithCompletion:^(NSError *_Nullable error) {
         if (error) {
             // An error happened.
             [self showMessagePrompt: error.localizedDescription];

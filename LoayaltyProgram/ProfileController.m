@@ -38,6 +38,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+   // [self handleSignout:nil];
     [self checkIfUserIsLoggedIn];
 }
 

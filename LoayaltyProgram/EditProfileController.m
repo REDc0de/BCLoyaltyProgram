@@ -34,8 +34,8 @@
     [super viewDidLoad];
     self.mutableValuesDictionary = [[NSMutableDictionary alloc] init];
     
-    self.passwordTextField.text = @"23456789";
-    self.repeatPasswordTextField.text = @"98765432";
+    self.passwordTextField.text = @"11111";
+    self.repeatPasswordTextField.text = @"11111";
     
     self.currentFIRUser = [FIRAuth auth].currentUser;
     self.ref = [[FIRDatabase database] reference];
@@ -229,65 +229,50 @@
 }
 
 - (IBAction)handleCancel:(id)sender {
+    [self dismissKeyboard];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)handleDone:(id)sender {
     [self dismissKeyboard];
-    [self reAuthenticate];
-}
-
-- (void)reAuthenticate {
-    [self showTextInputPromptWithMessage:@"Type your password" completionBlock:^(BOOL userPressedOK, NSString * _Nullable userInput) {
-        NSString *password = userInput;
-        FIRAuthCredential *credential = [FIREmailPasswordAuthProvider credentialWithEmail:self.currentFIRUser.email password:password];
-        
-        [self.currentFIRUser reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
-            if (error) {
-                // An error happened.
-                [self showMessagePrompt: error.localizedDescription];
-            } else {
-                // User re-authenticated.
-                [self showSpinner:^{
-                    [self updateProfile];
-                }];
-            }
-        }];
-    }];
+    [self updateProfile];
 }
 
 - (void)updateProfile {
     UIImage *profileImage = self.profileImageView.image;
     NSData *uploadImage = UIImageJPEGRepresentation(profileImage, 0.1);
-    
-    if (self.user.profileImageData != uploadImage) {
-        
-        NSString *imageName = [[NSUUID UUID] UUIDString];
-        
-        FIRStorage *storage = [FIRStorage storage];
-        FIRStorageReference *storageRef = [storage reference];
-        FIRStorageReference *profileRef = [storageRef child:[NSString stringWithFormat:@"users/profile_images/%@.jpg",imageName]];
-        
-        NSData *uploadImage = UIImageJPEGRepresentation(profileImage, 0.1);
-        
-        [profileRef putData:uploadImage
-                   metadata:nil
-                 completion:^(FIRStorageMetadata *metadata, NSError *error) {
-                     if (error != nil) {
-                         [self showMessagePrompt: error.localizedDescription];
-                         return;
-                     } else {
-                         NSString *profileImageURL = [NSString stringWithFormat:@"%@", metadata.downloadURL];
-                         [self.mutableValuesDictionary setObject:profileImageURL forKey:@"profileImageURL" ];
-                         [self updateFields];
-                    }
-        }];
-    } else {
-        [self updateFields];
-    }
+    [self showSpinner:^{
+        if (self.user.profileImageData != uploadImage) {
+            // Upload profile image.
+            NSString *imageName = [[NSUUID UUID] UUIDString];
+            FIRStorage *storage = [FIRStorage storage];
+            FIRStorageReference *storageRef = [storage reference];
+            FIRStorageReference *profileRef = [storageRef child:[NSString stringWithFormat:@"users/profile_images/%@.jpg",imageName]];
+            NSData *uploadImage = UIImageJPEGRepresentation(profileImage, 0.1);
+            
+            [profileRef putData:uploadImage
+                       metadata:nil
+                     completion:^(FIRStorageMetadata *metadata, NSError *error) {
+                         if (error) {
+                             [self hideSpinner:^{
+                                 [self showMessagePrompt: error.localizedDescription];
+                             }];
+                             return;
+                         } else {
+                             NSString *profileImageURL = [NSString stringWithFormat:@"%@", metadata.downloadURL];
+                             [self.mutableValuesDictionary setObject:profileImageURL forKey:@"profileImageURL" ];
+                             // Select fields for update.
+                             [self selectFieldsForUpdate];
+                         }
+                     }];
+        } else {
+            // Select fields for update.
+            [self selectFieldsForUpdate];
+        }
+    }];
 }
 
-- (void)updateFields {
+- (void)selectFieldsForUpdate {
     if (self.user.name !=self.nameTextField.text) {
         [self.mutableValuesDictionary setObject:self.nameTextField.text forKey:@"username" ];
     }
@@ -300,43 +285,106 @@
     if (self.user.phoneNumber !=self.phoneTextField.text) {
         [self.mutableValuesDictionary setObject:self.phoneTextField.text forKey:@"phoneNumber"];
     }
-    if (self.user.email != self.emailTextField.text) {
-        [self setEmail:self.emailTextField.text];
-        [self.mutableValuesDictionary setObject:self.emailTextField.text forKey:@"email"];
-    }
-    if (self.passwordTextField.text == self.repeatPasswordTextField.text){
-        [self setPassword:self.passwordTextField.text];
-    }
     
+    if (self.passwordTextField.text != [NSString stringWithFormat:@"11111"] || self.user.email != self.emailTextField.text ) {
+        [self hideSpinner:^{
+            // re-Authenticate user.
+            [self showTextInputPromptWithMessage:@"Enter your current password." completionBlock:^(BOOL userPressedOK, NSString * _Nullable userInput) {
+                [self showSpinner:^{
+                    NSString *password = userInput;
+                    FIRAuthCredential *credential = [FIREmailPasswordAuthProvider credentialWithEmail:self.currentFIRUser.email password:password];
+                    
+                    [self.currentFIRUser reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
+                        // User re-authenticated.
+                        if (error) {
+                            // An error happened.
+                            [self hideSpinner:^{
+                                [self showMessagePrompt: error.localizedDescription];
+                            }];
+                            return;
+                        }
+                        
+                        if (self.passwordTextField.text != [NSString stringWithFormat:@"11111"]){
+                            if (self.passwordTextField.text != self.repeatPasswordTextField.text){
+                                [self hideSpinner:^{
+                                    [self showMessagePrompt:@"Passwords dont' match."];
+                                }];
+                                return;
+                            }
+                            [[FIRAuth auth].currentUser updatePassword:self.repeatPasswordTextField.text completion:^(NSError *_Nullable error) {
+                                // Password has been changed.
+                                if (error) {
+                                    // An error happened.
+                                    [self hideSpinner:^{
+                                        [self showMessagePrompt: error.localizedDescription];
+                                    }];
+                                    return;
+                                }
+                                if (self.currentFIRUser.email != self.emailTextField.text ) {
+                                    [self.currentFIRUser updateEmail:self.emailTextField.text completion:^(NSError *_Nullable error) {
+                                        // Email has been changed.
+                                        if (error) {
+                                            // An error happened.
+                                            [self hideSpinner:^{
+                                                [self showMessagePrompt: error.localizedDescription];
+                                            }];
+                                            return;
+                                        }
+                                        [self.mutableValuesDictionary setObject:self.emailTextField.text forKey:@"email"];
+                                        [self updateUserProfileValues];
+                                    }];
+                                } else{
+                                    [self updateUserProfileValues];
+                                }
+                            }];
+                        } else {
+                            if (self.currentFIRUser.email != self.emailTextField.text ) {
+                                [self.currentFIRUser updateEmail:self.emailTextField.text completion:^(NSError *_Nullable error) {
+                                    // Email has been changed.
+                                    if (error) {
+                                        // An error happened.
+                                        [self hideSpinner:^{
+                                            [self showMessagePrompt: error.localizedDescription];
+                                        }];
+                                        return;
+                                    }
+                                    [self.mutableValuesDictionary setObject:self.emailTextField.text forKey:@"email"];
+                                    [self updateUserProfileValues];
+                                }];
+                            } else{
+                                [self updateUserProfileValues];
+                            }
+                        }
+                        
+                    }];
+                }];
+            }];
+        }];
+    } else{
+        [self updateUserProfileValues];
+    }
+}
+
+- (void)updateUserProfileValues {
     [[[self.ref child:@"users"] child:self.currentFIRUser.uid] updateChildValues:(self.mutableValuesDictionary) withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         // Values have been updated;
         [self hideSpinner:^{
             if (error) {
                 [self showMessagePrompt: error.localizedDescription];
-                return;
             }
+            return;
         }];
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
-
 }
 
 - (void)setEmail:(NSString*)email {
-    [[FIRAuth auth].currentUser updateEmail:email completion:^(NSError *_Nullable error) {
-        // Email have been changed.
+    [self.currentFIRUser updateEmail:email completion:^(NSError *_Nullable error) {
+        // Email has been changed.
         if (error) {
             // An error happened.
             [self showMessagePrompt: error.localizedDescription];
-        }
-    }];
-}
-
-- (void)setPassword:(NSString*)password {
-    [[FIRAuth auth].currentUser updatePassword:password completion:^(NSError *_Nullable error) {
-        // Password has been changed.
-        if (error) {
-            // An error happened.
-            [self showMessagePrompt: error.localizedDescription];
+            return;
         }
     }];
 }
@@ -348,6 +396,7 @@
         if (error) {
             // An error happened.
             [self showMessagePrompt: error.localizedDescription];
+            return;
         } else {
             // Account deleted.
             [self dismissViewControllerAnimated:YES completion:nil];

@@ -20,6 +20,12 @@
     // Override point for customization after application launch.
     [FIRApp configure];
     [FIRDatabase database].persistenceEnabled = YES;
+    
+   // UIColor *promoDarkColor = [UIColor colorWithRed:32.0/255 green:32.0/255 blue:32.0/255 alpha:1.0];
+    UIColor *promoRedColor = [UIColor colorWithRed:219.0/255 green:16.0/255 blue:32.0/255 alpha:1.0];
+
+    [[self window] setTintColor:promoRedColor];
+    
     return YES;
 }
 

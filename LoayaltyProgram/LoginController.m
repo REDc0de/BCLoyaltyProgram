@@ -298,20 +298,18 @@
 
 - (void)handleLogin{
     [self showSpinner:^{
-    [[FIRAuth auth] signInWithEmail:self.emailTextField.text
-                           password:self.passwordTextField.text
-                         completion:^(FIRUser *user, NSError *error) {
-                           
-                             [self hideSpinner:^{
-                                 if (error) {
-                                     [self showMessagePrompt: error.localizedDescription];
-                                     return;
-                                 }
-
-                             [self dismissViewControllerAnimated:YES completion:nil];
-                             NSLog(@"We successfully login user.");
-                         }];
-                         }];
+        [[FIRAuth auth] signInWithEmail:self.emailTextField.text
+                               password:self.passwordTextField.text
+                             completion:^(FIRUser *user, NSError *error) {
+                                 // User has been logged in.
+                                 [self hideSpinner:^{
+                                     if (error) {
+                                         [self showMessagePrompt: error.localizedDescription];
+                                         return;
+                                     }
+                                     [self dismissViewControllerAnimated:YES completion:nil];
+                                 }];
+                             }];
     }];
 }
 
@@ -325,58 +323,58 @@
     UIImage *profileImage = self.profileImageView.image;
     
     [self showSpinner:^{
-    [[FIRAuth auth] createUserWithEmail:email
-                               password:password
-                             completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-                                 
-                                 if (error){
-                                     [self showMessagePrompt: error.localizedDescription];
-                                     return;
-                                 }
-                                
-                                 NSString *uid = user.uid;
-                                 NSString *imageName = [[NSUUID UUID] UUIDString];
-                                 
-                                 FIRStorage *storage = [FIRStorage storage];
-                                 FIRStorageReference *storageRef = [storage reference];
-                                 FIRStorageReference *profileRef = [storageRef child:[NSString stringWithFormat:@"users/profile_images/%@.jpg",imageName]];
-                                 
-                                 NSData *uploadImage = UIImageJPEGRepresentation(profileImage, 0.1);
-
-                                 [profileRef putData:uploadImage
-                                            metadata:nil
-                                          completion:^(FIRStorageMetadata *metadata, NSError *error) {
-                                              if (error != nil) {
-                                                  [self showMessagePrompt: error.localizedDescription];
-                                                  return;
-                                              } else {
-                                                  NSString *profileImageURL = [NSString stringWithFormat:@"%@", metadata.downloadURL];
-                                    
-                                                  NSDictionary *values = @{@"username": name,
-                                                                             @"gender": gender,
-                                                                            @"birtday": birthday,
-                                                                        @"phoneNumber": phoneNumber,
-                                                                              @"email": email,
-                                                                             @"points": @0,
-                                                                    @"profileImageURL": profileImageURL,
-                                                                   @"registrationDate": [NSString stringWithFormat:@"%@",[NSDate date]]};
-                                                  [self registerUserIntoDatabaseWithUID:uid values:values];
-                                              }
-                                   }];
-                             }];
-            
-               }];
+        [[FIRAuth auth] createUserWithEmail:email
+                                   password:password
+                                 completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+                                     // User has been created.
+                                     if (error){
+                                         [self showMessagePrompt: error.localizedDescription];
+                                         return;
+                                     }
+                                     
+                                     NSString *uid = user.uid;
+                                     NSString *imageName = [[NSUUID UUID] UUIDString];
+                                     
+                                     FIRStorage *storage = [FIRStorage storage];
+                                     FIRStorageReference *storageRef = [storage reference];
+                                     FIRStorageReference *profileRef = [storageRef child:[NSString stringWithFormat:@"users/profile_images/%@.jpg",imageName]];
+                                     
+                                     NSData *uploadImage = UIImageJPEGRepresentation(profileImage, 0.1);
+                                     
+                                     [profileRef putData:uploadImage
+                                                metadata:nil
+                                              completion:^(FIRStorageMetadata *metadata, NSError *error) {
+                                                  if (error != nil) {
+                                                      [self showMessagePrompt: error.localizedDescription];
+                                                      return;
+                                                  } else {
+                                                      NSString *profileImageURL = [NSString stringWithFormat:@"%@", metadata.downloadURL];
+                                                      
+                                                      NSDictionary *values = @{@"username": name,
+                                                                               @"gender": gender,
+                                                                               @"birtday": birthday,
+                                                                               @"phoneNumber": phoneNumber,
+                                                                               @"email": email,
+                                                                               @"points": @0,
+                                                                               @"profileImageURL": profileImageURL,
+                                                                               @"registrationDate": [NSString stringWithFormat:@"%@",[NSDate date]]};
+                                                      [self registerUserIntoDatabaseWithUID:uid values:values];
+                                                  }
+                                              }];
+                                 }];
+        
+    }];
 }
 
 - (void)registerUserIntoDatabaseWithUID:(NSString*)uid values:(NSDictionary*)values {
     [[[self.reference child:@"users"] child:uid] setValue:values withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        // User has been registered.
         [self hideSpinner:^{
             if (error) {
                 [self showMessagePrompt: error.localizedDescription];
                 return;
             }
             [self dismissViewControllerAnimated:YES completion:nil];
-            NSLog(@"We successfully register new user.");
         }];
     }];
 }

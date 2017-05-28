@@ -23,6 +23,7 @@
 @property (strong, nonatomic) UIImageView *topImage;
 @property (strong, nonatomic) UIView *topView;
 @property (strong, nonatomic) User *user;
+@property (weak, nonatomic) IBOutlet UIButton *guestCardButton;
 
 
 @end
@@ -33,6 +34,7 @@
     [super viewDidLoad];
     self.reference = [[FIRDatabase database] reference];
     [self setupImageView];
+    [self setupGuestCardButton];
     self.user = [[User alloc] init];
 }
 
@@ -66,6 +68,11 @@
 - (void)setupImageView{
     self.userImageView.layer.cornerRadius = self.userImageView.layer.frame.size.width/2;
     self.userImageView.layer.masksToBounds = YES;
+}
+
+- (void)setupGuestCardButton {
+    self.guestCardButton.layer.cornerRadius = 4;
+    self.guestCardButton.layer.masksToBounds =YES;
 }
 
 - (void)getUser {

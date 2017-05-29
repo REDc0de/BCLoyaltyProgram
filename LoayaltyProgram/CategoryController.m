@@ -26,7 +26,7 @@
     [super viewDidLoad];
     self.ref = [[FIRDatabase database] reference];
     self.products = [[NSMutableArray alloc] init];
-
+    self.navigationItem.title = self.category.name;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,8 +58,7 @@
 
     cell.productNameLabel.text = product.name;
     cell.productInfoTextView.text = product.info;
-    cell.priceLabel.text = [NSString stringWithFormat:@"%.2f",product.price];
-    cell.pointsLabel.text = [NSString stringWithFormat:@"%d",product.points];
+    cell.priceAndPointsLabel.text = [NSString stringWithFormat:@"%dP / %.2f$",product.points, product.price];
     
     if (product.imageData != nil){
         cell.productImageView.image = [UIImage imageWithData:product.imageData];

@@ -407,18 +407,31 @@
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BN7-AW-2Sc">
-                                                <rect key="frame" x="12" y="101.5" width="341" height="465.5"/>
+                                                <rect key="frame" x="18" y="109" width="329" height="458"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <string key="text">1. Show your QR code to cashier.
-2. Tell if you want to get points, or spend them.
-3. Wait while he will scan it with 3D-scaner.
-4. Accept for transaction in alert.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <string key="text">Start using the loyalty program is very simple. Start with 8 easy steps:
+
+1. Select preferred items from the product list.
+
+2. Inform our employee of your order.
+
+3. Inform our employee that you are going to use the guest card.
+
+4. Launch the «Loyalty Program» application.
+
+5. Tap «Guest Card» button.
+
+6. Show QR code to employee.
+
+7. Inform our employee if you want to spend your points, or earn more.
+
+8. Confirm the transaction on your phone by clicking on the "Accept" button in the appeared allert.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ls6-m3-OAn">
-                                                <rect key="frame" x="12" y="45" width="341" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <rect key="frame" x="12" y="55" width="341" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -428,11 +441,11 @@
                                             <constraint firstItem="eug-vo-h2q" firstAttribute="leading" secondItem="Jwt-tO-Rma" secondAttribute="leading" constant="10" id="3rK-dJ-8so"/>
                                             <constraint firstItem="Ls6-m3-OAn" firstAttribute="leading" secondItem="Jwt-tO-Rma" secondAttribute="leading" constant="12" id="Ck9-Dj-5fY"/>
                                             <constraint firstAttribute="bottom" secondItem="BN7-AW-2Sc" secondAttribute="bottom" constant="60" id="RHX-dr-AKZ"/>
-                                            <constraint firstItem="BN7-AW-2Sc" firstAttribute="leading" secondItem="Jwt-tO-Rma" secondAttribute="leading" constant="12" id="YMx-Hb-ulZ"/>
+                                            <constraint firstItem="BN7-AW-2Sc" firstAttribute="leading" secondItem="Jwt-tO-Rma" secondAttribute="leading" constant="18" id="YMx-Hb-ulZ"/>
                                             <constraint firstAttribute="trailing" secondItem="Ls6-m3-OAn" secondAttribute="trailing" constant="12" id="ae1-37-hIr"/>
-                                            <constraint firstItem="BN7-AW-2Sc" firstAttribute="top" secondItem="Ls6-m3-OAn" secondAttribute="bottom" constant="30" id="bVR-tJ-SIw"/>
-                                            <constraint firstItem="Ls6-m3-OAn" firstAttribute="top" secondItem="Jwt-tO-Rma" secondAttribute="top" constant="45" id="hhA-dn-1Sy"/>
-                                            <constraint firstAttribute="trailing" secondItem="BN7-AW-2Sc" secondAttribute="trailing" constant="12" id="iNg-bm-WsR"/>
+                                            <constraint firstItem="BN7-AW-2Sc" firstAttribute="top" secondItem="Ls6-m3-OAn" secondAttribute="bottom" constant="25" id="bVR-tJ-SIw"/>
+                                            <constraint firstItem="Ls6-m3-OAn" firstAttribute="top" secondItem="Jwt-tO-Rma" secondAttribute="top" constant="55" id="hhA-dn-1Sy"/>
+                                            <constraint firstAttribute="trailing" secondItem="BN7-AW-2Sc" secondAttribute="trailing" constant="18" id="iNg-bm-WsR"/>
                                             <constraint firstItem="eug-vo-h2q" firstAttribute="top" secondItem="Jwt-tO-Rma" secondAttribute="top" constant="5" id="lEi-1E-s2w"/>
                                         </constraints>
                                     </view>

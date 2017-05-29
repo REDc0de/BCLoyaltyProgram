@@ -145,8 +145,7 @@
 		431F79381E9ABF2200EA37BE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B03421D81ED4182A0054E3ED /* UIViewController+Alerts.h */,
-				B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */,
+				435ECCC71EDBB6DC00031784 /* Alerts */,
 				431F795B1E9BCCA700EA37BE /* Login/Registartion */,
 				431F79571E9BCC6F00EA37BE /* Profile */,
 				431F79581E9BCC7900EA37BE /* News */,
@@ -253,6 +252,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		435ECCC71EDBB6DC00031784 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				B03421D81ED4182A0054E3ED /* UIViewController+Alerts.h */,
+				B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */,
+			);
+			name = Alerts;
+			sourceTree = "<group>";
+		};
+		435ECCC81EDBB70200031784 /* Controllers for experiments */ = {
+			isa = PBXGroup;
+			children = (
+				435ECC851ED17BB400031784 /* LogViewController.h */,
+				435ECC861ED17BB400031784 /* LogViewController.m */,
+				435ECC881ED1EB7F00031784 /* GridViewController.h */,
+				435ECC891ED1EB7F00031784 /* GridViewController.m */,
+			);
+			name = "Controllers for experiments";
+			sourceTree = "<group>";
+		};
 		4395AF1D1E9914BE005577F5 = {
 			isa = PBXGroup;
 			children = (
@@ -278,10 +297,7 @@
 				431F79501E9BCB7600EA37BE /* Models */,
 				431F79381E9ABF2200EA37BE /* Controllers */,
 				4395AF321E9914BE005577F5 /* Main.storyboard */,
-				435ECC851ED17BB400031784 /* LogViewController.h */,
-				435ECC861ED17BB400031784 /* LogViewController.m */,
-				435ECC881ED1EB7F00031784 /* GridViewController.h */,
-				435ECC891ED1EB7F00031784 /* GridViewController.m */,
+				435ECCC81EDBB70200031784 /* Controllers for experiments */,
 				435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */,
 				43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */,
 				43B3C6691E9EE54A00588A5E /* AddProfileImage.png */,

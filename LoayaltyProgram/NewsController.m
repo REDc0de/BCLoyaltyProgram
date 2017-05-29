@@ -63,9 +63,8 @@
     cell.newsTitle.text = news.title;
     cell.newsTextView.text = news.info;
     
-    if (news.imageData != nil){
+    if (news.imageData != nil && [UIImage imageWithData:news.imageData] != cell.newsImageView.image){
         cell.newsImageView.image = [UIImage imageWithData:news.imageData];
-    
     } else{
     NSURL *url = [NSURL URLWithString:news.imageURL];
     [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -73,9 +72,9 @@
             [self showMessagePrompt: error.localizedDescription];
             return;
         }
+        news.imageData = data;
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.newsImageView.image = [UIImage imageWithData:data];
-            news.imageData = data;
         });
     }] resume];
         

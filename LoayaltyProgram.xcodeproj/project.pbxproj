@@ -26,6 +26,8 @@
 		435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC891ED1EB7F00031784 /* GridViewController.m */; };
 		435ECCB71EDB639900031784 /* qr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 435ECCB61EDB639800031784 /* qr@2x.png */; };
 		435ECCC61EDBB60300031784 /* imagePlaceholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */; };
+		435ECCCE1EDC1AC200031784 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECCCD1EDC1AC200031784 /* Category.m */; };
+		435ECCD11EDC1AD300031784 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECCD01EDC1AD300031784 /* Product.m */; };
 		4395AF2B1E9914BE005577F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2A1E9914BE005577F5 /* main.m */; };
 		4395AF2E1E9914BE005577F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2D1E9914BE005577F5 /* AppDelegate.m */; };
 		4395AF341E9914BE005577F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF321E9914BE005577F5 /* Main.storyboard */; };
@@ -86,6 +88,10 @@
 		435ECC891ED1EB7F00031784 /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
 		435ECCB61EDB639800031784 /* qr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qr@2x.png"; sourceTree = "<group>"; };
 		435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imagePlaceholder.jpg; sourceTree = "<group>"; };
+		435ECCCC1EDC1AC200031784 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		435ECCCD1EDC1AC200031784 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		435ECCCF1EDC1AD300031784 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		435ECCD01EDC1AD300031784 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		4395AF261E9914BE005577F5 /* LoayaltyProgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoayaltyProgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4395AF2A1E9914BE005577F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4395AF2C1E9914BE005577F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -164,6 +170,10 @@
 				431F79861E9D6D8000EA37BE /* Restaurant.m */,
 				43B3C65C1E9D958400588A5E /* News.h */,
 				43B3C65D1E9D958400588A5E /* News.m */,
+				435ECCCC1EDC1AC200031784 /* Category.h */,
+				435ECCCD1EDC1AC200031784 /* Category.m */,
+				435ECCCF1EDC1AD300031784 /* Product.h */,
+				435ECCD01EDC1AD300031784 /* Product.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -461,11 +471,13 @@
 				431F79531E9BCB9200EA37BE /* User.m in Sources */,
 				431F797B1E9D6AFE00EA37BE /* NewsCell.m in Sources */,
 				431F796E1E9D5AB900EA37BE /* MenuCell.m in Sources */,
+				435ECCCE1EDC1AC200031784 /* Category.m in Sources */,
 				431F79651E9D58DF00EA37BE /* MenuController.m in Sources */,
 				431F79411E9B731A00EA37BE /* ProfileController.m in Sources */,
 				435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */,
 				431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */,
 				B03421DA1ED4182A0054E3ED /* UIViewController+Alerts.m in Sources */,
+				435ECCD11EDC1AD300031784 /* Product.m in Sources */,
 				431F79781E9D68AE00EA37BE /* CategoryCell.m in Sources */,
 				435ECC871ED17BB400031784 /* LogViewController.m in Sources */,
 				4395AF2B1E9914BE005577F5 /* main.m in Sources */,

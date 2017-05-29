@@ -130,7 +130,7 @@
                                 <connections>
                                     <outlet property="categoryImageView" destination="aNE-2D-Sbc" id="6RF-S1-uf9"/>
                                     <outlet property="categoryNameLabel" destination="sSp-VB-Oqz" id="JyC-An-lJp"/>
-                                    <segue destination="GUh-oi-ptK" kind="show" id="ROM-L0-mxf"/>
+                                    <segue destination="GUh-oi-ptK" kind="show" identifier="menuToProducts" id="ROM-L0-mxf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -209,6 +209,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="pointsLabel" destination="4Yb-Xw-rGk" id="Ld6-9M-vpl"/>
+                                    <outlet property="priceLabel" destination="QIc-xA-XIu" id="MXD-iO-O9a"/>
                                     <outlet property="productImageView" destination="xeQ-uH-XTg" id="QRw-bb-tQa"/>
                                     <outlet property="productInfoTextView" destination="7gQ-p4-KOw" id="IA5-UU-XNs"/>
                                     <outlet property="productNameLabel" destination="MPh-y0-ItM" id="e0o-rE-xB6"/>

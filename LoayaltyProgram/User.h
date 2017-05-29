@@ -20,14 +20,14 @@
 @property (strong, nonatomic) NSData *profileImageData;
 @property (assign, nonatomic) int points;
 
-- (id) initWithUserName:(NSString*)name
-                 gender:(NSString*)gender
-               birthday:(NSString*)birtday
-            phoneNumber:(NSString*)phoneNumber
-                  email:(NSString*)email
-        profileImageURL:(NSString*)profileImageURL
-       profileImageData:(NSData*)profileImageData
-                 points:(int)points
-                    uid:(NSString*)uid NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithUserName:(NSString*)name
+                          gender:(NSString*)gender
+                        birthday:(NSString*)birtday
+                     phoneNumber:(NSString*)phoneNumber
+                           email:(NSString*)email
+                 profileImageURL:(NSString*)profileImageURL
+                profileImageData:(NSData*)profileImageData
+                          points:(int)points
+                             uid:(NSString*)uid NS_DESIGNATED_INITIALIZER;
 
 @end

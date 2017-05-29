@@ -19,11 +19,11 @@
 @property (assign, nonatomic) float longitude;
 
 - (instancetype)initWithName:(NSString*)name
-          imageURL:(NSString*)imageURL
-              info:(NSString*)info
-           address:(NSString*)address
-               tel:(NSString*)tel
-          latitude:(float)latitude
-         longitude:(float)longitude NS_DESIGNATED_INITIALIZER;
+                    imageURL:(NSString*)imageURL
+                        info:(NSString*)info
+                     address:(NSString*)address
+                         tel:(NSString*)tel
+                    latitude:(float)latitude
+                   longitude:(float)longitude NS_DESIGNATED_INITIALIZER;
 
 @end

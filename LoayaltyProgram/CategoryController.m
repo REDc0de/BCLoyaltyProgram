@@ -8,10 +8,15 @@
 
 #import "CategoryController.h"
 #import "CategoryCell.h"
+#import "Firebase.h"
+
 #import "UIViewController+Alerts.h"
 
 
 @interface CategoryController ()
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) NSMutableArray *products;
+
 
 @end
 
@@ -19,6 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.ref = [[FIRDatabase database] reference];
+    self.products = [[NSMutableArray alloc] init];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -39,14 +47,38 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.category.items.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    cell.productNameLabel.text = @"test product";
+    Product *product = [self.category.items objectAtIndex:indexPath.row];
+
+    cell.productNameLabel.text = product.name;
+    cell.productInfoTextView.text = product.info;
+    cell.priceLabel.text = [NSString stringWithFormat:@"%.2f",product.price];
+    cell.pointsLabel.text = [NSString stringWithFormat:@"%d",product.points];
+    
+    if (product.imageData != nil){
+        cell.productImageView.image = [UIImage imageWithData:product.imageData];
+        
+    } else{
+        NSURL *url = [NSURL URLWithString:product.imageURL];
+        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error){
+                [self showMessagePrompt: error.localizedDescription];
+                return;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.productImageView.image = [UIImage imageWithData:data];
+                product.imageData = data;
+            });
+        }] resume];
+        
+    }
+
     
     return cell;
 }

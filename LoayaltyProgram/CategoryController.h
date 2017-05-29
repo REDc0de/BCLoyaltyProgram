@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Category.h"
+#import "Product.h"
 
 @interface CategoryController : UITableViewController
+@property (strong, nonatomic) Category *category;
 
 @end

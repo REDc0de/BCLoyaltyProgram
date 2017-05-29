@@ -25,6 +25,7 @@
 		435ECC871ED17BB400031784 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC861ED17BB400031784 /* LogViewController.m */; };
 		435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC891ED1EB7F00031784 /* GridViewController.m */; };
 		435ECCB71EDB639900031784 /* qr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 435ECCB61EDB639800031784 /* qr@2x.png */; };
+		435ECCC61EDBB60300031784 /* imagePlaceholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */; };
 		4395AF2B1E9914BE005577F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2A1E9914BE005577F5 /* main.m */; };
 		4395AF2E1E9914BE005577F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2D1E9914BE005577F5 /* AppDelegate.m */; };
 		4395AF341E9914BE005577F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4395AF321E9914BE005577F5 /* Main.storyboard */; };
@@ -84,6 +85,7 @@
 		435ECC881ED1EB7F00031784 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
 		435ECC891ED1EB7F00031784 /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
 		435ECCB61EDB639800031784 /* qr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qr@2x.png"; sourceTree = "<group>"; };
+		435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imagePlaceholder.jpg; sourceTree = "<group>"; };
 		4395AF261E9914BE005577F5 /* LoayaltyProgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoayaltyProgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4395AF2A1E9914BE005577F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4395AF2C1E9914BE005577F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				435ECC861ED17BB400031784 /* LogViewController.m */,
 				435ECC881ED1EB7F00031784 /* GridViewController.h */,
 				435ECC891ED1EB7F00031784 /* GridViewController.m */,
+				435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */,
 				43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */,
 				43B3C6691E9EE54A00588A5E /* AddProfileImage.png */,
 				435ECCB61EDB639800031784 /* qr@2x.png */,
@@ -413,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				435ECCC61EDBB60300031784 /* imagePlaceholder.jpg in Resources */,
 				4395AF391E9914BE005577F5 /* LaunchScreen.storyboard in Resources */,
 				43B3C6581E9D7E7200588A5E /* Compass-Line@2x.png in Resources */,
 				43B3C6571E9D7E7200588A5E /* Compass-Filled@2x.png in Resources */,

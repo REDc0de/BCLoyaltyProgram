@@ -158,7 +158,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="164"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PM5-eh-cFC" id="8ny-5i-Qhb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="163"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xeQ-uH-XTg">
@@ -1133,7 +1133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfn-nk-yNX" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4180" y="2591"/>
+            <point key="canvasLocation" x="4180" y="2590.2548725637184"/>
         </scene>
         <!--Restaurants-->
         <scene sceneID="D45-Dl-2Lx">

@@ -285,8 +285,10 @@
     if (self.user.phoneNumber !=self.phoneTextField.text) {
         [self.mutableValuesDictionary setObject:self.phoneTextField.text forKey:@"phoneNumber"];
     }
-    
-    if (self.passwordTextField.text != [NSString stringWithFormat:@"11111"] || self.user.email != self.emailTextField.text ) {
+
+    if ( [self.currentFIRUser.email isEqualToString:self.emailTextField.text] && [self.passwordTextField.text  isEqual: @"11111"]){
+        [self updateUserProfileValues];
+    } else {
         [self hideSpinner:^{
             // re-Authenticate user.
             [self showTextInputPromptWithMessage:@"Enter your current password." completionBlock:^(BOOL userPressedOK, NSString * _Nullable userInput) {
@@ -360,8 +362,6 @@
                 }];
             }];
         }];
-    } else{
-        [self updateUserProfileValues];
     }
 }
 

@@ -14,7 +14,7 @@
 @property (weak, nonatomic) NSString *imageURL;
 @property (weak, nonatomic) NSString *info;
 @property (weak, nonatomic) NSString *address;
-@property (weak, nonatomic) NSString *telNumber;
+@property (weak, nonatomic) NSString *tel;
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
 
@@ -22,7 +22,7 @@
           imageURL:(NSString*)imageURL
               info:(NSString*)info
            address:(NSString*)address
-         telNumber:(NSString*)telNumber
+               tel:(NSString*)tel
           latitude:(float)latitude
          longitude:(float)longitude;
 

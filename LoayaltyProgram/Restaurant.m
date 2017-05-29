@@ -10,14 +10,14 @@
 
 @implementation Restaurant
 
-- (id)initWithName:(NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info address:(NSString *)address telNumber:(NSString *)telNumber latitude:(float)latitude longitude:(float)longitude {
+- (id)initWithName:(NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info address:(NSString *)address tel:(NSString *)tel latitude:(float)latitude longitude:(float)longitude {
     self = [super init];
     if (self) {
         self.name = name;
         self.imageURL = imageURL;
         self.info = info;
         self.address = address;
-        self.telNumber = telNumber;
+        self.tel = tel;
         self.latitude = latitude;
         self.longitude = longitude;
     }

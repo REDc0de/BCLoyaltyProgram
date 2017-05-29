@@ -8,22 +8,27 @@
 
 #import "RestaurantsController.h"
 #import "Restaurant.h"
+#import "Firebase.h"
 #import <MapKit/MapKit.h>
 #import "UIViewController+Alerts.h"
-
+#import "UIViewController+Alerts.h"
 
 @interface RestaurantsController () <CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UIToolbarDelegate>
 
 
-@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mapSegmentControle;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userLocationButton;
-@property (weak, nonatomic) MKUserLocation *lastUserlocation;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) MKUserLocation *lastUserlocation;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) Restaurant *currentRestaurant;
-@property (strong, nonatomic) NSArray *restaurants;
+//@property (strong, nonatomic) NSArray *restaurants;
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) NSMutableArray *restaurants;
+
+@property (strong, nonatomic) NSPredicate *predicate;
 
 @end
 
@@ -35,16 +40,14 @@
 MKMapView *standartMapView;
 MKMapView *hybridMapView;
 MKMapView *sputnikMapView;
-
 MKPlacemark *selectedPin;
-char locationButtonState; // u - folowUserLocation c - noneFollowUserLocation d - followUserLocationWithHeading
 UIImageView *navBarHairlineImageView;
+char locationButtonState; // u - folowUserLocation c - noneFollowUserLocation d - followUserLocationWithHeading
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"locationCoordinatsIsInvalid" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showAlertMessage:) name:@"locationCoordinatsIsInvalid" object:nil];
+    self.ref = [[FIRDatabase database] reference];
+    self.restaurants = [[NSMutableArray alloc] init];
     
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -67,32 +70,38 @@ UIImageView *navBarHairlineImageView;
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.delegate = self;
     
-    Restaurant *restaurant1 =[[Restaurant alloc] initWithName:@"test1" imageURL:@"someurl" info:@"test info1" address:@"test addres1" telNumber:@"+375291110011" latitude:53.903643 longitude:27.553020];
+//    Restaurant *restaurant1 =[[Restaurant alloc] initWithName:@"test1" imageURL:@"someurl" info:@"test info1" address:@"test addres1" telNumber:@"+375291110011" latitude:53.903643 longitude:27.553020];
+//    
+//    Restaurant *restaurant2 =[[Restaurant alloc] initWithName:@"test2" imageURL:@"someur2" info:@"test info2" address:@"test addres2" telNumber:@"+3752911100112" latitude:53.894875 longitude:27.546196];
+//    
     
     
-    Restaurant *restaurant2 =[[Restaurant alloc] initWithName:@"test2" imageURL:@"someur2" info:@"test info2" address:@"test addres2" telNumber:@"+3752911100112" latitude:53.894875 longitude:27.546196];
+    [[self.ref child:@"restaurants"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        NSDictionary *dictionary = snapshot.value;
+        Restaurant *restaurant = [[Restaurant alloc] init];
+        [restaurant setValuesForKeysWithDictionary:dictionary];
+        [self.restaurants addObject:restaurant];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (Restaurant *restaurant in self.restaurants){
+                [self addPointAnnotationWithTitle:restaurant.name
+                                         subTitle:restaurant.info
+                                         latitude:restaurant.latitude
+                                        longitude:restaurant.longitude
+                                        onMapView:self.mapView];
+            }
+            [self zoomToFitMapAnnotations:self.mapView];
+        });
+        
+    }];
     
-    self.restaurants = [NSArray arrayWithObjects:restaurant1, restaurant2, nil];
-    for (Restaurant *restaurant in self.restaurants){
-        [self addPointAnnotationWithTitle:restaurant.name
-                                 subTitle:restaurant.info
-                                 latitude:restaurant.latitude
-                                longitude:restaurant.longitude
-                                onMapView:self.mapView];
-    }
+    
     [self noneFollowUserLocationMode];
-//    [self zoomToFitMapAnnotations:self.mapView];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didDragMap:)];
     panGesture.delegate = self;
     [self.mapView addGestureRecognizer:panGesture];
-    
-    /* TODO
-     0) view for annotation info
-     1) zoom and pinch recognizer for centered zooming
-     2) after compas button tuchUpInside launch u - mode and exit from d - mode
-     3) save camera position after compas, but make it default after u - mode enabled
-     */
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -120,19 +129,6 @@ UIImageView *navBarHairlineImageView;
     return nil;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    [self zoomToFitMapAnnotations:self.mapView];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
@@ -153,7 +149,7 @@ UIImageView *navBarHairlineImageView;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"error: %@", error);
+    [self showMessagePrompt:error.localizedDescription];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
@@ -214,14 +210,12 @@ UIImageView *navBarHairlineImageView;
     [locationManager stopUpdatingHeading];
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
     self.userLocationButton.image = [UIImage imageNamed:@"Compass-Line"];
-    // self.mapView.camera.heading = lastHeading.trueHeading;
 }
 
 - (void)followUserLocationWithHeading{
     locationButtonState = 'd';
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
     [self focusUserLocationOnMapView:self.mapView];
-    //  [locationManager startUpdatingHeading];
     self.userLocationButton.image = [UIImage imageNamed:@"Compass"];
 }
 
@@ -242,8 +236,7 @@ UIImageView *navBarHairlineImageView;
     if(CLLocationCoordinate2DIsValid(location)){
         [mapView setRegion:region animated:YES];
     } else{
-        NSString *errorMessage = @"Now it is impossible to determine your geo location.";
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"locationCoordinatsIsInvalid" object:errorMessage];
+        [self showMessagePrompt:@"Now it is impossible to determine your geo location."];
     }
 }
 
@@ -256,15 +249,17 @@ UIImageView *navBarHairlineImageView;
 }
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    // if it's the user location, just return nil
+    // if it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
-    // handle any custom annotations
+    // Handle any custom annotations.
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation"];
         
-        unsigned long index = [self.restaurants indexOfObject:self.currentRestaurant];
+        self.predicate = [NSPredicate predicateWithFormat:@"name ==%@",annotation.title];
+        Restaurant *currentRestaurant = [[self.restaurants filteredArrayUsingPredicate:self.predicate] objectAtIndex:0];
+        unsigned long index = [self.restaurants indexOfObject:currentRestaurant];
         
         annotationView.canShowCallout = YES;
         UIButton *infoButton =  [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -282,7 +277,6 @@ UIImageView *navBarHairlineImageView;
 
 - (void)annotationInfoAction:(UIButton*)sender {
     Restaurant *currentRestaurant = [self.restaurants objectAtIndex:sender.tag];
-    
     CLLocationCoordinate2D start = { lastUserlocation.coordinate.latitude, lastUserlocation.coordinate.longitude };
     CLLocationCoordinate2D destination = { currentRestaurant.latitude, currentRestaurant.longitude };
     [self openGoogleMapRouteFrom:start toDestination:destination];
@@ -301,7 +295,6 @@ UIImageView *navBarHairlineImageView;
         [annotationMutableArray addObject:annotation];
     }
     NSArray *annotationArray = [NSArray arrayWithArray:annotationMutableArray];
-    
     [mapView showAnnotations:annotationArray animated:YES];
 }
 
@@ -317,21 +310,5 @@ UIImageView *navBarHairlineImageView;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapsURLString]];
 }
 
-- (void)showAlertMessage:(NSNotification*)notification{
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:@"Error"
-                                 message:[notification object]
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"Ok"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * action) {
-                                                         //Handle "Ok" button
-                                                     }];
-    
-    [alert addAction:okButton];
-    [super presentViewController:alert animated:YES completion:nil];
-    
-}
 
 @end

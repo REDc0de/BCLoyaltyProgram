@@ -10,7 +10,11 @@
 
 @implementation Restaurant
 
-- (id)initWithName:(NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info address:(NSString *)address tel:(NSString *)tel latitude:(float)latitude longitude:(float)longitude {
+- (instancetype)init {
+    return [self initWithName:@"" imageURL:@"" info:@"" address:@"" tel:@"" latitude:0 longitude:0];
+}
+
+- (instancetype)initWithName:(NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info address:(NSString *)address tel:(NSString *)tel latitude:(float)latitude longitude:(float)longitude {
     self = [super init];
     if (self) {
         self.name = name;

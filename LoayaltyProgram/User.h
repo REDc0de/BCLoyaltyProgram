@@ -10,15 +10,15 @@
 
 @interface User : NSObject
 
-@property (weak, nonatomic) NSString *uid;
-@property (weak, nonatomic) NSString *name;
-@property (weak, nonatomic) NSString *gender;
-@property (weak, nonatomic) NSString *birthday;
-@property (weak, nonatomic) NSString *phoneNumber;
-@property (weak, nonatomic) NSString *email;
-@property (weak, nonatomic) NSString *profileImageURL;
-@property (weak, nonatomic) NSData *profileImageData;
-@property (nonatomic) int points;
+@property (strong, nonatomic) NSString *uid;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *gender;
+@property (strong, nonatomic) NSString *birthday;
+@property (strong, nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) NSString *profileImageURL;
+@property (strong, nonatomic) NSData *profileImageData;
+@property (assign, nonatomic) int points;
 
 - (id) initWithUserName:(NSString*)name
                  gender:(NSString*)gender
@@ -28,6 +28,6 @@
         profileImageURL:(NSString*)profileImageURL
        profileImageData:(NSData*)profileImageData
                  points:(int)points
-                    uid:(NSString*)uid;
+                    uid:(NSString*)uid NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -10,20 +10,20 @@
 
 @interface Restaurant : NSObject
 
-@property (weak, nonatomic) NSString *name;
-@property (weak, nonatomic) NSString *imageURL;
-@property (weak, nonatomic) NSString *info;
-@property (weak, nonatomic) NSString *address;
-@property (weak, nonatomic) NSString *tel;
-@property (nonatomic) float latitude;
-@property (nonatomic) float longitude;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *imageURL;
+@property (strong, nonatomic) NSString *info;
+@property (strong, nonatomic) NSString *address;
+@property (strong, nonatomic) NSString *tel;
+@property (assign, nonatomic) float latitude;
+@property (assign, nonatomic) float longitude;
 
-- (id)initWithName:(NSString*)name
+- (instancetype)initWithName:(NSString*)name
           imageURL:(NSString*)imageURL
               info:(NSString*)info
            address:(NSString*)address
                tel:(NSString*)tel
           latitude:(float)latitude
-         longitude:(float)longitude;
+         longitude:(float)longitude NS_DESIGNATED_INITIALIZER;
 
 @end

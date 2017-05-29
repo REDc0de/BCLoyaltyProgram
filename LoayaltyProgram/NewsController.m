@@ -63,6 +63,10 @@
     cell.newsTitle.text = news.title;
     cell.newsTextView.text = news.info;
     
+    if (news.imageData != nil){
+        cell.newsImageView.image = [UIImage imageWithData:news.imageData];
+    
+    } else{
     NSURL *url = [NSURL URLWithString:news.imageURL];
     [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error){
@@ -71,10 +75,11 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.newsImageView.image = [UIImage imageWithData:data];
+            news.imageData = data;
         });
-        news.imageData = data;
     }] resume];
-
+        
+    }
     return cell;
 }
 

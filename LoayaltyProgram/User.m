@@ -10,7 +10,11 @@
 
 @implementation User
 
-- (id)initWithUserName:(NSString *)name gender:(NSString *)gender birthday:(NSString *)birtday phoneNumber:(NSString *)phoneNumber email:(NSString *)email profileImageURL:(NSString *)profileImageURL profileImageData:(NSData*)profileImageData points:(int)points uid:(NSString *)uid {
+- (instancetype)init {
+    return [self initWithUserName:@"" gender:@"" birthday:@"" phoneNumber:@"" email:@"" profileImageURL:@"" profileImageData:nil points:0 uid:@""];
+}
+
+- (instancetype)initWithUserName:(NSString *)name gender:(NSString *)gender birthday:(NSString *)birtday phoneNumber:(NSString *)phoneNumber email:(NSString *)email profileImageURL:(NSString *)profileImageURL profileImageData:(NSData*)profileImageData points:(int)points uid:(NSString *)uid {
     self = [super init];
     if (self){
         self.name = name;

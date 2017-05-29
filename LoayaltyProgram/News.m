@@ -10,7 +10,11 @@
 
 @implementation News
 
-- (id)initWithTitle:(NSString *)title imageURL:(NSString *)imageURL imageData:(NSData*)imageData info:(NSString *)info date:(NSString *)date {
+- (instancetype)init{
+    return [self initWithTitle:@"" imageURL:@"" imageData:nil info:@"" date:@""];
+}
+
+- (instancetype)initWithTitle:(NSString *)title imageURL:(NSString *)imageURL imageData:(NSData*)imageData info:(NSString *)info date:(NSString *)date {
     self = [super init];
     if (self) {
         self.title = title;

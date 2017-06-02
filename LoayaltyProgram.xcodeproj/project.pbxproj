@@ -21,6 +21,7 @@
 		431F79871E9D6D8000EA37BE /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79861E9D6D8000EA37BE /* Restaurant.m */; };
 		431F798A1E9D701300EA37BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F79891E9D701300EA37BE /* CoreLocation.framework */; };
 		431F798C1E9D701900EA37BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F798B1E9D701900EA37BE /* MapKit.framework */; };
+		432902A31EE19D9F00BE9D07 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 432902A21EE19D9F00BE9D07 /* SettingsController.m */; };
 		435ECC871ED17BB400031784 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC861ED17BB400031784 /* LogViewController.m */; };
 		435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC891ED1EB7F00031784 /* GridViewController.m */; };
 		435ECCCE1EDC1AC200031784 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECCCD1EDC1AC200031784 /* Category.m */; };
@@ -76,6 +77,8 @@
 		431F79861E9D6D8000EA37BE /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		431F79891E9D701300EA37BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		431F798B1E9D701900EA37BE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		432902A11EE19D9F00BE9D07 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		432902A21EE19D9F00BE9D07 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		435ECC851ED17BB400031784 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		435ECC861ED17BB400031784 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		435ECC881ED1EB7F00031784 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 				431F79581E9BCC7900EA37BE /* News */,
 				431F79591E9BCC8000EA37BE /* Menu */,
 				431F795A1E9BCC8700EA37BE /* Restaurants */,
+				432902A41EE19DAA00BE9D07 /* Settings */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +256,15 @@
 				431F79891E9D701300EA37BE /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		432902A41EE19DAA00BE9D07 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				432902A11EE19D9F00BE9D07 /* SettingsController.h */,
+				432902A21EE19D9F00BE9D07 /* SettingsController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		435ECCC71EDBB6DC00031784 /* Alerts */ = {
@@ -458,6 +471,7 @@
 				431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */,
 				B03421DA1ED4182A0054E3ED /* UIViewController+Alerts.m in Sources */,
 				435ECCD11EDC1AD300031784 /* Product.m in Sources */,
+				432902A31EE19D9F00BE9D07 /* SettingsController.m in Sources */,
 				431F79781E9D68AE00EA37BE /* CategoryCell.m in Sources */,
 				435ECC871ED17BB400031784 /* LogViewController.m in Sources */,
 				4395AF2B1E9914BE005577F5 /* main.m in Sources */,

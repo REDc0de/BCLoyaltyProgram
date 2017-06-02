@@ -23,7 +23,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need access to your location to help you find nearest restaurant.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need access to photo library, for profile image</string>
+	<string>We need access to photo library, for profile image.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

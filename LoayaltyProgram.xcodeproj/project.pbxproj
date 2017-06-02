@@ -21,11 +21,8 @@
 		431F79871E9D6D8000EA37BE /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 431F79861E9D6D8000EA37BE /* Restaurant.m */; };
 		431F798A1E9D701300EA37BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F79891E9D701300EA37BE /* CoreLocation.framework */; };
 		431F798C1E9D701900EA37BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F798B1E9D701900EA37BE /* MapKit.framework */; };
-		4334AC621ECA4610009C1E59 /* Compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4334AC611ECA4610009C1E59 /* Compass@2x.png */; };
 		435ECC871ED17BB400031784 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC861ED17BB400031784 /* LogViewController.m */; };
 		435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC891ED1EB7F00031784 /* GridViewController.m */; };
-		435ECCB71EDB639900031784 /* qr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 435ECCB61EDB639800031784 /* qr@2x.png */; };
-		435ECCC61EDBB60300031784 /* imagePlaceholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */; };
 		435ECCCE1EDC1AC200031784 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECCCD1EDC1AC200031784 /* Category.m */; };
 		435ECCD11EDC1AD300031784 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECCD01EDC1AD300031784 /* Product.m */; };
 		4395AF2B1E9914BE005577F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4395AF2A1E9914BE005577F5 /* main.m */; };
@@ -44,14 +41,11 @@
 		4395AF5F1E991954005577F5 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF4C1E99170B005577F5 /* FirebaseAuth.framework */; };
 		4395AF601E991954005577F5 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4395AF4D1E99170B005577F5 /* GTMSessionFetcher.framework */; };
 		43B3C6541E9D7B2F00588A5E /* GuestCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C6531E9D7B2F00588A5E /* GuestCardController.m */; };
-		43B3C6571E9D7E7200588A5E /* Compass-Filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */; };
-		43B3C6581E9D7E7200588A5E /* Compass-Line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6561E9D7E7200588A5E /* Compass-Line@2x.png */; };
 		43B3C65E1E9D958400588A5E /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C65D1E9D958400588A5E /* News.m */; };
 		43B3C6621E9DAC5200588A5E /* TabBarIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */; };
-		43B3C6641E9EE2F800588A5E /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6631E9EE2F800588A5E /* Logo.png */; };
-		43B3C66A1E9EE54A00588A5E /* AddProfileImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6691E9EE54A00588A5E /* AddProfileImage.png */; };
 		43B3C66D1EA391DC00588A5E /* EditProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C66C1EA391DC00588A5E /* EditProfileController.m */; };
 		B03421DA1ED4182A0054E3ED /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */; };
+		B0752BE81EE14D32006DDCCA /* UIElements.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0752BE71EE14D32006DDCCA /* UIElements.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,13 +75,10 @@
 		431F79861E9D6D8000EA37BE /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		431F79891E9D701300EA37BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		431F798B1E9D701900EA37BE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		4334AC611ECA4610009C1E59 /* Compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Compass@2x.png"; sourceTree = "<group>"; };
 		435ECC851ED17BB400031784 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		435ECC861ED17BB400031784 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		435ECC881ED1EB7F00031784 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
 		435ECC891ED1EB7F00031784 /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
-		435ECCB61EDB639800031784 /* qr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qr@2x.png"; sourceTree = "<group>"; };
-		435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imagePlaceholder.jpg; sourceTree = "<group>"; };
 		435ECCCC1EDC1AC200031784 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		435ECCCD1EDC1AC200031784 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		435ECCCF1EDC1AD300031784 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
@@ -113,17 +104,14 @@
 		4395AF611E99198D005577F5 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		43B3C6521E9D7B2F00588A5E /* GuestCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuestCardController.h; sourceTree = "<group>"; };
 		43B3C6531E9D7B2F00588A5E /* GuestCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuestCardController.m; sourceTree = "<group>"; };
-		43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Compass-Filled@2x.png"; sourceTree = "<group>"; };
-		43B3C6561E9D7E7200588A5E /* Compass-Line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Compass-Line@2x.png"; sourceTree = "<group>"; };
 		43B3C65C1E9D958400588A5E /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		43B3C65D1E9D958400588A5E /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBarIcons.xcassets; sourceTree = "<group>"; };
-		43B3C6631E9EE2F800588A5E /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
-		43B3C6691E9EE54A00588A5E /* AddProfileImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddProfileImage.png; sourceTree = "<group>"; };
 		43B3C66B1EA391DC00588A5E /* EditProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileController.h; sourceTree = "<group>"; };
 		43B3C66C1EA391DC00588A5E /* EditProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileController.m; sourceTree = "<group>"; };
 		B03421D81ED4182A0054E3ED /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
 		B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
+		B0752BE71EE14D32006DDCCA /* UIElements.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UIElements.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,13 +296,7 @@
 				431F79381E9ABF2200EA37BE /* Controllers */,
 				4395AF321E9914BE005577F5 /* Main.storyboard */,
 				435ECCC81EDBB70200031784 /* Controllers for experiments */,
-				435ECCC51EDBB60300031784 /* imagePlaceholder.jpg */,
-				43B3C6551E9D7E7200588A5E /* Compass-Filled@2x.png */,
-				43B3C6691E9EE54A00588A5E /* AddProfileImage.png */,
-				435ECCB61EDB639800031784 /* qr@2x.png */,
-				43B3C6631E9EE2F800588A5E /* Logo.png */,
-				4334AC611ECA4610009C1E59 /* Compass@2x.png */,
-				43B3C6561E9D7E7200588A5E /* Compass-Line@2x.png */,
+				B0752BE71EE14D32006DDCCA /* UIElements.xcassets */,
 				43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */,
 				4395AF351E9914BE005577F5 /* Assets.xcassets */,
 				4395AF371E9914BE005577F5 /* LaunchScreen.storyboard */,
@@ -442,18 +424,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				435ECCC61EDBB60300031784 /* imagePlaceholder.jpg in Resources */,
 				4395AF391E9914BE005577F5 /* LaunchScreen.storyboard in Resources */,
-				43B3C6581E9D7E7200588A5E /* Compass-Line@2x.png in Resources */,
-				43B3C6571E9D7E7200588A5E /* Compass-Filled@2x.png in Resources */,
+				B0752BE81EE14D32006DDCCA /* UIElements.xcassets in Resources */,
 				4395AF411E99158E005577F5 /* GoogleService-Info.plist in Resources */,
-				435ECCB71EDB639900031784 /* qr@2x.png in Resources */,
-				43B3C6641E9EE2F800588A5E /* Logo.png in Resources */,
 				4395AF361E9914BE005577F5 /* Assets.xcassets in Resources */,
 				4395AF341E9914BE005577F5 /* Main.storyboard in Resources */,
-				43B3C66A1E9EE54A00588A5E /* AddProfileImage.png in Resources */,
 				43B3C6621E9DAC5200588A5E /* TabBarIcons.xcassets in Resources */,
-				4334AC621ECA4610009C1E59 /* Compass@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,13 +17,13 @@
 @interface ProfileController ()
 
 @property (strong, nonatomic) FIRDatabaseReference *reference;
-@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
-@property (weak, nonatomic) IBOutlet UILabel *userPointsLabel;
-@property (strong, nonatomic) UILabel *topLabel;
 @property (strong, nonatomic) UIImageView *topImage;
+@property (strong, nonatomic) UILabel *topLabel;
 @property (strong, nonatomic) UIView *topView;
 @property (strong, nonatomic) User *user;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UIButton *guestCardButton;
+@property (weak, nonatomic) IBOutlet UILabel *userPointsLabel;
 
 
 @end

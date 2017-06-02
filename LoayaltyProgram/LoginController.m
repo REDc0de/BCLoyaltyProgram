@@ -12,17 +12,16 @@
 
 @interface LoginController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
-@property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UIButton *loginRegisterButton;
+@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UIButton *loginRegisterButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) NSArray *genderPickerData;
-
 @property (strong, nonatomic) FIRDatabaseReference *reference;
 
 @end
@@ -282,7 +281,7 @@
     self.birthdayTextField.hidden = YES;
     self.phoneNumberTextField.hidden = YES;
     self.profileImageView.userInteractionEnabled = NO;
-    self.profileImageView.image = [UIImage imageNamed:@"Logo.png"];
+    self.profileImageView.image = [UIImage imageNamed:@"Logo"];
     [self.loginRegisterButton setTitle:@"Login" forState:UIControlStateNormal];
 }
 
@@ -292,7 +291,7 @@
     self.birthdayTextField.hidden = NO;
     self.phoneNumberTextField.hidden = NO;
     self.profileImageView.userInteractionEnabled = YES;
-    self.profileImageView.image = [UIImage imageNamed:@"AddProfileImage.png"];
+    self.profileImageView.image = [UIImage imageNamed:@"AddProfileImage"];
     [self.loginRegisterButton setTitle:@"Registration" forState:UIControlStateNormal];
 }
 

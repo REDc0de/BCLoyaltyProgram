@@ -18,8 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *guestCardInfoView;
 @property (weak, nonatomic) IBOutlet UIView *guestCardQRView;
 @property (weak, nonatomic) IBOutlet UIImageView *qrCodeImageView;
-@property (weak, nonatomic) IBOutlet UILabel *userUIDLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointsNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userUIDLabel;
 
 @end
 

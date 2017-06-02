@@ -11,11 +11,12 @@
 
 
 @interface NewsInfoController ()
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
+@property (weak, nonatomic) IBOutlet UITextView *newsTextView;
 @property (weak, nonatomic) IBOutlet UILabel *newsTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *newsDateLabel;
-@property (weak, nonatomic) IBOutlet UITextView *newsTextView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeight;
 
 @end
 
@@ -72,16 +73,14 @@
     image = self.newsImageView.image;
     
     NSArray *items = @[theMessage, image];
-    
-    // build an activity view controller
+    // Build an activity view controller.
     UIActivityViewController *controller = [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
-    
-    // and present it
+    // Present activity view controller.
     [self presentActivityController:controller];
 }
 
 - (void)presentActivityController:(UIActivityViewController *)controller {
-    // for iPad: make the presentation a Popover
+    // For iPad: make the presentation a Popover.
     controller.modalPresentationStyle = UIModalPresentationPopover;
     [self presentViewController:controller animated:YES completion:nil];
     
@@ -89,17 +88,17 @@
     popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
     popController.barButtonItem = self.navigationItem.leftBarButtonItem;
     
-    // access the completion handler
+    // Access the completion handler.
     controller.completionWithItemsHandler = ^(NSString *activityType,
                                               BOOL completed,
                                               NSArray *returnedItems,
                                               NSError *error){
-        // react to the completion
+        // React to the completion.
         if (completed) {
-            // user shared an item
+            // User shared an item.
             NSLog(@"We used activity type%@", activityType);
         } else {
-            // user cancelled
+            // User cancelled.
             NSLog(@"We didn't want to share anything after all.");
         }
         if (error) {

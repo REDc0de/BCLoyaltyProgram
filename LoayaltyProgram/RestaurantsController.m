@@ -15,7 +15,6 @@
 
 @interface RestaurantsController () <CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UIToolbarDelegate>
 
-
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mapSegmentControle;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userLocationButton;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -23,11 +22,8 @@
 @property (weak, nonatomic) MKUserLocation *lastUserlocation;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) Restaurant *currentRestaurant;
-//@property (strong, nonatomic) NSArray *restaurants;
-
-@property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray *restaurants;
-
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSPredicate *predicate;
 
 @end

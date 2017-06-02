@@ -12,18 +12,19 @@
 
 
 @interface EditProfileController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *repeatPasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UITextField *repeatPasswordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (strong, nonatomic) NSMutableDictionary *mutableValuesDictionary;
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSArray *genderPickerData;
 @property (strong, nonatomic) FIRUser *currentFIRUser;
-@property (strong, nonatomic) NSMutableDictionary *mutableValuesDictionary;
 
 @end
 

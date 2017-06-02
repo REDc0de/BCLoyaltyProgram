@@ -12,6 +12,7 @@
 #import "GuestCardController.h"
 #import "EditProfileController.h"
 #import "UIViewController+Alerts.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface ProfileController ()
@@ -24,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UIButton *guestCardButton;
 @property (weak, nonatomic) IBOutlet UILabel *userPointsLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 @end
 

@@ -12,7 +12,6 @@
 
 @interface SettingsController () <CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (weak, nonatomic) IBOutlet UISwitch *locationSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *locationStatusLabel;
 
 @end
@@ -28,13 +27,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self updateSwitchValueAnimated:NO];
-    [self updateLocationServicesStatus];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
-    NSLog(@"----------- %d", status);
-
+    
     switch (status) {
         case 0:
             // The user has not yet made a choice regarding whether this app can use location services.
@@ -46,7 +42,13 @@
             break;
         case 2:
            // The user explicitly denied the use of location services for this app or location services are currently disabled in Settings.
-            self.locationStatusLabel.text = @"Never or dissabled";
+            if ([CLLocationManager locationServicesEnabled]){
+                // The user explicitly denied the use of location services for this app.
+                self.locationStatusLabel.text = @"Never";
+            } else {
+                // Location services are currently disabled in Settings.
+                self.locationStatusLabel.text = @"Disabled";
+            }
             break;
         case 3:
             // This app is authorized to start location services at any time. This authorization allows you to use all location services, including those for monitoring regions and significant location changes.
@@ -106,49 +108,37 @@
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)updateLocationServicesStatus {
-    if ([CLLocationManager locationServicesEnabled]){
-        // Location services enabled.
-        if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
-            self.locationStatusLabel.text = @"Never";
-        } else {
-            self.locationStatusLabel.text = @"While using";
-        }
-    } else {
-        self.locationStatusLabel.text = @"Disabled";
-    }
-}
-
-- (void)updateSwitchValueAnimated:(BOOL)animated {
-    
-    
-    
-//    if ([CLLocationManager locationServicesEnabled] == YES){
-//        [self.locationSwitch setOn:YES animated:animated];
-//    } else{
-//        [self.locationSwitch setOn:NO animated:animated];
+//
+//- (void)updateSwitchValueAnimated:(BOOL)animated {
+//    
+//    
+//    
+////    if ([CLLocationManager locationServicesEnabled] == YES){
+////        [self.locationSwitch setOn:YES animated:animated];
+////    } else{
+////        [self.locationSwitch setOn:NO animated:animated];
+////    }
+//}
+//
+//- (IBAction)locationSwitchToggled:(id)sender {
+//    if ([self.locationSwitch isOn]) {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//        NSLog(@"its on! %d",[CLLocationManager locationServicesEnabled]);
+//
+//        [self.locationManager startUpdatingLocation];
+//        [self updateSwitchValueAnimated:YES];
+//    } else {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//        NSLog(@"its off! %d",[CLLocationManager locationServicesEnabled]);
+//        [self.locationManager stopMonitoringSignificantLocationChanges];
+//        [self.locationManager stopUpdatingHeading];
+//        [self.locationManager stopUpdatingLocation];
+//        self.locationManager.delegate = nil;
+//        self.locationManager = nil;
+//        [self updateSwitchValueAnimated:YES];
+//
 //    }
-}
-
-- (IBAction)locationSwitchToggled:(id)sender {
-    if ([self.locationSwitch isOn]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-        NSLog(@"its on! %d",[CLLocationManager locationServicesEnabled]);
-
-        [self.locationManager startUpdatingLocation];
-        [self updateSwitchValueAnimated:YES];
-    } else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-        NSLog(@"its off! %d",[CLLocationManager locationServicesEnabled]);
-        [self.locationManager stopMonitoringSignificantLocationChanges];
-        [self.locationManager stopUpdatingHeading];
-        [self.locationManager stopUpdatingLocation];
-        self.locationManager.delegate = nil;
-        self.locationManager = nil;
-        [self updateSwitchValueAnimated:YES];
-
-    }
-}
+//}
 
 
 @end

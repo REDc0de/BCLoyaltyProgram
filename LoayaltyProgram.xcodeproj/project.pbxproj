@@ -22,6 +22,8 @@
 		431F798A1E9D701300EA37BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F79891E9D701300EA37BE /* CoreLocation.framework */; };
 		431F798C1E9D701900EA37BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431F798B1E9D701900EA37BE /* MapKit.framework */; };
 		432902A31EE19D9F00BE9D07 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 432902A21EE19D9F00BE9D07 /* SettingsController.m */; };
+		433363D21EE2CD3900DCCDE2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433363D11EE2CD3900DCCDE2 /* MessageUI.framework */; };
+		433363D41EE2CD4F00DCCDE2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433363D31EE2CD4F00DCCDE2 /* UIKit.framework */; };
 		435ECC871ED17BB400031784 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC861ED17BB400031784 /* LogViewController.m */; };
 		435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC891ED1EB7F00031784 /* GridViewController.m */; };
 		435ECCCE1EDC1AC200031784 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECCCD1EDC1AC200031784 /* Category.m */; };
@@ -79,6 +81,8 @@
 		431F798B1E9D701900EA37BE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		432902A11EE19D9F00BE9D07 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		432902A21EE19D9F00BE9D07 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		433363D11EE2CD3900DCCDE2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		433363D31EE2CD4F00DCCDE2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		435ECC851ED17BB400031784 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		435ECC861ED17BB400031784 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		435ECC881ED1EB7F00031784 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433363D41EE2CD4F00DCCDE2 /* UIKit.framework in Frameworks */,
+				433363D21EE2CD3900DCCDE2 /* MessageUI.framework in Frameworks */,
 				B0752BEA1EE15600006DDCCA /* QuartzCore.framework in Frameworks */,
 				431F798C1E9D701900EA37BE /* MapKit.framework in Frameworks */,
 				431F798A1E9D701300EA37BE /* CoreLocation.framework in Frameworks */,
@@ -251,6 +257,8 @@
 		431F79881E9D701300EA37BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				433363D31EE2CD4F00DCCDE2 /* UIKit.framework */,
+				433363D11EE2CD3900DCCDE2 /* MessageUI.framework */,
 				B0752BE91EE15600006DDCCA /* QuartzCore.framework */,
 				431F798B1E9D701900EA37BE /* MapKit.framework */,
 				431F79891E9D701300EA37BE /* CoreLocation.framework */,

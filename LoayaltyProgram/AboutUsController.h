@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Company.h"
 
 @interface AboutUsController : UIViewController
+
+@property (strong, nonatomic) Company *company;
 
 @end

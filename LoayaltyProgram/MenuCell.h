@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *categoryImageView;
 @property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryInfoLabel;
 
 @end

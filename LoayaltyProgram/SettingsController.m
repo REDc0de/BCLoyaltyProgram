@@ -10,10 +10,16 @@
 #import <MapKit/MapKit.h>
 #import "UIViewController+Alerts.h"
 #import <MessageUI/MessageUI.h>
+#import "Firebase.h"
+#import "Company.h"
+#import "AboutUsController.h"
 
 @interface SettingsController () <CLLocationManagerDelegate, MFMailComposeViewControllerDelegate>
+
+@property (strong, nonatomic) FIRDatabaseReference *reference;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UILabel *locationStatusLabel;
+@property (strong, nonatomic) Company *company;
 
 @end
 
@@ -22,9 +28,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.reference = [[FIRDatabase database] reference];
+    self.company = [[Company alloc] init];
+
     self.clearsSelectionOnViewWillAppear = NO;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    
+    [[self.reference child:@"company"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        self.company.name = snapshot.value[@"name"];
+        self.company.imageURL = snapshot.value[@"imageURL"];
+        self.company.tel = snapshot.value[@"tel"];
+        self.company.contactEmail = snapshot.value[@"contactEmail"];
+        self.company.feedbackEmail = snapshot.value[@"feedbackEmail"];
+        self.company.info = snapshot.value[@"info"];
+        
+        NSURL *url = [NSURL URLWithString:self.company.imageURL];
+        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error){
+                [self showMessagePrompt: error.localizedDescription];
+                return;
+            }
+            if (self.company.imageData != data) {
+                self.company.imageData = data;
+            }
+        }] resume];
+        
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        if (error){
+            [self showMessagePrompt: error.localizedDescription];
+            return;
+        }
+    }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -38,9 +74,9 @@
     }
     else if (indexPath.section == 2 && indexPath.row == 1) {
         // The user want to send feedback.
-        NSString *subject = @"Loyalty Program Feedback";
+        NSString *subject =[NSString stringWithFormat:@"%@ Feedback", self.company.name];
         NSString *message = [NSString stringWithFormat:@"Device: %@\n System: %@ %@", [[UIDevice currentDevice] model], [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
-        NSString *recipient = @"infinityblade11@gmail.com";
+        NSString *recipient = self.company.feedbackEmail;
         [self sendMailWithSubject:subject message:message toRecipient:recipient];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -149,38 +185,14 @@
 }
 
 
+#pragma mark - Navigation
 
-//
-//- (void)updateSwitchValueAnimated:(BOOL)animated {
-//
-//
-//
-////    if ([CLLocationManager locationServicesEnabled] == YES){
-////        [self.locationSwitch setOn:YES animated:animated];
-////    } else{
-////        [self.locationSwitch setOn:NO animated:animated];
-////    }
-//}
-//
-//- (IBAction)locationSwitchToggled:(id)sender {
-//    if ([self.locationSwitch isOn]) {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-//        NSLog(@"its on! %d",[CLLocationManager locationServicesEnabled]);
-//
-//        [self.locationManager startUpdatingLocation];
-//        [self updateSwitchValueAnimated:YES];
-//    } else {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-//        NSLog(@"its off! %d",[CLLocationManager locationServicesEnabled]);
-//        [self.locationManager stopMonitoringSignificantLocationChanges];
-//        [self.locationManager stopUpdatingHeading];
-//        [self.locationManager stopUpdatingLocation];
-//        self.locationManager.delegate = nil;
-//        self.locationManager = nil;
-//        [self updateSwitchValueAnimated:YES];
-//
-//    }
-//}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"settingsToAboutUs"]) {
+        AboutUsController *upcoming = segue.destinationViewController;
+        upcoming.company = self.company;
+    }
+}
 
 
 @end

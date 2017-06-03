@@ -21,7 +21,6 @@
 @property (strong, nonatomic) NSMutableArray *categories;
 @property (strong, nonatomic) NSMutableArray *products;
 
-
 @end
 
 @implementation MenuController
@@ -50,6 +49,8 @@
 }
 
 - (void)updateItemsArrayForCategory:(Category*)category{
+    
+    NSMutableArray *products = [[NSMutableArray alloc] init];
 
     [[[[self.ref child:@"menu"] child:category.uid] child:@"items"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
@@ -60,12 +61,8 @@
         product.price = [snapshot.value[@"price"] floatValue];
         product.points = [snapshot.value[@"price"] intValue];
        
-        [self.products addObject:product];
-        category.items = self.products;
-        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView reloadData];
-//        });
+        [products addObject:product];
+        category.items = products;
     }];
 
 }
@@ -84,16 +81,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-   
     Category *category = [self.categories objectAtIndex:indexPath.row];
-    NSLog(@"%@,%@,%@",category.name, category.info, category.items);
-//    NSLog(@"%@", [category.items objectAtIndex:0]);
     cell.categoryNameLabel.text = category.name;
-   
+    cell.categoryInfoLabel.text = category.info;
     
     if (category.imageData != nil){
         cell.categoryImageView.image = [UIImage imageWithData:category.imageData];
-        
     } else{
         NSURL *url = [NSURL URLWithString:category.imageURL];
         [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -124,48 +117,5 @@
     }
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

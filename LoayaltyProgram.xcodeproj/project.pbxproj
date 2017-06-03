@@ -28,6 +28,7 @@
 		433363DD1EE2DD6A00DCCDE2 /* FAQItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433363DC1EE2DD6A00DCCDE2 /* FAQItemController.m */; };
 		433363E01EE2DD7C00DCCDE2 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433363DF1EE2DD7C00DCCDE2 /* AboutUsController.m */; };
 		433363E61EE2E3E600DCCDE2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 433363E51EE2E3E600DCCDE2 /* Question.m */; };
+		433363E91EE2F37300DCCDE2 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 433363E81EE2F37300DCCDE2 /* Company.m */; };
 		435ECC871ED17BB400031784 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC861ED17BB400031784 /* LogViewController.m */; };
 		435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC891ED1EB7F00031784 /* GridViewController.m */; };
 		435ECCCE1EDC1AC200031784 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECCCD1EDC1AC200031784 /* Category.m */; };
@@ -95,6 +96,8 @@
 		433363DF1EE2DD7C00DCCDE2 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		433363E41EE2E3E600DCCDE2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		433363E51EE2E3E600DCCDE2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		433363E71EE2F37300DCCDE2 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
+		433363E81EE2F37300DCCDE2 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
 		435ECC851ED17BB400031784 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		435ECC861ED17BB400031784 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		435ECC881ED1EB7F00031784 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 				435ECCD01EDC1AD300031784 /* Product.m */,
 				433363E41EE2E3E600DCCDE2 /* Question.h */,
 				433363E51EE2E3E600DCCDE2 /* Question.m */,
+				433363E71EE2F37300DCCDE2 /* Company.h */,
+				433363E81EE2F37300DCCDE2 /* Company.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -512,6 +517,7 @@
 				431F79811E9D6B2000EA37BE /* NewsInfoController.m in Sources */,
 				431F793B1E9ABF4300EA37BE /* LoginController.m in Sources */,
 				433363DD1EE2DD6A00DCCDE2 /* FAQItemController.m in Sources */,
+				433363E91EE2F37300DCCDE2 /* Company.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

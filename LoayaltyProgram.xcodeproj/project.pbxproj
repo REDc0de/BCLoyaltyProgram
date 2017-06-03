@@ -24,6 +24,10 @@
 		432902A31EE19D9F00BE9D07 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 432902A21EE19D9F00BE9D07 /* SettingsController.m */; };
 		433363D21EE2CD3900DCCDE2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433363D11EE2CD3900DCCDE2 /* MessageUI.framework */; };
 		433363D41EE2CD4F00DCCDE2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433363D31EE2CD4F00DCCDE2 /* UIKit.framework */; };
+		433363DA1EE2DD3700DCCDE2 /* FAQController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433363D91EE2DD3700DCCDE2 /* FAQController.m */; };
+		433363DD1EE2DD6A00DCCDE2 /* FAQItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433363DC1EE2DD6A00DCCDE2 /* FAQItemController.m */; };
+		433363E01EE2DD7C00DCCDE2 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 433363DF1EE2DD7C00DCCDE2 /* AboutUsController.m */; };
+		433363E61EE2E3E600DCCDE2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 433363E51EE2E3E600DCCDE2 /* Question.m */; };
 		435ECC871ED17BB400031784 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC861ED17BB400031784 /* LogViewController.m */; };
 		435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECC891ED1EB7F00031784 /* GridViewController.m */; };
 		435ECCCE1EDC1AC200031784 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ECCCD1EDC1AC200031784 /* Category.m */; };
@@ -83,6 +87,14 @@
 		432902A21EE19D9F00BE9D07 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		433363D11EE2CD3900DCCDE2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		433363D31EE2CD4F00DCCDE2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		433363D81EE2DD3700DCCDE2 /* FAQController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAQController.h; sourceTree = "<group>"; };
+		433363D91EE2DD3700DCCDE2 /* FAQController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAQController.m; sourceTree = "<group>"; };
+		433363DB1EE2DD6A00DCCDE2 /* FAQItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAQItemController.h; sourceTree = "<group>"; };
+		433363DC1EE2DD6A00DCCDE2 /* FAQItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAQItemController.m; sourceTree = "<group>"; };
+		433363DE1EE2DD7C00DCCDE2 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
+		433363DF1EE2DD7C00DCCDE2 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
+		433363E41EE2E3E600DCCDE2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		433363E51EE2E3E600DCCDE2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		435ECC851ED17BB400031784 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		435ECC861ED17BB400031784 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		435ECC881ED1EB7F00031784 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
@@ -175,6 +187,8 @@
 				435ECCCD1EDC1AC200031784 /* Category.m */,
 				435ECCCF1EDC1AD300031784 /* Product.h */,
 				435ECCD01EDC1AD300031784 /* Product.m */,
+				433363E41EE2E3E600DCCDE2 /* Question.h */,
+				433363E51EE2E3E600DCCDE2 /* Question.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -271,6 +285,12 @@
 			children = (
 				432902A11EE19D9F00BE9D07 /* SettingsController.h */,
 				432902A21EE19D9F00BE9D07 /* SettingsController.m */,
+				433363D81EE2DD3700DCCDE2 /* FAQController.h */,
+				433363D91EE2DD3700DCCDE2 /* FAQController.m */,
+				433363DB1EE2DD6A00DCCDE2 /* FAQItemController.h */,
+				433363DC1EE2DD6A00DCCDE2 /* FAQItemController.m */,
+				433363DE1EE2DD7C00DCCDE2 /* AboutUsController.h */,
+				433363DF1EE2DD7C00DCCDE2 /* AboutUsController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -471,6 +491,7 @@
 				43B3C65E1E9D958400588A5E /* News.m in Sources */,
 				431F79531E9BCB9200EA37BE /* User.m in Sources */,
 				431F797B1E9D6AFE00EA37BE /* NewsCell.m in Sources */,
+				433363E61EE2E3E600DCCDE2 /* Question.m in Sources */,
 				431F796E1E9D5AB900EA37BE /* MenuCell.m in Sources */,
 				435ECCCE1EDC1AC200031784 /* Category.m in Sources */,
 				431F79651E9D58DF00EA37BE /* MenuController.m in Sources */,
@@ -478,7 +499,9 @@
 				435ECC8A1ED1EB7F00031784 /* GridViewController.m in Sources */,
 				431F794F1E9BCAD700EA37BE /* RestaurantsController.m in Sources */,
 				B03421DA1ED4182A0054E3ED /* UIViewController+Alerts.m in Sources */,
+				433363E01EE2DD7C00DCCDE2 /* AboutUsController.m in Sources */,
 				435ECCD11EDC1AD300031784 /* Product.m in Sources */,
+				433363DA1EE2DD3700DCCDE2 /* FAQController.m in Sources */,
 				432902A31EE19D9F00BE9D07 /* SettingsController.m in Sources */,
 				431F79781E9D68AE00EA37BE /* CategoryCell.m in Sources */,
 				435ECC871ED17BB400031784 /* LogViewController.m in Sources */,
@@ -488,6 +511,7 @@
 				431F79751E9D689C00EA37BE /* CategoryController.m in Sources */,
 				431F79811E9D6B2000EA37BE /* NewsInfoController.m in Sources */,
 				431F793B1E9ABF4300EA37BE /* LoginController.m in Sources */,
+				433363DD1EE2DD6A00DCCDE2 /* FAQItemController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

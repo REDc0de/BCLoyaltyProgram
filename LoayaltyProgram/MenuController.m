@@ -51,7 +51,7 @@
 - (void)updateItemsArrayForCategory:(Category*)category{
     
     NSMutableArray *products = [[NSMutableArray alloc] init];
-
+    
     [[[[self.ref child:@"menu"] child:category.uid] child:@"items"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         Product *product = [[Product alloc] init];
@@ -85,7 +85,7 @@
     cell.categoryNameLabel.text = category.name;
     cell.categoryInfoLabel.text = category.info;
     
-    if (category.imageData != nil){
+    if (category.imageData){
         cell.categoryImageView.image = [UIImage imageWithData:category.imageData];
     } else{
         NSURL *url = [NSURL URLWithString:category.imageURL];
@@ -103,6 +103,9 @@
     return cell;
 }
 
+//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(MenuCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    cell.categoryImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+//}
 
 #pragma mark - Navigation
 

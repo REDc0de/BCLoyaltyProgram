@@ -9,14 +9,12 @@
 #import "CategoryController.h"
 #import "CategoryCell.h"
 #import "Firebase.h"
-
 #import "UIViewController+Alerts.h"
 
-
 @interface CategoryController ()
+
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray *products;
-
 
 @end
 
@@ -43,14 +41,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
     Product *product = [self.category.items objectAtIndex:indexPath.row];
 
     cell.productNameLabel.text = product.name;
     cell.productInfoTextView.text = product.info;
     cell.priceAndPointsLabel.text = [NSString stringWithFormat:@"%dP / %.2f$",product.points, product.price];
     
-    if (product.imageData != nil){
+    if (product.imageData){
         cell.productImageView.image = [UIImage imageWithData:product.imageData];
     } else{
         NSURL *url = [NSURL URLWithString:product.imageURL];
@@ -59,9 +56,9 @@
                 [self showMessagePrompt: error.localizedDescription];
                 return;
             }
+            product.imageData = data;
             dispatch_async(dispatch_get_main_queue(), ^{
                 cell.productImageView.image = [UIImage imageWithData:data];
-                product.imageData = data;
             });
         }] resume];
     }

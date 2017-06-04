@@ -63,7 +63,7 @@
     cell.newsTitle.text = news.title;
     cell.newsTextView.text = news.info;
     
-    if (news.imageData != nil){
+    if (news.imageData){
         cell.newsImageView.image = [UIImage imageWithData:news.imageData];
     } else{
         NSURL *url = [NSURL URLWithString:news.imageURL];
@@ -81,6 +81,9 @@
     return cell;
 }
 
+//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(NewsCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    cell.newsImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+//}
 
 #pragma mark - Navigation
 

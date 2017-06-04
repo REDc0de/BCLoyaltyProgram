@@ -32,7 +32,6 @@
 
 - (void)observeFIRData {
     [[self.ref child:@"news"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
         NSDictionary *dictionary = snapshot.value;
         News *news = [[News alloc] init];
         [news setValuesForKeysWithDictionary:dictionary];
@@ -56,6 +55,7 @@
     return self.news.count;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     News *news = [self.news objectAtIndex:indexPath.row];
@@ -63,21 +63,20 @@
     cell.newsTitle.text = news.title;
     cell.newsTextView.text = news.info;
     
-    if (news.imageData != nil && [UIImage imageWithData:news.imageData] != cell.newsImageView.image){
+    if (news.imageData != nil){
         cell.newsImageView.image = [UIImage imageWithData:news.imageData];
     } else{
-    NSURL *url = [NSURL URLWithString:news.imageURL];
-    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error){
-            [self showMessagePrompt: error.localizedDescription];
-            return;
-        }
-        news.imageData = data;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.newsImageView.image = [UIImage imageWithData:data];
-        });
-    }] resume];
-        
+        NSURL *url = [NSURL URLWithString:news.imageURL];
+        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error){
+                [self showMessagePrompt: error.localizedDescription];
+                return;
+            }
+            news.imageData = data;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.newsImageView.image = [UIImage imageWithData:data];
+            });
+        }] resume];
     }
     return cell;
 }

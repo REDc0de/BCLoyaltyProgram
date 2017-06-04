@@ -29,10 +29,6 @@
     self.navigationItem.title = self.category.name;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 
@@ -56,7 +52,6 @@
     
     if (product.imageData != nil){
         cell.productImageView.image = [UIImage imageWithData:product.imageData];
-        
     } else{
         NSURL *url = [NSURL URLWithString:product.imageURL];
         [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -69,10 +64,7 @@
                 product.imageData = data;
             });
         }] resume];
-        
     }
-
-    
     return cell;
 }
 

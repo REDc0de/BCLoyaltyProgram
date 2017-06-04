@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.clearsSelectionOnViewWillAppear = YES;
+    self.clearsSelectionOnViewWillAppear = YES;
     self.ref = [[FIRDatabase database] reference];
     self.categories = [[NSMutableArray alloc] init];
     self.products = [[NSMutableArray alloc] init];
@@ -94,14 +94,12 @@
                 [self showMessagePrompt: error.localizedDescription];
                 return;
             }
+            category.imageData = data;
             dispatch_async(dispatch_get_main_queue(), ^{
                 cell.categoryImageView.image = [UIImage imageWithData:data];
-                category.imageData = data;
             });
         }] resume];
-        
     }
-    
     return cell;
 }
 

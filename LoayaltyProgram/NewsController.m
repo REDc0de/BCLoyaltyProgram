@@ -81,9 +81,9 @@
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(NewsCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    cell.newsImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
-//}
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(NewsCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.newsImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+}
 
 #pragma mark - Navigation
 

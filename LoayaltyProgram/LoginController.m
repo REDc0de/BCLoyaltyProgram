@@ -327,7 +327,9 @@
                                  completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
                                      // User has been created.
                                      if (error){
+                                         [self hideSpinner:^{
                                          [self showMessagePrompt: error.localizedDescription];
+                                         }];
                                          return;
                                      }
                                      

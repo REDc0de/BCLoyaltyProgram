@@ -103,9 +103,9 @@
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(MenuCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    cell.categoryImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
-//}
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(MenuCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.categoryImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+}
 
 #pragma mark - Navigation
 

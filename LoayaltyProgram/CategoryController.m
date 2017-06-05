@@ -65,5 +65,9 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(CategoryCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.productImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+}
+
 
 @end

@@ -81,12 +81,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        
     Category *category = [self.categories objectAtIndex:indexPath.row];
-    cell.categoryNameLabel.text = category.name;
-    cell.categoryInfoLabel.text = category.info;
+    NSString *textName = [NSString stringWithFormat:@"%@", category.name];
+    NSString *textInfo = [NSString stringWithFormat:@"%@", category.info];
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.categoryNameLabel.text = textName;
+            cell.categoryInfoLabel.text = textInfo;
+        });
     
     if (category.imageData){
-        cell.categoryImageView.image = [UIImage imageWithData:category.imageData];
+        UIImage *image = [UIImage imageWithData:category.imageData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.categoryImageView.image = image;
+        });
     } else{
         NSURL *url = [NSURL URLWithString:category.imageURL];
         [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -95,11 +106,13 @@
                 return;
             }
             category.imageData = data;
+            UIImage *image = [UIImage imageWithData:data];
             dispatch_async(dispatch_get_main_queue(), ^{
-                cell.categoryImageView.image = [UIImage imageWithData:data];
+                cell.categoryImageView.image = image;
             });
         }] resume];
     }
+    });
     return cell;
 }
 

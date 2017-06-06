@@ -58,31 +58,49 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    News *news = [self.news objectAtIndex:indexPath.row];
     
-    cell.newsTitle.text = news.title;
-    cell.newsTextView.text = news.info;
-    
-    if (news.imageData){
-        cell.newsImageView.image = [UIImage imageWithData:news.imageData];
-    } else{
-        NSURL *url = [NSURL URLWithString:news.imageURL];
-        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if (error){
-                [self showMessagePrompt: error.localizedDescription];
-                return;
-            }
-            news.imageData = data;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        
+        News *news = [self.news objectAtIndex:indexPath.row];
+        NSString *infoText = [NSString stringWithFormat:@"%@",news.info];
+        NSString *titleText = [NSString stringWithFormat:@"%@",news.title];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.newsTitle.text = titleText;
+            cell.newsTextView.text = infoText;
+        });
+        
+        if (news.imageData){
+            UIImage *image = [UIImage imageWithData:news.imageData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                cell.newsImageView.image = [UIImage imageWithData:data];
+                cell.newsImageView.image = image;
             });
-        }] resume];
-    }
+        } else{
+            NSURL *url = [NSURL URLWithString:news.imageURL];
+            [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                if (error){
+                    [self showMessagePrompt: error.localizedDescription];
+                    return;
+                }
+                news.imageData = data;
+                UIImage *image = [UIImage imageWithData:data];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.newsImageView.image = image;
+                });
+            }] resume];
+        }
+    });
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(NewsCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.newsImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        UIImage *image = [UIImage imageNamed:@"imagePlaceholder"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.newsImageView.image = image;
+        });
+    });
 }
 
 #pragma mark - Navigation

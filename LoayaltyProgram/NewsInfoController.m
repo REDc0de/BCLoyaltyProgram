@@ -69,10 +69,7 @@
 - (IBAction)handleActionButton:(id)sender {
     NSString *theMessage = self.newsTextView.text;
     
-    UIImage *image = [[UIImage alloc] init];
-    image = self.newsImageView.image;
-    
-    NSArray *items = @[theMessage, image];
+    NSArray *items = @[theMessage, self.newsImageView.image];
     // Build an activity view controller.
     UIActivityViewController *controller = [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
     // Present activity view controller.

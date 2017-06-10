@@ -22,7 +22,9 @@
     [FIRDatabase database].persistenceEnabled = YES;
     
    // UIColor *promoDarkColor = [UIColor colorWithRed:32.0/255 green:32.0/255 blue:32.0/255 alpha:1.0];
-    UIColor *promoRedColor = [UIColor colorWithRed:219.0/255 green:16.0/255 blue:32.0/255 alpha:1.0];
+   // UIColor *facebookLoadColor = [UIColor colorWithRed:237.0/255 green:238.0/255 blue:241.0/255 alpha:1.0]; //hex:EDEEF1
+     UIColor *promoRedColor = [UIColor colorWithRed:219.0/255 green:16.0/255 blue:32.0/255 alpha:1.0];
+
 
     [[self window] setTintColor:promoRedColor];
     

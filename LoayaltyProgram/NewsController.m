@@ -17,13 +17,17 @@
 @interface NewsController ()
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray *news;
+@property (strong, nonatomic) NSCache *imageCache;
 
 @end
 
 @implementation NewsController
 
+static NSString *cellIdentifier = @"cell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.imageCache = [[NSCache alloc] init];
     self.ref = [[FIRDatabase database] reference];
     self.news = [[NSMutableArray alloc] init];
     [self observeFIRData];
@@ -57,51 +61,43 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        
-        News *news = [self.news objectAtIndex:indexPath.row];
-        NSString *infoText = [NSString stringWithFormat:@"%@",news.info];
-        NSString *titleText = [NSString stringWithFormat:@"%@",news.title];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.newsTitle.text = titleText;
-            cell.newsTextView.text = infoText;
-        });
-        
-        if (news.imageData){
-            UIImage *image = [UIImage imageWithData:news.imageData];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.newsImageView.image = image;
-            });
-        } else{
-            NSURL *url = [NSURL URLWithString:news.imageURL];
-            [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                if (error){
-                    [self showMessagePrompt: error.localizedDescription];
-                    return;
-                }
-                news.imageData = data;
-                UIImage *image = [UIImage imageWithData:data];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    cell.newsImageView.image = image;
-                });
-            }] resume];
-        }
-    });
+    NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(NewsCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        UIImage *image = [UIImage imageNamed:@"imagePlaceholder"];
+        cell.newsImageView.image = nil;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(NewsCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    News *news = [self.news objectAtIndex:indexPath.row];
+    
+    cell.newsTitle.text = news.title;
+    cell.newsTextView.text = news.info;
+    
+    UIImage *image = [self.imageCache objectForKey:news.imageURL];
+    if (image){
+        cell.newsImageView.image = image;
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:news.imageURL];
+    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error){
+            [self showMessagePrompt: error.localizedDescription];
+            return;
+        }
+        news.imageData = data;
+        UIImage *image = [UIImage imageWithData:data];
+        [self.imageCache setObject:image forKey:news.imageURL];
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.newsImageView.image = image;
         });
-    });
+    }] resume];
+    
 }
+
 
 #pragma mark - Navigation
 

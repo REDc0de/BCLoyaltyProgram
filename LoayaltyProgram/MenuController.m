@@ -20,6 +20,8 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray *categories;
 @property (strong, nonatomic) NSMutableArray *products;
+@property (strong, nonatomic) NSCache *imageCache;
+
 
 @end
 
@@ -28,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.clearsSelectionOnViewWillAppear = YES;
+    self.imageCache = [[NSCache alloc] init];
     self.ref = [[FIRDatabase database] reference];
     self.categories = [[NSMutableArray alloc] init];
     self.products = [[NSMutableArray alloc] init];
@@ -80,44 +83,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        
-    Category *category = [self.categories objectAtIndex:indexPath.row];
-    NSString *textName = [NSString stringWithFormat:@"%@", category.name];
-    NSString *textInfo = [NSString stringWithFormat:@"%@", category.info];
-    
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.categoryNameLabel.text = textName;
-            cell.categoryInfoLabel.text = textInfo;
-        });
-    
-    if (category.imageData){
-        UIImage *image = [UIImage imageWithData:category.imageData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.categoryImageView.image = image;
-        });
-    } else{
-        NSURL *url = [NSURL URLWithString:category.imageURL];
-        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if (error){
-                [self showMessagePrompt: error.localizedDescription];
-                return;
-            }
-            category.imageData = data;
-            UIImage *image = [UIImage imageWithData:data];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.categoryImageView.image = image;
-            });
-        }] resume];
-    }
-    });
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(MenuCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.categoryImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+    cell.categoryImageView.image = nil;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(MenuCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    Category *category = [self.categories objectAtIndex:indexPath.row];
+    
+    cell.categoryNameLabel.text = category.name;
+    cell.categoryInfoLabel.text = category.info;
+    
+    UIImage *image = [self.imageCache objectForKey:category.imageURL];
+    if (image){
+        cell.categoryImageView.image = image;
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:category.imageURL];
+    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error){
+            [self showMessagePrompt: error.localizedDescription];
+            return;
+        }
+        category.imageData = data;
+        UIImage *image = [UIImage imageWithData:data];
+        [self.imageCache setObject:image forKey:category.imageURL];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.categoryImageView.image = image;
+        });
+    }] resume];
+    
 }
 
 #pragma mark - Navigation

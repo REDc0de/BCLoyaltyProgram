@@ -33,9 +33,6 @@
 
 @synthesize locationManager, lastUserlocation;
 
-MKMapView *standartMapView;
-MKMapView *hybridMapView;
-MKMapView *sputnikMapView;
 MKPlacemark *selectedPin;
 UIImageView *navBarHairlineImageView;
 char locationButtonState; // u - folowUserLocation c - noneFollowUserLocation d - followUserLocationWithHeading
@@ -65,12 +62,6 @@ char locationButtonState; // u - folowUserLocation c - noneFollowUserLocation d 
     self.mapView.showsUserLocation = YES;
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.delegate = self;
-    
-//    Restaurant *restaurant1 =[[Restaurant alloc] initWithName:@"test1" imageURL:@"someurl" info:@"test info1" address:@"test addres1" telNumber:@"+375291110011" latitude:53.903643 longitude:27.553020];
-//    
-//    Restaurant *restaurant2 =[[Restaurant alloc] initWithName:@"test2" imageURL:@"someur2" info:@"test info2" address:@"test addres2" telNumber:@"+3752911100112" latitude:53.894875 longitude:27.546196];
-//    
-    
     
     [[self.ref child:@"restaurants"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         

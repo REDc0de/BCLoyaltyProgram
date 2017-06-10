@@ -391,19 +391,54 @@
 }
 
 - (IBAction)handleDeleteProfile:(id)sender {
-    [[[self.ref child:@"users"] child:self.currentFIRUser.uid] removeValue];
-    // Account from realtime database deleted.
-    [self.currentFIRUser deleteWithCompletion:^(NSError *_Nullable error) {
-        if (error) {
-            // An error happened.
-            [self showMessagePrompt: error.localizedDescription];
-            return;
-        } else {
-            // Account deleted.
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
+    
+    [self showTextInputPromptWithMessage:@"Enter your current password." completionBlock:^(BOOL userPressedOK, NSString * _Nullable userInput) {
+        [self showSpinner:^{
+            NSString *password = userInput;
+            FIRAuthCredential *credential = [FIREmailPasswordAuthProvider credentialWithEmail:self.currentFIRUser.email password:password];
+            
+            [self.currentFIRUser reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
+                // User re-authenticated.
+                if (error) {
+                    // An error happened.
+                    [self hideSpinner:^{
+                        [self showMessagePrompt: error.localizedDescription];
+                    }];
+                    return;
+                }
+                [[[self.ref child:@"users"] child:self.currentFIRUser.uid] removeValue];
+                
+                FIRStorageReference *desertRef = [[FIRStorage storage] referenceForURL:self.user.profileImageURL];
+                
+                // Delete the file
+                [desertRef deleteWithCompletion:^(NSError *error){
+                    if (error != nil) {
+                        // Uh-oh, an error occurred!
+                        [self showMessagePrompt: error.localizedDescription];
+                    } else {
+                        // File deleted successfully
+                    }
+                }];
+                
+                // Account from realtime database deleted.
+                [self.currentFIRUser deleteWithCompletion:^(NSError *_Nullable error) {
+                    if (error) {
+                        // An error happened.
+                        [self hideSpinner:^{
+                            [self showMessagePrompt: error.localizedDescription];
+                        }];
+                        return;
+                    } else {
+                        // Account deleted.
+                        [self hideSpinner:^{
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        }];
+                    }
+                }];
+                
+            }];
+        }];
     }];
 }
-
 
 @end

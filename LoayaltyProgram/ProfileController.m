@@ -79,6 +79,11 @@
 - (void)getUser {
     NSString *userID = [FIRAuth auth].currentUser.uid;
     [[[self.reference child:@"users"] child:userID] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if (!snapshot.hasChildren) {
+            [self handleSignout:nil];
+            return;
+        }
 
         self.user.name = snapshot.value[@"username"];
         self.user.gender = snapshot.value[@"gender"];

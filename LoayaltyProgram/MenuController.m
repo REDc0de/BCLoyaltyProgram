@@ -115,7 +115,6 @@
             cell.categoryImageView.image = image;
         });
     }] resume];
-    
 }
 
 #pragma mark - Navigation

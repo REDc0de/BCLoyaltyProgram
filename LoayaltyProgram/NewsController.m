@@ -27,9 +27,9 @@ static NSString *cellIdentifier = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.imageCache = [[NSCache alloc] init];
     self.ref = [[FIRDatabase database] reference];
     self.news = [[NSMutableArray alloc] init];
+    self.imageCache = [[NSCache alloc] init];
     [self observeFIRData];
     self.clearsSelectionOnViewWillAppear = YES;
  }
@@ -70,7 +70,6 @@ static NSString *cellIdentifier = @"cell";
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(NewsCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     News *news = [self.news objectAtIndex:indexPath.row];
     
     cell.newsTitle.text = news.title;
@@ -95,7 +94,6 @@ static NSString *cellIdentifier = @"cell";
             cell.newsImageView.image = image;
         });
     }] resume];
-    
 }
 
 

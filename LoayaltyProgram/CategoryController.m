@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSMutableArray *products;
+@property (strong, nonatomic) NSCache *imageCache;
 
 @end
 
@@ -24,6 +25,7 @@
     [super viewDidLoad];
     self.ref = [[FIRDatabase database] reference];
     self.products = [[NSMutableArray alloc] init];
+    self.imageCache = [[NSCache alloc] init];
     self.navigationItem.title = self.category.name;
 }
 
@@ -41,32 +43,45 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    Product *product = [self.category.items objectAtIndex:indexPath.row];
-
-    cell.productNameLabel.text = product.name;
-    cell.productInfoTextView.text = product.info;
-    cell.priceAndPointsLabel.text = [NSString stringWithFormat:@"%dP / %.2f$",product.points, product.price];
-    
-    if (product.imageData){
-        cell.productImageView.image = [UIImage imageWithData:product.imageData];
-    } else{
-        NSURL *url = [NSURL URLWithString:product.imageURL];
-        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if (error){
-                [self showMessagePrompt: error.localizedDescription];
-                return;
-            }
-            product.imageData = data;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.productImageView.image = [UIImage imageWithData:data];
-            });
-        }] resume];
-    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(CategoryCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.productImageView.image = [UIImage imageNamed:@"imagePlaceholder"];
+    cell.productImageView.image = nil;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(CategoryCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    Product *product = [self.category.items objectAtIndex:indexPath.row];
+    
+    cell.productNameLabel.text = product.name;
+    cell.productInfoTextView.text = product.info;
+    cell.priceAndPointsLabel.text = [NSString stringWithFormat:@"%dP / %.2f$",product.points, product.price];
+    
+    UIImage *image = [self.imageCache objectForKey:product.imageURL];
+    if (image){
+        cell.productImageView.image = image;
+        return;
+    }
+    if(product.imageData){
+        UIImage *image = [UIImage imageWithData:product.imageData];
+        [self.imageCache setObject:image forKey:product.imageURL];
+        cell.productImageView.image = image;
+    } else{
+    
+    NSURL *url = [NSURL URLWithString:product.imageURL];
+    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error){
+            [self showMessagePrompt: error.localizedDescription];
+            return;
+        }
+        product.imageData = data;
+        UIImage *image = [UIImage imageWithData:data];
+        [self.imageCache setObject:image forKey:product.imageURL];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.productImageView.image = image;
+        });
+    }] resume];
+    }
 }
 
 

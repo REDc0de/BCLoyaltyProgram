@@ -101,7 +101,7 @@
 }
 
 
-// Sprite Kit 
+// Sprite Kit https://github.com/ryang1428/ShootingStars
 - (void)shootOffSpriteKitStarFromView:(UIView *)view {
     CGPoint viewOrigin;
     
@@ -150,7 +150,7 @@
     [bp addCurveToPoint:endPoint controlPoint1:CGPointMake(viewOrigin.x + 320, viewOrigin.y + 275) controlPoint2:CGPointMake(+20, skView.frame.size.height - 250)];
     
     __weak typeof(containerView) weakView = containerView;
-    SKAction *followline = [SKAction followPath:bp.CGPath asOffset:YES orientToPath:YES duration:2.0];
+    SKAction *followline = [SKAction followPath:bp.CGPath asOffset:YES orientToPath:YES duration:1.8];
     SKAction *fadeOut = [SKAction fadeOutWithDuration:0.4];
     
     SKAction *done = [SKAction runBlock:^{
@@ -209,9 +209,7 @@
             
             
         }
-        
-        
-        
+  
         NSURL *url = [NSURL URLWithString:self.user.profileImageURL];
         [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (error){

@@ -38,12 +38,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.reference = [[FIRDatabase database] reference];
-    [self setupImageView];
-    [self setupGuestCardButton];
-    [self setupPointsButton];
     self.user = [[User alloc] init];
-    
-    
+    [self.userPointsButton setTitle:[NSString stringWithFormat:@" ★0 "] forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,6 +48,16 @@
     [self checkIfUserIsLoggedIn];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self setupImageView];
+    [self setupGuestCardButton];
+    [self setupPointsButton];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -75,6 +81,8 @@
 
 - (void)setupImageView{
     self.userImageView.layer.cornerRadius = self.userImageView.layer.frame.size.width/2;
+    
+    NSLog(@"WIDTH:  %f", self.userImageView.layer.frame.size.width);
     self.userImageView.layer.masksToBounds = YES;
 }
 
@@ -93,7 +101,6 @@
     self.userPointsButton.layer.shadowOpacity = 0.8;
     self.userPointsButton.layer.shadowOffset = CGSizeMake(0.0, 0.0);
     
-    [self.userPointsButton setTitle:[NSString stringWithFormat:@" ★0 "] forState:UIControlStateNormal];
     [self.userPointsButton setNeedsLayout];
     [self.userPointsButton layoutIfNeeded];
     
@@ -150,7 +157,7 @@
     [bp addCurveToPoint:endPoint controlPoint1:CGPointMake(viewOrigin.x + 320, viewOrigin.y + 275) controlPoint2:CGPointMake(+20, skView.frame.size.height - 250)];
     
     __weak typeof(containerView) weakView = containerView;
-    SKAction *followline = [SKAction followPath:bp.CGPath asOffset:YES orientToPath:YES duration:1.8];
+    SKAction *followline = [SKAction followPath:bp.CGPath asOffset:YES orientToPath:YES duration:1.2];
     SKAction *fadeOut = [SKAction fadeOutWithDuration:0.4];
     
     SKAction *done = [SKAction runBlock:^{

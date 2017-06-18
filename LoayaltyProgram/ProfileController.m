@@ -36,18 +36,9 @@
     self.reference = [[FIRDatabase database] reference];
     [self setupImageView];
     [self setupGuestCardButton];
+    [self setupPointsButton];
     self.user = [[User alloc] init];
-    
-    
-    
-    self.userPointsButton.backgroundColor = [UIColor colorWithRed:219.0/255 green:16.0/255 blue:32.0/255 alpha:1.0];
-    self.userPointsButton.layer.cornerRadius = 24.0;
-    self.userPointsButton.tintColor = [UIColor whiteColor];
-    
-    self.userPointsButton.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.userPointsButton.layer.shadowRadius = 4.0;
-    self.userPointsButton.layer.shadowOpacity = 0.8;
-    self.userPointsButton.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+
 
 }
 
@@ -86,6 +77,17 @@
 - (void)setupGuestCardButton {
     self.guestCardButton.layer.cornerRadius = 4;
     self.guestCardButton.layer.masksToBounds =YES;
+}
+
+- (void)setupPointsButton {
+    self.userPointsButton.backgroundColor = [UIColor colorWithRed:219.0/255 green:16.0/255 blue:32.0/255 alpha:1.0];
+    self.userPointsButton.layer.cornerRadius = 22.0;
+    self.userPointsButton.tintColor = [UIColor whiteColor];
+    
+    self.userPointsButton.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.userPointsButton.layer.shadowRadius = 4.0;
+    self.userPointsButton.layer.shadowOpacity = 0.8;
+    self.userPointsButton.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
 
 - (void)getUser {

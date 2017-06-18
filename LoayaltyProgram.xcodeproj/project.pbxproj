@@ -52,6 +52,7 @@
 		43B3C65E1E9D958400588A5E /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C65D1E9D958400588A5E /* News.m */; };
 		43B3C6621E9DAC5200588A5E /* TabBarIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */; };
 		43B3C66D1EA391DC00588A5E /* EditProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B3C66C1EA391DC00588A5E /* EditProfileController.m */; };
+		43E9C2D11EF6215900DEEDB7 /* StarParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 43E9C2D01EF6215900DEEDB7 /* StarParticle.sks */; };
 		B03421DA1ED4182A0054E3ED /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */; };
 		B0752BE81EE14D32006DDCCA /* UIElements.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0752BE71EE14D32006DDCCA /* UIElements.xcassets */; };
 		B0752BEA1EE15600006DDCCA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0752BE91EE15600006DDCCA /* QuartzCore.framework */; };
@@ -132,6 +133,7 @@
 		43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBarIcons.xcassets; sourceTree = "<group>"; };
 		43B3C66B1EA391DC00588A5E /* EditProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileController.h; sourceTree = "<group>"; };
 		43B3C66C1EA391DC00588A5E /* EditProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileController.m; sourceTree = "<group>"; };
+		43E9C2D01EF6215900DEEDB7 /* StarParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarParticle.sks; sourceTree = "<group>"; };
 		B03421D81ED4182A0054E3ED /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
 		B03421D91ED4182A0054E3ED /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		B0752BE71EE14D32006DDCCA /* UIElements.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UIElements.xcassets; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				43B3C6611E9DAC5200588A5E /* TabBarIcons.xcassets */,
 				4395AF351E9914BE005577F5 /* Assets.xcassets */,
 				4395AF371E9914BE005577F5 /* LaunchScreen.storyboard */,
+				43E9C2D01EF6215900DEEDB7 /* StarParticle.sks */,
 				4395AF401E99158E005577F5 /* GoogleService-Info.plist */,
 				4395AF3A1E9914BE005577F5 /* Info.plist */,
 				4395AF621E9919BB005577F5 /* Firebase */,
@@ -475,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4395AF391E9914BE005577F5 /* LaunchScreen.storyboard in Resources */,
+				43E9C2D11EF6215900DEEDB7 /* StarParticle.sks in Resources */,
 				B0752BE81EE14D32006DDCCA /* UIElements.xcassets in Resources */,
 				4395AF411E99158E005577F5 /* GoogleService-Info.plist in Resources */,
 				4395AF361E9914BE005577F5 /* Assets.xcassets in Resources */,

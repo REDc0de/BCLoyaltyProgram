@@ -15,6 +15,12 @@
 #import <QuartzCore/QuartzCore.h>
 
 
+#import <SpriteKit/SpriteKit.h>
+
+#define SCREEN_SCALE [[UIScreen mainScreen] scale]
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
+
 @interface ProfileController ()
 
 @property (strong, nonatomic) FIRDatabaseReference *reference;
@@ -88,6 +94,74 @@
     self.userPointsButton.layer.shadowRadius = 4.0;
     self.userPointsButton.layer.shadowOpacity = 0.8;
     self.userPointsButton.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+    
+    [self.userPointsButton setTitle:[NSString stringWithFormat:@" ★0 "] forState:UIControlStateNormal];
+    [self.userPointsButton setNeedsLayout];
+    [self.userPointsButton layoutIfNeeded];
+    
+    [self.userPointsButton addTarget:self action:@selector(shootOffSpriteKitStarFromView:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+// Sprite Kit Example
+- (void)shootOffSpriteKitStarFromView:(UIView *)view {
+    CGPoint viewOrigin;
+    
+    viewOrigin.y = 0;
+    viewOrigin.x = (view.frame.origin.x + (view.frame.size.width / 2)) / SCREEN_SCALE;
+    
+    UIView *containerView = [[UIView alloc] initWithFrame:self.view.bounds];
+    containerView.userInteractionEnabled = NO;
+    
+    SKView *skView = [[SKView alloc] initWithFrame:containerView.frame];
+    skView.allowsTransparency = YES;
+    [containerView addSubview:skView];
+    
+    SKScene *skScene = [SKScene sceneWithSize:skView.frame.size];
+    skScene.scaleMode = SKSceneScaleModeFill;
+    skScene.backgroundColor = [UIColor clearColor];
+    
+    SKSpriteNode *starSprite = [SKSpriteNode spriteNodeWithImageNamed:@"filled_star"];
+    [starSprite setScale:0.6];
+    starSprite.position = viewOrigin;
+    [skScene addChild:starSprite];
+    
+    SKEmitterNode *emitter =  [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"StarParticle" ofType:@"sks"]];
+    
+    [emitter setParticlePosition:CGPointMake(0, -starSprite.size.height)];
+    
+    emitter.targetNode = skScene;
+    
+    [starSprite addChild:emitter];
+    
+    [skView presentScene:skScene];
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, viewOrigin.x, viewOrigin.y);
+    
+    CGPoint endPoint = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height + 100);
+    UIBezierPath *bp = [UIBezierPath new];
+    [bp moveToPoint:viewOrigin];
+    
+    // curvy path
+    // control points "pull" the curve to that point on the screen. You should be smarter then just using magic numbers like below.
+    [bp addCurveToPoint:endPoint controlPoint1:CGPointMake(viewOrigin.x + 500, viewOrigin.y + 275) controlPoint2:CGPointMake(-200, skView.frame.size.height - 250)];
+    
+    __weak typeof(containerView) weakView = containerView;
+    SKAction *followline = [SKAction followPath:bp.CGPath asOffset:YES orientToPath:YES duration:3.0];
+    
+    SKAction *done = [SKAction runBlock:^{
+        // lets delay until all particles are removed
+        int64_t delayInSeconds = 2.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [weakView removeFromSuperview];
+        });
+    }];
+    
+    [starSprite runAction:[SKAction sequence:@[followline, done]]];
+    
+    [self.view addSubview:containerView];
 }
 
 - (void)getUser {
@@ -111,12 +185,16 @@
 //        self.navigationItem.title = self.user.name;
         self.userNameLabel.text = self.user.name;
 //        self.userPointsButton.titleLabel.text = [NSString stringWithFormat:@" ★%d ",self.user.points];
-//        
+//
         
+        if (![self.userPointsButton.titleLabel.text isEqualToString:[NSString stringWithFormat:@" ★%d ",self.user.points]] && ![self.userPointsButton.titleLabel.text isEqualToString:@" ★0 "]) {
+            [self shootOffSpriteKitStarFromView: self.userPointsButton];
+        }
         
         [self.userPointsButton setTitle:[NSString stringWithFormat:@" ★%d ",self.user.points] forState:UIControlStateNormal];
         [self.userPointsButton setNeedsLayout];
         [self.userPointsButton layoutIfNeeded];
+        
         
         NSURL *url = [NSURL URLWithString:self.user.profileImageURL];
         [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

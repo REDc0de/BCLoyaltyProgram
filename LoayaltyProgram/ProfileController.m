@@ -13,8 +13,6 @@
 #import "EditProfileController.h"
 #import "UIViewController+Alerts.h"
 #import <QuartzCore/QuartzCore.h>
-
-
 #import <SpriteKit/SpriteKit.h>
 
 #define SCREEN_SCALE [[UIScreen mainScreen] scale]
@@ -44,13 +42,13 @@
     [self setupGuestCardButton];
     [self setupPointsButton];
     self.user = [[User alloc] init];
-
-
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-   // [self handleSignout:nil];
+    // [self handleSignout:nil];
     [self checkIfUserIsLoggedIn];
 }
 
@@ -103,7 +101,7 @@
 }
 
 
-// Sprite Kit Example
+// Sprite Kit 
 - (void)shootOffSpriteKitStarFromView:(UIView *)view {
     CGPoint viewOrigin;
     
@@ -122,7 +120,9 @@
     skScene.backgroundColor = [UIColor clearColor];
     
     SKSpriteNode *starSprite = [SKSpriteNode spriteNodeWithImageNamed:@"filled_star"];
-    [starSprite setScale:0.6];
+    // [starSprite setScale:0.6];
+    [starSprite setScale:0.35];
+    
     starSprite.position = viewOrigin;
     [skScene addChild:starSprite];
     
@@ -139,27 +139,39 @@
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, viewOrigin.x, viewOrigin.y);
     
-    CGPoint endPoint = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height + 100);
+    // CGPoint endPoint = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height + 100);
+    CGPoint endPoint = CGPointMake(self.view.frame.size.width / 2 - 90, self.view.frame.size.height - 108);
+    
     UIBezierPath *bp = [UIBezierPath new];
     [bp moveToPoint:viewOrigin];
     
     // curvy path
     // control points "pull" the curve to that point on the screen. You should be smarter then just using magic numbers like below.
-    [bp addCurveToPoint:endPoint controlPoint1:CGPointMake(viewOrigin.x + 500, viewOrigin.y + 275) controlPoint2:CGPointMake(-200, skView.frame.size.height - 250)];
+    [bp addCurveToPoint:endPoint controlPoint1:CGPointMake(viewOrigin.x + 320, viewOrigin.y + 275) controlPoint2:CGPointMake(+20, skView.frame.size.height - 250)];
     
     __weak typeof(containerView) weakView = containerView;
-    SKAction *followline = [SKAction followPath:bp.CGPath asOffset:YES orientToPath:YES duration:3.0];
+    SKAction *followline = [SKAction followPath:bp.CGPath asOffset:YES orientToPath:YES duration:2.0];
+    SKAction *fadeOut = [SKAction fadeOutWithDuration:0.4];
     
     SKAction *done = [SKAction runBlock:^{
         // lets delay until all particles are removed
-        int64_t delayInSeconds = 2.2;
+        int64_t delayInSeconds = 0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [weakView removeFromSuperview];
+            
+            [self.userPointsButton setTitle:[NSString stringWithFormat:@" ★%d ",self.user.points] forState:UIControlStateNormal];
+            [self.userPointsButton setNeedsLayout];
+            [self.userPointsButton layoutIfNeeded];
+            [UIView animateWithDuration:0.5f animations:^{
+                [weakView setAlpha:0.0f];
+            } completion:^(BOOL finished) {
+                [weakView removeFromSuperview];
+            }];
+            
         });
     }];
     
-    [starSprite runAction:[SKAction sequence:@[followline, done]]];
+    [starSprite runAction:[SKAction sequence:@[followline, fadeOut, done]]];
     
     [self.view addSubview:containerView];
 }
@@ -172,7 +184,7 @@
             [self handleSignout:nil];
             return;
         }
-
+        
         self.user.name = snapshot.value[@"username"];
         self.user.gender = snapshot.value[@"gender"];
         self.user.birthday = snapshot.value[@"birtday"];
@@ -182,18 +194,22 @@
         self.user.points = [snapshot.value[@"points"] intValue];
         self.user.uid = userID;
         
-//        self.navigationItem.title = self.user.name;
+        //        self.navigationItem.title = self.user.name;
         self.userNameLabel.text = self.user.name;
-//        self.userPointsButton.titleLabel.text = [NSString stringWithFormat:@" ★%d ",self.user.points];
-//
+        //        self.userPointsButton.titleLabel.text = [NSString stringWithFormat:@" ★%d ",self.user.points];
+        //
         
         if (![self.userPointsButton.titleLabel.text isEqualToString:[NSString stringWithFormat:@" ★%d ",self.user.points]] && ![self.userPointsButton.titleLabel.text isEqualToString:@" ★0 "]) {
             [self shootOffSpriteKitStarFromView: self.userPointsButton];
+        } else if ([self.userPointsButton.titleLabel.text isEqualToString:@" ★0 "]) {
+            
+            [self.userPointsButton setTitle:[NSString stringWithFormat:@" ★%d ",self.user.points] forState:UIControlStateNormal];
+            [self.userPointsButton setNeedsLayout];
+            [self.userPointsButton layoutIfNeeded];
+            
+            
         }
         
-        [self.userPointsButton setTitle:[NSString stringWithFormat:@" ★%d ",self.user.points] forState:UIControlStateNormal];
-        [self.userPointsButton setNeedsLayout];
-        [self.userPointsButton layoutIfNeeded];
         
         
         NSURL *url = [NSURL URLWithString:self.user.profileImageURL];
@@ -205,28 +221,28 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.userImageView.image = [UIImage imageWithData:data];
                 
-//                //Add Image and Text to Navigation Title
-//                UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 300, 30)];
-//                UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(40, 0, 300, 30)];
-//                
-//                title.text = NSLocalizedString(self.user.name, nil);
-//                [title setTextColor:[UIColor blackColor]];
-//                [title setFont:[UIFont boldSystemFontOfSize:20.0]];
-//                
-//                [title setBackgroundColor:[UIColor clearColor]];
-//                UIImage *image = [UIImage imageWithData:data];
-//                UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
-//                
-//                myImageView.frame = CGRectMake(0, 0, 30, 30);
-//                myImageView.layer.cornerRadius = 15.0;
-//                myImageView.layer.masksToBounds = YES;
-//                myImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//                myImageView.layer.borderWidth = 0.1;
-//                
-//                [myView addSubview:title];
-//                [myView setBackgroundColor:[UIColor  clearColor]];
-//                [myView addSubview:myImageView];
-//                self.navigationItem.titleView = myView;
+                //                //Add Image and Text to Navigation Title
+                //                UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 300, 30)];
+                //                UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(40, 0, 300, 30)];
+                //
+                //                title.text = NSLocalizedString(self.user.name, nil);
+                //                [title setTextColor:[UIColor blackColor]];
+                //                [title setFont:[UIFont boldSystemFontOfSize:20.0]];
+                //
+                //                [title setBackgroundColor:[UIColor clearColor]];
+                //                UIImage *image = [UIImage imageWithData:data];
+                //                UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+                //
+                //                myImageView.frame = CGRectMake(0, 0, 30, 30);
+                //                myImageView.layer.cornerRadius = 15.0;
+                //                myImageView.layer.masksToBounds = YES;
+                //                myImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+                //                myImageView.layer.borderWidth = 0.1;
+                //
+                //                [myView addSubview:title];
+                //                [myView setBackgroundColor:[UIColor  clearColor]];
+                //                [myView addSubview:myImageView];
+                //                self.navigationItem.titleView = myView;
                 
             });
             if (self.user.profileImageData != data) {

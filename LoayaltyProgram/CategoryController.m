@@ -55,7 +55,7 @@
     
     cell.productNameLabel.text = product.name;
     cell.productInfoTextView.text = product.info;
-    cell.priceAndPointsLabel.text = [NSString stringWithFormat:@"%dP / %.2f$",product.points, product.price];
+    cell.priceAndPointsLabel.text = [NSString stringWithFormat:@"$%.2f",product.price];
     
     UIImage *image = [self.imageCache objectForKey:product.imageURL];
     if (image){

@@ -18,7 +18,6 @@
 #define SCREEN_SCALE [[UIScreen mainScreen] scale]
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
-
 @interface ProfileController ()
 
 @property (strong, nonatomic) FIRDatabaseReference *reference;
@@ -44,7 +43,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    // [self handleSignout:nil];
     [self checkIfUserIsLoggedIn];
 }
 
@@ -81,8 +79,6 @@
 
 - (void)setupImageView{
     self.userImageView.layer.cornerRadius = self.userImageView.layer.frame.size.width/2;
-    
-    NSLog(@"WIDTH:  %f", self.userImageView.layer.frame.size.width);
     self.userImageView.layer.masksToBounds = YES;
 }
 
@@ -127,7 +123,6 @@
     skScene.backgroundColor = [UIColor clearColor];
     
     SKSpriteNode *starSprite = [SKSpriteNode spriteNodeWithImageNamed:@"filled_star"];
-    // [starSprite setScale:0.6];
     [starSprite setScale:0.35];
     
     starSprite.position = viewOrigin;
@@ -191,7 +186,6 @@
             [self handleSignout:nil];
             return;
         }
-        
         self.user.name = snapshot.value[@"username"];
         self.user.gender = snapshot.value[@"gender"];
         self.user.birthday = snapshot.value[@"birtday"];
@@ -209,12 +203,9 @@
         if (![self.userPointsButton.titleLabel.text isEqualToString:[NSString stringWithFormat:@" ★%d ",self.user.points]] && ![self.userPointsButton.titleLabel.text isEqualToString:@" ★0 "]) {
             [self shootOffSpriteKitStarFromView: self.userPointsButton];
         } else if ([self.userPointsButton.titleLabel.text isEqualToString:@" ★0 "]) {
-            
             [self.userPointsButton setTitle:[NSString stringWithFormat:@" ★%d ",self.user.points] forState:UIControlStateNormal];
             [self.userPointsButton setNeedsLayout];
             [self.userPointsButton layoutIfNeeded];
-            
-            
         }
   
         NSURL *url = [NSURL URLWithString:self.user.profileImageURL];
